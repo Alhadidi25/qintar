@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قِنطار</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg:       #0e0e0e;
+            --card:     #1a1a1a;
+            --card2:    #222222;
+            --card3:    #2a2a2a;
+            --orange:   #e8650a;
+            --orange2:  #ff7a1f;
+            --orange-bg: rgba(232,101,10,0.12);
+            --orange-border: rgba(232,101,10,0.25);
+            --white:    #ffffff;
+            --text:     #f0f0f0;
+            --muted:    #7a7a7a;
+            --muted2:   #555555;
+            --green:    #2ecc71;
+            --green-bg: rgba(46,204,113,0.1);
+            --red:      #e74c3c;
+            --red-bg:   rgba(231,76,60,0.1);
+            --border:   #2a2a2a;
+            --radius:   14px;
+            --shadow:   0 2px 12px rgba(0,0,0,0.4);
+            --shadow2:  0 8px 32px rgba(0,0,0,0.6);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            padding-bottom: 50px;
+        }
+
+        /* HEADER */
+        .header {
+            padding: 20px 20px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header-logo {
+            font-size: 1.1rem;
+            font-weight: 900;
+            color: var(--white);
+            letter-spacing: -0.5px;
+        }
+        .header-logo span { 
+            color: var(--orange); 
+        }
+        .header-date {
+            font-size: 0.7rem;
+            color: var(--muted);
+            background: var(--card);
+            padding: 6px 12px;
+            border-radius: 20px;
+        }
+
+        /* BALANCE CARD */
+        .balance-card {
+            margin: 20px 16px 0;
+            background: var(--card);
+            border-radius: 20px;
+            padding: 24px 20px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow2);
+        }
+        .balance-card::before,
+        .balance-card::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .balance-card::before {
+            bottom: -60px; 
+            left: -60px;
+            width: 220px; 
+            height: 220px;
+            background: radial-gradient(circle, rgba(232,101,10,0.18) 0%, transparent 70%);
+        }
+        .balance-card::after {
+            top: -40px; 
+            right: -40px;
+            width: 160px; 
+            height: 160px;
+            background: radial-gradient(circle, rgba(232,101,10,0.08) 0%, transparent 70%);
+        }
+
+        .balance-label {
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: var(--muted);
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        .balance-amount {
+            font-size: 2.6rem;
+            font-weight: 900;
+            color: var(--white);
+            letter-spacing: -1.5px;
+            line-height: 1;
+            direction: ltr;
+            text-align: right;
+        }
+        .balance-currency {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--muted);
+            margin-left: 4px;
+        }
+
+        .balance-footer {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+        }
+        .bfi-label {
+            font-size: 0.65rem;
+            color: var(--muted);
+            margin-bottom: 4px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        .bfi-val {
+            font-size: 0.88rem;
+            font-weight: 800;
+        }
+        .bfi-val.c-green { color: var(--green); }
+        .bfi-val.c-red   { color: var(--red); }
+        .bfi-val.c-orange { color: var(--orange); }
+
+        .trend-badge {
+            background: var(--orange);
+            color: var(--white);
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 6px 14px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        /* MINI CHART */
+        .mini-chart {
+            height: 50px;
+            margin: 16px 0 4px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* STAT ROW */
+        .stat-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            margin: 14px 16px 0;
+        }
+        .stat-card {
+            background: var(--card);
+            border-radius: 14px;
+            padding: 14px 12px;
+            box-shadow: var(--shadow);
+        }
+        .sc-label {
+            font-size: 0.62rem;
+            color: var(--muted);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+        .sc-val {
+            font-size: 0.82rem;
+            font-weight: 800;
+            color: var(--text);
+        }
+        .sc-val.c-red    { color: var(--red); }
+        .sc-val.c-green  { color: var(--green); }
+        .sc-val.c-orange { color: var(--orange); }
+        .sc-dot {
+            width: 6px; 
+            height: 6px;
+            border-radius: 50%;
+            margin-bottom: 8px;
+        }
+        .sc-dot.d-red    { background: var(--red); }
+        .sc-dot.d-green  { background: var(--green); }
+        .sc-dot.d-orange { background: var(--orange); }
+
+        /* TABS */
+        .tabs-wrap { 
+            padding: 18px 16px 0; 
+        }
+        .tabs {
+            display: flex;
+            background: var(--card);
+            border-radius: 12px;
+            padding: 4px;
+            gap: 4px;
+        }
+        .tab-btn {
+            flex: 1;
+            padding: 11px 4px;
+            border: none;
+            background: transparent;
+            color: var(--muted);
+            font-family: 'Tajawal', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            border-radius: 9px;
+            cursor: pointer;
+            transition: all 0.2s;
+            letter-spacing: 0.3px;
+        }
+        .tab-btn.active {
+            background: var(--orange);
+            color: var(--white);
+        }
+
+        /* CONTENT */
+        .content { 
+            padding: 16px 16px 0; 
+        }
+        .panel { 
+            display: none; 
+        }
+        .panel.active { 
+            display: block; 
+        }
+
+        .sec-label {
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            color: var(--muted);
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        /* FORM CARD */
+        .form-card {
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: 20px 18px;
+            margin-bottom: 16px;
+            box-shadow: var(--shadow);
+        }
+
+        .field { 
+            margin-bottom: 14px; 
+        }
+        .field label {
+            display: block;
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--muted);
+            text-transform: uppercase;
+            margin-bottom: 7px;
+        }
+        .input-wrap { 
+            position: relative; 
+        }
+        .input-unit {
+            position: absolute;
+            left: 14px; 
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--muted2);
+            pointer-events: none;
+        }
+        .field input, 
+        .field select {
+            width: 100%;
+            background: var(--card2);
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
+            padding: 13px 14px;
+            color: var(--text);
+            font-family: 'Tajawal', sans-serif;
+            font-size: 0.92rem;
+            font-weight: 500;
+            outline: none;
+            transition: border-color 0.18s;
+            direction: rtl;
+        }
+        .field input:focus, 
+        .field select:focus {
+            border-color: var(--orange);
+        }
+
+        .cb-preview {
+            background: var(--green-bg);
+            border: 1.5px solid rgba(46,204,113,0.2);
+            border-right: 3px solid var(--green);
+            border-radius: 10px;
+            padding: 11px 14px;
+            font-size: 0.8rem;
+            color: var(--green);
+            font-weight: 700;
+            margin-bottom: 14px;
+            display: none;
+        }
+        .cb-preview.show { 
+            display: block; 
+        }
+
+        .row2 { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 10px; 
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 12px;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.18s;
+            letter-spacing: 0.5px;
+        }
+        .btn-orange {
+            background: var(--orange);
+            color: var(--white);
+        }
+        .btn-orange:hover { 
+            background: var(--orange2); 
+        }
+
+        /* SAVINGS GOAL STYLES */
+        .goal-status-card {
+            background: var(--card2);
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 10px;
+            border: 1px solid var(--border);
+        }
+        .goal-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+        .goal-name { font-weight: 800; color: var(--white); font-size: 0.9rem; }
+        .goal-target { font-size: 0.75rem; color: var(--muted); }
+        
+        .progress-container {
+            width: 100%;
+            height: 8px;
+            background: var(--bg);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--orange), var(--orange2));
+            width: 0%;
+            transition: width 0.5s ease-in-out;
+        }
+        .goal-footer {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.7rem;
+        }
+        .remaining-text { color: var(--orange); font-weight: 700; }
+        .percent-text { color: var(--muted); }
+
+        /* TRANSACTIONS */
+        .list-hd {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+        .clear-btn {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--red);
+            background: var(--red-bg);
+            border: none;
+            padding: 6px 13px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        .tx-item {
+            background: var(--card);
+            border-radius: 14px;
+            padding: 14px 16px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+        .tx-r { 
+            display: flex; 
+            align-items: center; 
+            gap: 12px; 
+        }
+        .tx-dot-wrap {
+            width: 42px; 
+            height: 42px;
+            border-radius: 12px;
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .tx-item.deposit  .tx-dot-wrap { background: var(--green-bg); }
+        .tx-item.withdraw .tx-dot-wrap { background: var(--orange-bg); }
+
+        .tx-dot {
+            width: 10px; 
+            height: 10px;
+            border-radius: 50%;
+        }
+        .tx-item.deposit  .tx-dot { background: var(--green); }
+        .tx-item.withdraw .tx-dot { background: var(--orange); }
+
+        .tx-name {
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+        .tx-meta { 
+            font-size: 0.68rem; 
+            color: var(--muted); 
+            margin-top: 3px; 
+        }
+        .tx-cb-tag {
+            display: inline-block;
+            font-size: 0.62rem;
+            font-weight: 700;
+            color: var(--green);
+            background: var(--green-bg);
+            border-radius: 4px;
+            padding: 2px 7px;
+            margin-top: 4px;
+        }
+
+        .tx-amount {
+            font-size: 0.95rem;
+            font-weight: 900;
+            direction: ltr;
+            text-align: left;
+        }
+        .tx-item.deposit  .tx-amount { color: var(--green); }
+        .tx-item.withdraw .tx-amount { color: var(--orange); }
+
+        .del-btn {
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: var(--muted2);
+            background: none;
+            border: none;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+        .del-btn:hover { 
+            color: var(--red); 
+        }
+
+        .empty {
+            text-align: center;
+            padding: 50px 20px;
+            color: var(--muted);
+            background: var(--card);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+        }
+
+        /* TOAST */
+        .toast {
+            position: fixed;
+            bottom: 28px; 
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--card2);
+            border: 1px solid var(--orange);
+            color: var(--white);
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 0.82rem;
+            font-family: 'Tajawal', sans-serif;
+            transition: transform 0.3s cubic-bezier(.34,1.56,.64,1);
+            z-index: 999;
+            white-space: nowrap;
+            box-shadow: var(--shadow2);
+        }
+        .toast.show { 
+            transform: translateX(-50%) translateY(0); 
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <div class="header-logo">قِن<span>طار</span></div>
+    <div class="header-date" id="hDate"></div>
+</div>
+
+<div class="balance-card">
+    <div class="balance-label">الرصيد المتاح</div>
+    <div class="balance-amount">
+        <span id="balVal">0.00</span>
+        <span class="balance-currency">ر.س</span>
+    </div>
+
+    <div class="mini-chart">
+        <svg viewBox="0 0 300 50" preserveAspectRatio="none" fill="none">
+            <defs>
+                <linearGradient id="og" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#e8650a" stop-opacity="0.35"/>
+                    <stop offset="100%" stop-color="#e8650a" stop-opacity="0"/>
+                </linearGradient>
+            </defs>
+            <path d="M0,40 C40,38 60,15 90,20 C120,25 140,35 170,18 C200,2 230,30 260,22 C280,16 295,28 300,24 L300,50 L0,50 Z" fill="url(#og)"/>
+            <path d="M0,40 C40,38 60,15 90,20 C120,25 140,35 170,18 C200,2 230,30 260,22 C280,16 295,28 300,24" stroke="#e8650a" stroke-width="2" fill="none" stroke-linecap="round"/>
+        </svg>
+    </div>
+
+    <div class="balance-footer">
+        <div>
+            <div class="bfi-label">المصروف</div>
+            <div class="bfi-val c-red" id="spentVal">0.00 ر.س</div>
+        </div>
+        <div>
+            <div class="bfi-label">الكاش باك</div>
+            <div class="bfi-val c-green" id="cbVal">0.00 ر.س</div>
+        </div>
+        <div class="trend-badge" id="txCount">0 معاملة</div>
+    </div>
+</div>
+
+<div class="stat-row">
+    <div class="stat-card">
+        <div class="sc-dot d-green"></div>
+        <div class="sc-label">إجمالي الدخل</div>
+        <div class="sc-val c-green" id="incomeVal">0.00</div>
+    </div>
+    <div class="stat-card">
+        <div class="sc-dot d-red"></div>
+        <div class="sc-label">إجمالي الصرف</div>
+        <div class="sc-val c-red" id="spentVal2">0.00</div>
+    </div>
+    <div class="stat-card">
+        <div class="sc-dot d-orange"></div>
+        <div class="sc-label">كاش باك</div>
+        <div class="sc-val c-orange" id="cbVal2">0.00</div>
+    </div>
+</div>
+
+<div class="tabs-wrap">
+    <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab('deposit',this)">إيداع</button>
+        <button class="tab-btn" onclick="switchTab('withdraw',this)">مصروف</button>
+        <button class="tab-btn" onclick="switchTab('history',this)">السجل</button>
+        <button class="tab-btn" onclick="switchTab('savings',this)">ادخار</button>
+    </div>
+</div>
+
+<div class="content">
+
+    <div class="panel active" id="panel-deposit">
+        <div class="form-card">
+            <div class="sec-label">إيداع جديد</div>
+            <div class="field">
+                <label>المبلغ</label>
+                <div class="input-wrap">
+                    <input type="number" id="depAmt" placeholder="0.00" min="0">
+                    <span class="input-unit">ر.س</span>
+                </div>
+            </div>
+            <div class="field">
+                <label>الوصف</label>
+                <input type="text" id="depDesc" placeholder="راتب، هدية، تحويل...">
+            </div>
+            <button class="btn btn-orange" onclick="addDeposit()">تأكيد الإيداع</button>
+        </div>
+    </div>
+
+    <div class="panel" id="panel-withdraw">
+        <div class="form-card">
+            <div class="sec-label">تسجيل مصروف</div>
+            <div class="row2">
+                <div class="field">
+                    <label>المبلغ</label>
+                    <div class="input-wrap">
+                        <input type="number" id="wdAmt" placeholder="0.00" min="0" oninput="updateCb()">
+                        <span class="input-unit">ر.س</span>
+                    </div>
+                </div>
+                <div class="field">
+                    <label>كاش باك %</label>
+                    <div class="input-wrap">
+                        <input type="number" id="wdCbPct" placeholder="0" min="0" max="100" step="0.1" oninput="updateCb()">
+                        <span class="input-unit">%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="cb-preview" id="cbPreview"></div>
+            <div class="field">
+                <label>الجهة</label>
+                <input type="text" id="wdDesc" placeholder="كارفور، أمازون، STC Pay...">
+            </div>
+            <div class="field">
+                <label>التصنيف</label>
+                <select id="wdCat">
+                    <option value="تسوق">تسوق</option>
+                    <option value="مطاعم">مطاعم</option>
+                    <option value="وقود">وقود</option>
+                    <option value="صحة">صحة</option>
+                    <option value="اتصالات">اتصالات</option>
+                    <option value="ترفيه">ترفيه</option>
+                    <option value="سفر">سفر</option>
+                    <option value="إيجار وفواتير">إيجار وفواتير</option>
+                    <option value="أخرى">أخرى</option>
+                </select>
+            </div>
+            <button class="btn btn-orange" onclick="addWithdraw()">تأكيد الصرف</button>
+        </div>
+    </div>
+
+    <div class="panel" id="panel-history">
+        <div class="list-hd">
+            <div class="sec-label" style="margin-bottom:0">كشف المعاملات</div>
+            <button class="clear-btn" onclick="clearAll()">مسح الكل</button>
+        </div>
+        <div id="txList"></div>
+    </div>
+
+    <div class="panel" id="panel-savings">
+        <div class="form-card">
+            <div class="sec-label">تحديد هدف جديد</div>
+            <div class="field">
+                <label>اسم الهدف</label>
+                <input type="text" id="goalNameInput" placeholder="سيارة، جوال، سفر...">
+            </div>
+            <div class="field">
+                <label>المبلغ المطلوب</label>
+                <div class="input-wrap">
+                    <input type="number" id="goalAmtInput" placeholder="0.00" min="0">
+                    <span class="input-unit">ر.س</span>
+                </div>
+            </div>
+            <button class="btn btn-orange" onclick="setGoal()">حفظ الهدف</button>
+        </div>
+
+        <div id="goalDisplay" style="display: none;">
+            <div class="sec-label">حالة الهدف الحالي</div>
+            <div class="goal-status-card">
+                <div class="goal-info">
+                    <div class="goal-name" id="displayGoalName">سيارة أحلامي</div>
+                    <div class="goal-target" id="displayGoalTarget">0.00 ر.س</div>
+                </div>
+                <div class="progress-container">
+                    <div class="progress-bar" id="goalProgress"></div>
+                </div>
+                <div class="goal-footer">
+                    <div class="remaining-text" id="goalRemaining">باقي لك: 0.00 ر.س</div>
+                    <div class="percent-text" id="goalPercent">0%</div>
+                </div>
+                <button class="del-btn" style="width:100%; margin-top:15px; border: 1px dashed var(--muted2); padding: 5px;" onclick="deleteGoal()">حذف الهدف</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// إضافة هيكل الهدف للبيانات
+let data = JSON.parse(localStorage.getItem('mhfzti_v4') || '{"txs":[], "goal": null}');
+
+function save() { 
+    localStorage.setItem('mhfzti_v4', JSON.stringify(data)); 
+    render(); 
+}
+
+function stats() {
+    let bal = 0, spent = 0, cb = 0, income = 0;
+    for (const t of data.txs) {
+        if (t.type === 'deposit') { 
+            bal += t.amount; 
+            income += t.amount; 
+        }
+        if (t.type === 'withdraw') { 
+            bal -= t.amount; 
+            spent += t.amount; 
+            bal += (t.cb || 0); 
+            cb += (t.cb || 0); 
+        }
+    }
+    return { bal, spent, cb, income };
+}
+
+function fmt(n) {
+    return n.toLocaleString('ar-SA', { 
+        minimumFractionDigits: 2, 
+        maximumFractionDigits: 2 
+    });
+}
+
+function render() {
+    const s = stats();
+    
+    document.getElementById('balVal').textContent    = fmt(s.bal);
+    document.getElementById('spentVal').textContent  = fmt(s.spent) + ' ر.س';
+    document.getElementById('cbVal').textContent     = fmt(s.cb) + ' ر.س';
+    document.getElementById('txCount').textContent   = data.txs.length + ' معاملة';
+    document.getElementById('incomeVal').textContent = fmt(s.income);
+    document.getElementById('spentVal2').textContent = fmt(s.spent);
+    document.getElementById('cbVal2').textContent    = fmt(s.cb);
+
+    // تحديث السجل
+    const list = document.getElementById('txList');
+    if (!data.txs.length) {
+        list.innerHTML = `<div class="empty"><p>لا توجد معاملات مسجلة</p></div>`;
+    } else {
+        list.innerHTML = [...data.txs].reverse().map((t, ri) => {
+            const i = data.txs.length - 1 - ri;
+            const isD = t.type === 'deposit';
+            const sign = isD ? '+' : '-';
+            return `
+                <div class="tx-item ${t.type}">
+                    <div class="tx-r">
+                        <div class="tx-dot-wrap"><div class="tx-dot"></div></div>
+                        <div>
+                            <div class="tx-name">${t.desc || t.cat || (isD ? 'إيداع' : 'مصروف')}</div>
+                            <div class="tx-meta">${t.cat ? t.cat + '  ·  ' : ''}${t.date || ''}</div>
+                            ${t.cb ? `<div class="tx-cb-tag">كاش باك +${fmt(t.cb)} ر.س</div>` : ''}
+                        </div>
+                    </div>
+                    <div class="tx-l" style="text-align:left">
+                        <div class="tx-amount">${sign} ${fmt(t.amount)} ر.س</div>
+                        <button class="del-btn" onclick="delTx(${i})">حذف</button>
+                    </div>
+                </div>`;
+        }).join('');
+    }
+
+    // تحديث عرض الهدف
+    const goalDisplay = document.getElementById('goalDisplay');
+    if (data.goal) {
+        goalDisplay.style.display = 'block';
+        document.getElementById('displayGoalName').textContent = data.goal.name;
+        document.getElementById('displayGoalTarget').textContent = fmt(data.goal.amount) + ' ر.س';
+        
+        const currentBal = s.bal;
+        const targetAmt = data.goal.amount;
+        let percent = (currentBal / targetAmt) * 100;
+        percent = percent > 100 ? 100 : percent;
+        
+        document.getElementById('goalProgress').style.width = percent + '%';
+        document.getElementById('goalPercent').textContent = Math.floor(percent) + '%';
+        
+        const remaining = targetAmt - currentBal;
+        if (remaining <= 0) {
+            document.getElementById('goalRemaining').textContent = 'مبروك! حققت هدفك';
+            document.getElementById('goalRemaining').style.color = 'var(--green)';
+        } else {
+            document.getElementById('goalRemaining').textContent = `باقي لك: ${fmt(remaining)} ر.س`;
+            document.getElementById('goalRemaining').style.color = 'var(--orange)';
+        }
+    } else {
+        goalDisplay.style.display = 'none';
+    }
+}
+
+function updateCb() {
+    const amt = parseFloat(document.getElementById('wdAmt').value) || 0;
+    const pct = parseFloat(document.getElementById('wdCbPct').value) || 0;
+    const el = document.getElementById('cbPreview');
+    if (amt > 0 && pct > 0) {
+        el.textContent = `سيُضاف ${fmt(amt * pct / 100)} ر.س كاش باك (${pct}% من ${fmt(amt)} ر.س)`;
+        el.classList.add('show');
+    } else {
+        el.classList.remove('show');
+    }
+}
+
+function nowDate() {
+    return new Date().toLocaleDateString('ar-SA', { day: '2-digit', month: '2-digit', year: 'numeric' });
+}
+
+function addDeposit() {
+    const a = parseFloat(document.getElementById('depAmt').value);
+    const d = document.getElementById('depDesc').value.trim();
+    if (!a || a <= 0) return showToast('يرجى إدخال مبلغ صحيح');
+    data.txs.push({ type: 'deposit', amount: a, desc: d || 'إيداع', date: nowDate() });
+    document.getElementById('depAmt').value = '';
+    document.getElementById('depDesc').value = '';
+    save();
+    showToast('تم تسجيل الإيداع بنجاح');
+}
+
+function addWithdraw() {
+    const a = parseFloat(document.getElementById('wdAmt').value);
+    const pct = parseFloat(document.getElementById('wdCbPct').value) || 0;
+    const d = document.getElementById('wdDesc').value.trim();
+    const cat = document.getElementById('wdCat').value;
+    if (!a || a <= 0) return showToast('يرجى إدخال مبلغ صحيح');
+    const cb = parseFloat((a * pct / 100).toFixed(2));
+    data.txs.push({ type: 'withdraw', amount: a, cb: cb, cbPct: pct, desc: d || '', cat: cat, date: nowDate() });
+    document.getElementById('wdAmt').value = '';
+    document.getElementById('wdCbPct').value = '';
+    document.getElementById('wdDesc').value = '';
+    document.getElementById('cbPreview').classList.remove('show');
+    save();
+    showToast(cb > 0 ? `تم التسجيل — كاش باك: ${fmt(cb)} ر.س` : 'تم تسجيل المصروف');
+}
+
+// دوال الهدف الجديد
+function setGoal() {
+    const name = document.getElementById('goalNameInput').value.trim();
+    const amount = parseFloat(document.getElementById('goalAmtInput').value);
+    if (!name || isNaN(amount) || amount <= 0) return showToast('أكمل بيانات الهدف بشكل صحيح');
+    data.goal = { name: name, amount: amount };
+    document.getElementById('goalNameInput').value = '';
+    document.getElementById('goalAmtInput').value = '';
+    save();
+    showToast('تم حفظ الهدف.. بالتوفيق!');
+}
+
+function deleteGoal() {
+    if (!confirm('هل تريد حذف الهدف الحالي؟')) return;
+    data.goal = null;
+    save();
+    showToast('تم حذف الهدف');
+}
+
+function delTx(i) {
+    if (!confirm('حذف هذه المعاملة؟')) return;
+    data.txs.splice(i, 1);
+    save();
+    showToast('تم حذف المعاملة');
+}
+
+function clearAll() {
+    if (!confirm('مسح جميع المعاملات نهائياً؟')) return;
+    data.txs = [];
+    save();
+    showToast('تم المسح الكامل');
+}
+
+function switchTab(tab, btn) {
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('panel-' + tab).classList.add('active');
+    btn.classList.add('active');
+}
+
+function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+document.getElementById('hDate').textContent = new Date().toLocaleDateString('ar-SA', { weekday: 'short', day: 'numeric', month: 'long' });
+render();
+</script>
+</body>
+</html>
