@@ -17,6 +17,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
         :root {
             --bg:       #0e0e0e;
@@ -54,6 +55,14 @@
             --border:   #e2e2e2;
             --shadow:   0 2px 10px rgba(0,0,0,0.06);
             --shadow2:  0 8px 28px rgba(0,0,0,0.10);
+        }
+
+        /* BLUE THEME OVERRIDE (same as dark, accent color only) */
+        html[data-theme="blue"] {
+            --orange:   #1f7ae0;
+            --orange2:  #3a92f5;
+            --orange-bg: rgba(31,122,224,0.12);
+            --orange-border: rgba(31,122,224,0.25);
         }
 
         * {
@@ -419,6 +428,7 @@
         /* TABS */
         .tabs-wrap { 
             padding: 18px 16px 0; 
+            position: relative;
         }
         .tabs {
             display: flex;
@@ -430,6 +440,46 @@
             scrollbar-width: none;
         }
         .tabs::-webkit-scrollbar { display: none; }
+
+        /* Swipe hint: fade + bouncing arrow indicating more tabs are scrollable */
+        .tabs-fade {
+            position: absolute;
+            top: 4px;
+            bottom: 4px;
+            width: 34px;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.2s;
+            z-index: 2;
+            border-radius: 12px;
+        }
+        .tabs-fade.show { opacity: 1; }
+        .tabs-fade-left {
+            left: 16px;
+            justify-content: flex-start;
+            background: linear-gradient(to left, transparent, var(--card) 65%);
+        }
+        .tabs-fade-right {
+            right: 16px;
+            justify-content: flex-end;
+            background: linear-gradient(to right, transparent, var(--card) 65%);
+        }
+        .tabs-fade-arrow {
+            font-size: 0.8rem;
+            color: var(--orange);
+            animation: swipeNudge 1.4s ease-in-out infinite;
+        }
+        @keyframes swipeNudge {
+            0%, 100% { transform: translateX(0); opacity: 0.55; }
+            50% { transform: translateX(-4px); opacity: 1; }
+        }
+        html[dir="rtl"] .tabs-fade-arrow { animation-name: swipeNudgeRtl; }
+        @keyframes swipeNudgeRtl {
+            0%, 100% { transform: translateX(0); opacity: 0.55; }
+            50% { transform: translateX(4px); opacity: 1; }
+        }
         .tab-btn {
             flex: 1 0 auto;
             min-width: 66px;
@@ -1127,7 +1177,7 @@
 </div>
 
 <div class="tabs-wrap">
-    <div class="tabs">
+    <div class="tabs" id="tabsScroller" onscroll="updateTabsFade()">
         <button class="tab-btn active" onclick="switchTab('deposit',this)">إيداع</button>
         <button class="tab-btn" onclick="switchTab('withdraw',this)">مصروف</button>
         <button class="tab-btn" onclick="switchTab('history',this)">السجل</button>
@@ -1136,6 +1186,8 @@
         <button class="tab-btn" onclick="switchTab('analytics',this)">التحليلات</button>
         <button class="tab-btn" onclick="switchTab('settings',this)">الإعدادات</button>
     </div>
+    <div class="tabs-fade tabs-fade-left" id="tabsFadeLeft"><span class="tabs-fade-arrow">‹</span></div>
+    <div class="tabs-fade tabs-fade-right" id="tabsFadeRight"><span class="tabs-fade-arrow">›</span></div>
 </div>
 
 <div class="content">
@@ -1318,6 +1370,7 @@
                 <div class="theme-toggle">
                     <button id="themeDarkBtn" onclick="setTheme('dark')">داكن</button>
                     <button id="themeLightBtn" onclick="setTheme('light')">فاتح</button>
+                    <button id="themeBlueBtn" onclick="setTheme('blue')">أزرق</button>
                 </div>
             </div>
         </div>
@@ -1381,6 +1434,9 @@
 
 <div class="toast" id="toast"></div>
 
+<!-- Hidden render area used only for generating a properly-shaped Arabic PDF statement -->
+<div id="pdfRenderArea" style="position:fixed; top:-10000px; left:-10000px; z-index:-1;"></div>
+
 <!-- INFO / LEGAL OVERLAY (About, Privacy Policy, Terms, Contact) -->
 <div class="info-overlay" id="infoOverlay">
     <div class="info-sheet">
@@ -1394,6 +1450,9 @@
             <div class="info-menu-list">
                 <button class="info-menu-item" onclick="showInfoSection('about')">
                     من نحن <span class="arrow">›</span>
+                </button>
+                <button class="info-menu-item" onclick="showInfoSection('blog')">
+                    المدونة <span class="arrow">›</span>
                 </button>
                 <button class="info-menu-item" onclick="showInfoSection('privacy')">
                     سياسة الخصوصية <span class="arrow">›</span>
@@ -1416,6 +1475,46 @@
                 <p>الهدف من التطبيق هو تبسيط إدارة المال اليومي دون تعقيد، من خلال واجهة عربية سريعة وواضحة تعمل مباشرة من متصفحك.</p>
                 <h4>كيف يعمل التطبيق</h4>
                 <p>يقوم التطبيق بحفظ بياناتك (المعاملات والأهداف) داخل متصفحك فقط على جهازك، وهو غير مرتبط بأي حساب بنكي حقيقي، ولا يقوم بأي تحويلات مالية فعلية. كل ما تُدخله هو لأغراض التتبع والتنظيم الشخصي فقط.</p>
+            </div>
+        </div>
+
+        <!-- Blog -->
+        <div class="info-section" id="info-blog">
+            <button class="info-back-btn" onclick="backToInfoMenu()">‹ رجوع للقائمة</button>
+            <div class="info-body">
+                <h4>مدونة قِنطار</h4>
+                <p>مجموعة مقالات بسيطة تشرح كيف تدير فلوسك بذكاء، وكيف تستفيد من ميزات "قِنطار" لتنظيم ادخارك ومصاريفك اليومية.</p>
+
+                <h4>1. كيف تحفظ فلوسك في قِنطار؟</h4>
+                <p>"قِنطار" ما يتعامل مع فلوسك الحقيقية ولا يملك أي وصول لحسابك البنكي؛ هو أداة تتبّع وتنظيم فقط. أنت تسجّل يدويًا كل إيداع (راتب، هدية، دخل إضافي) وكل مصروف (تسوق، مطاعم، فواتير...)، والتطبيق يحسب لك رصيدك المتوقع تلقائيًا. كل هذه البيانات تُحفظ داخل متصفحك فقط (Local Storage) ولا تُرسل لأي خادم، فخصوصيتك بيدك بالكامل.</p>
+                <p>لأن البيانات محلية، ننصحك بشدة إنك تستخدم ميزة "تصدير نسخة احتياطية" الموجودة في الإعدادات بشكل دوري (أسبوعيًا مثلاً)، حتى لو غيّرت جهازك أو مسحت المتصفح ما تفقد سجلك المالي.</p>
+
+                <h4>2. لماذا تتبع مصاريفك يغيّر وضعك المالي؟</h4>
+                <p>أغلب الناس ما يعرفون فعليًا وين تروح فلوسهم كل شهر، لأنهم ما يسجلون مصاريفهم الصغيرة المتكررة مثل القهوة، التوصيل، والاشتراكات. لما تبدأ تسجل كل مصروف - حتى لو بسيط - راح تكتشف أنماط إنفاق ما كنت منتبه لها، وهذا أول خطوة عملية لأي تحسن مالي حقيقي.</p>
+                <p>جرّب لمدة شهر كامل إنك تسجل كل شي في قسم "مصروف"، وفي نهاية الشهر افتح تبويب "التحليلات" وشوف الدائرة اللي توضح توزيع مصاريفك حسب التصنيف. غالبًا راح تتفاجأ بأكبر تصنيف يستهلك ميزانيتك.</p>
+
+                <h4>3. قاعدة 50/30/20 لتوزيع الدخل</h4>
+                <p>من أشهر قواعد الميزانية الشخصية: خصص 50% من دخلك للاحتياجات الأساسية (سكن، فواتير، طعام)، 30% للرغبات (ترفيه، تسوق)، و20% للادخار وسداد الديون. يمكنك تقريب هذه النسب داخل قِنطار عن طريق تحديد سقوف ميزانية لكل تصنيف من تبويب "الميزانية"، ومتابعة مدى التزامك بها شهريًا.</p>
+
+                <h4>4. الكاش باك... كيف تستفيد منه صح؟</h4>
+                <p>كثير من البطاقات ومحافظ الدفع الإلكتروني تقدّم كاش باك عند الشراء. ميزة "الكاش باك" في قِنطار تخليك تسجل النسبة اللي رجعت لك مع كل مصروف، فتشوف بوضوح كم فعليًا وفّرت من هالمزايا على المدى الطويل بدل ما تضيع وسط التفاصيل. القاعدة الذهبية: لا تشتري شي بس عشان تحصل كاش باك — الكاش باك مكسب إضافي على شراء كنت محتاجه أصلاً، مو سبب للشراء.</p>
+
+                <h4>5. الفرق بين الادخار والاستثمار</h4>
+                <p>الادخار هو تجميع مبلغ من المال بأمان لهدف قريب أو للطوارئ (زي رصيد الطوارئ اللي يغطي 3-6 أشهر مصاريف). أما الاستثمار فهو تحريك المال في أدوات تنمو بمرور الوقت (أسهم، صناديق، عقار) مقابل قبول درجة من المخاطرة. قِنطار مصمم لمساعدتك على الادخار وتتبع أهدافك القريبة (سيارة، جوال، سفر)، وليس أداة استثمارية، ولا يقدّم أي استشارة مالية.</p>
+
+                <h4>6. خمس عادات بسيطة توفر لك فلوس شهريًا</h4>
+                <ul>
+                    <li>سجّل كل مصروف أول بأول بدل ما تأجله — كلما قرب التسجيل من لحظة الصرف كان أدق.</li>
+                    <li>حدد سقف شهري لأكثر تصنيف تصرف فيه (غالبًا المطاعم أو التسوق) وتابعه أسبوعيًا.</li>
+                    <li>فعّل ميزة "التحويل التلقائي" لهدف الادخار بنسبة بسيطة من كل إيداع، حتى تدخر بدون ما تحس.</li>
+                    <li>راجع تبويب "التحليلات" في نهاية كل شهر وقارنه بالشهر اللي قبله.</li>
+                    <li>سجّل فواتيرك الثابتة (إيجار، اشتراكات) كفواتير متكررة حتى ما تنسى تحتسبها ضمن ميزانيتك.</li>
+                </ul>
+
+                <h4>7. كيف تبني هدف ادخار واقعي؟</h4>
+                <p>بدل ما تحدد رقم عشوائي، اقسم المبلغ المطلوب على عدد الأشهر اللي تبي توفر خلالها، وشوف إذا كان الرقم الشهري الناتج منطقي مقارنة بدخلك. مثلاً لو هدفك 6000 ريال خلال سنة، فأنت محتاج توفر 500 ريال شهريًا. سجل هذا الهدف في تبويب "ادخار" وحدد نسبة تحويل تلقائي تقارب هذا المبلغ من دخلك الشهري، وتابع تقدمك من شريط النسبة.</p>
+
+                <p style="margin-top:14px; color:var(--muted); font-size:0.72rem">هذه المقالات لأغراض تثقيفية عامة فقط وليست استشارة مالية متخصصة.</p>
             </div>
         </div>
 
@@ -2032,9 +2131,11 @@ function setTheme(mode) {
 }
 
 function applyThemeUI() {
-    document.documentElement.setAttribute('data-theme', data.settings.theme === 'light' ? 'light' : 'dark');
-    document.getElementById('themeDarkBtn')?.classList.toggle('active', data.settings.theme !== 'light');
-    document.getElementById('themeLightBtn')?.classList.toggle('active', data.settings.theme === 'light');
+    const mode = data.settings.theme === 'light' ? 'light' : (data.settings.theme === 'blue' ? 'blue' : 'dark');
+    document.documentElement.setAttribute('data-theme', mode);
+    document.getElementById('themeDarkBtn')?.classList.toggle('active', mode === 'dark');
+    document.getElementById('themeLightBtn')?.classList.toggle('active', mode === 'light');
+    document.getElementById('themeBlueBtn')?.classList.toggle('active', mode === 'blue');
 }
 
 function setCurrency() {
@@ -2083,31 +2184,88 @@ function importBackup(event) {
 // ============================================================
 // تصدير PDF و Excel
 // ============================================================
-function exportPDF() {
+async function exportPDF() {
+    const container = document.getElementById('pdfRenderArea');
+    if (!container) return;
+
+    const s = stats();
+    const rows = [...data.txs].reverse().map(t => {
+        const isD = t.type === 'deposit';
+        return `<tr>
+            <td style="padding:8px 10px; border-bottom:1px solid #e5e5e5; text-align:right;">${t.desc || t.cat || (isD ? 'إيداع' : 'مصروف')}</td>
+            <td style="padding:8px 10px; border-bottom:1px solid #e5e5e5; text-align:right; color:#666;">${t.cat || '—'}</td>
+            <td style="padding:8px 10px; border-bottom:1px solid #e5e5e5; text-align:right; font-weight:700; color:${isD ? '#1e9e52' : '#c65a12'};">${isD ? '+' : '-'} ${fmt(t.amount)} ${curr()}</td>
+            <td style="padding:8px 10px; border-bottom:1px solid #e5e5e5; text-align:right; color:#1e9e52;">${t.cb ? '+' + fmt(t.cb) + ' ' + curr() : '—'}</td>
+            <td style="padding:8px 10px; border-bottom:1px solid #e5e5e5; text-align:right; color:#888; font-size:11px; white-space:nowrap;">${t.date || '—'}</td>
+        </tr>`;
+    }).join('');
+
+    container.innerHTML = `
+    <div style="width:780px; padding:34px; font-family:'Tajawal',sans-serif; direction:rtl; background:#ffffff; color:#151515;">
+        <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:3px solid #e8650a; padding-bottom:16px; margin-bottom:22px;">
+            <div style="font-size:24px; font-weight:900;">قِن<span style="color:#e8650a">طار</span></div>
+            <div style="font-size:12px; color:#777;">كشف حساب — ${new Date().toLocaleDateString('ar-SA', { year:'numeric', month:'long', day:'numeric' })}</div>
+        </div>
+        <div style="display:flex; gap:14px; margin-bottom:24px;">
+            <div style="flex:1; background:#f6f6f6; border-radius:10px; padding:16px;">
+                <div style="font-size:11px; color:#777; margin-bottom:6px;">الرصيد الحالي</div>
+                <div style="font-size:19px; font-weight:800;">${fmt(s.bal)} ${curr()}</div>
+            </div>
+            <div style="flex:1; background:#f6f6f6; border-radius:10px; padding:16px;">
+                <div style="font-size:11px; color:#777; margin-bottom:6px;">إجمالي الدخل</div>
+                <div style="font-size:19px; font-weight:800; color:#1e9e52;">${fmt(s.income)} ${curr()}</div>
+            </div>
+            <div style="flex:1; background:#f6f6f6; border-radius:10px; padding:16px;">
+                <div style="font-size:11px; color:#777; margin-bottom:6px;">إجمالي المصروف</div>
+                <div style="font-size:19px; font-weight:800; color:#c65a12;">${fmt(s.spent)} ${curr()}</div>
+            </div>
+        </div>
+        <table style="width:100%; border-collapse:collapse; font-size:13px;">
+            <thead>
+                <tr style="background:#1a1a1a; color:#ffffff;">
+                    <th style="padding:10px; text-align:right; font-size:12px;">الوصف / الجهة</th>
+                    <th style="padding:10px; text-align:right; font-size:12px;">التصنيف</th>
+                    <th style="padding:10px; text-align:right; font-size:12px;">المبلغ</th>
+                    <th style="padding:10px; text-align:right; font-size:12px;">كاش باك</th>
+                    <th style="padding:10px; text-align:right; font-size:12px;">التاريخ</th>
+                </tr>
+            </thead>
+            <tbody>${rows || '<tr><td colspan="5" style="padding:24px; text-align:center; color:#999;">لا توجد معاملات مسجلة</td></tr>'}</tbody>
+        </table>
+        <div style="margin-top:22px; font-size:10px; color:#aaa; text-align:center;">تم إنشاء هذا الكشف بواسطة تطبيق قِنطار — mohammed.alhadidi@hotmail.com</div>
+    </div>`;
+
     try {
+        const target = container.firstElementChild;
+        const canvas = await html2canvas(target, { scale: 2, backgroundColor: '#ffffff', useCORS: true });
+        const imgData = canvas.toDataURL('image/png');
         const { jsPDF } = window.jspdf;
-        const doc = new jsPDF();
-        doc.setFontSize(14);
-        doc.text('Qintar - Transaction Statement', 14, 16);
-        doc.setFontSize(9);
-        let y = 28;
-        doc.text('Type', 14, y);
-        doc.text('Amount', 60, y);
-        doc.text('Category', 100, y);
-        doc.text('Date', 150, y);
-        y += 6;
-        data.txs.forEach(t => {
-            if (y > 280) { doc.addPage(); y = 20; }
-            doc.text(t.type === 'deposit' ? 'Deposit' : 'Withdraw', 14, y);
-            doc.text(String(t.amount.toFixed(2)) + ' ' + curr(), 60, y);
-            doc.text(t.cat || '-', 100, y);
-            doc.text(t.date || '-', 150, y);
-            y += 6;
-        });
-        doc.save(`qintar-statement-${new Date().toISOString().slice(0,10)}.pdf`);
-        showToast('تم تصدير كشف PDF');
+        const pdf = new jsPDF('p', 'pt', 'a4');
+        const pageWidth = pdf.internal.pageSize.getWidth();
+        const pageHeight = pdf.internal.pageSize.getHeight();
+        const margin = 20;
+        const imgWidth = pageWidth - margin * 2;
+        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+        let heightLeft = imgHeight;
+        let position = margin;
+
+        pdf.addImage(imgData, 'PNG', margin, position, imgWidth, imgHeight);
+        heightLeft -= (pageHeight - margin * 2);
+
+        while (heightLeft > 0) {
+            position = heightLeft - imgHeight + margin;
+            pdf.addPage();
+            pdf.addImage(imgData, 'PNG', margin, position, imgWidth, imgHeight);
+            heightLeft -= (pageHeight - margin * 2);
+        }
+
+        pdf.save(`qintar-statement-${new Date().toISOString().slice(0,10)}.pdf`);
+        showToast('تم تصدير كشف PDF بشكل واضح');
     } catch (err) {
         showToast('تعذر إنشاء PDF، تأكد من الاتصال بالإنترنت');
+    } finally {
+        container.innerHTML = '';
     }
 }
 
@@ -2165,6 +2323,7 @@ function showToast(msg) {
 // دوال قائمة المعلومات (من نحن / الخصوصية / الشروط / اتصل بنا)
 const infoTitles = {
     about: 'من نحن',
+    blog: 'المدونة',
     privacy: 'سياسة الخصوصية',
     terms: 'شروط الاستخدام',
     contact: 'اتصل بنا'
@@ -2192,9 +2351,32 @@ function backToInfoMenu() {
     document.getElementById('infoTitle').textContent = 'القائمة';
 }
 
+// ============================================================
+// مؤشر سحب شريط التبويبات (يوضح للمستخدم إنه يقدر يسحب لليمين/اليسار)
+// ============================================================
+function updateTabsFade() {
+    const el = document.getElementById('tabsScroller');
+    const leftFade = document.getElementById('tabsFadeLeft');
+    const rightFade = document.getElementById('tabsFadeRight');
+    if (!el || !leftFade || !rightFade) return;
+    const max = el.scrollWidth - el.clientWidth;
+    if (max <= 2) {
+        leftFade.classList.remove('show');
+        rightFade.classList.remove('show');
+        return;
+    }
+    const sl = el.scrollLeft;
+    const atStart = Math.abs(sl) < 2;
+    const atEnd = Math.abs(Math.abs(sl) - max) < 2;
+    rightFade.classList.toggle('show', !atStart);
+    leftFade.classList.toggle('show', !atEnd);
+}
+window.addEventListener('resize', updateTabsFade);
+
 document.getElementById('hDate').textContent = new Date().toLocaleDateString('ar-SA', { weekday: 'short', day: 'numeric', month: 'long' });
 checkRecurring();
 render();
+updateTabsFade();
 </script>
 </body>
 </html>
