@@ -32,7 +32,8 @@ gtag('config', 'G-VJGN3NQ8WZ');</script>
 </head><body><div class="header"><div class="header-logo-group"><div class="header-logo">قِن<span>طار</span></div><div class="day-badge" id="dayBadge" title="أيام الاستخدام المتتالية"><svg class="day-badge-flame" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2c.3 3.2-1.1 5-2.7 6.8C7.9 10.6 7 12.1 7 14a5 5 0 0 0 10 0c0-1.6-.6-2.7-1.4-3.7-.2 1.4-1 2.2-1.8 2.5.9-2.7.3-7-1.8-10.8Z" fill="currentColor"/><path d="M10.3 14.2c0 1.5.9 2.6 2.2 2.6.6 0 1.1-.2 1.5-.5-1.2.1-2.2-.7-2.2-2 0-.8.4-1.4.8-1.9-1.4.4-2.3 1-2.3 1.8Z" fill="var(--card)"/></svg><span class="day-num" id="dayNum">0</span></div></div><div class="header-date" id="hDate"></div><div class="header-actions"><button class="lang-btn" id="langBtn" onclick="toggleLang()" title="Language / اللغة" aria-label="Switch language">EN</button><button class="menu-btn" id="menuBtn" onclick="openInfoMenu()" aria-label="القائمة">☰</button></div></div><div class="balance-card"><div class="balance-label">الرصيد المتاح</div><div class="balance-amount"><span id="balVal">0.00</span><span class="balance-currency" id="currSym1">⃁</span></div><div class="mini-chart"><svg viewBox="0 0 300 50" preserveAspectRatio="none" fill="none"><defs><linearGradient id="og" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-opacity="0.35"/><stop offset="100%" stop-opacity="0"/></linearGradient></defs><path d="M0,40 C40,38 60,15 90,20 C120,25 140,35 170,18 C200,2 230,30 260,22 C280,16 295,28 300,24 L300,50 L0,50 Z" fill="url(#og)"/><path class="mc-wave-line" d="M0,40 C40,38 60,15 90,20 C120,25 140,35 170,18 C200,2 230,30 260,22 C280,16 295,28 300,24" stroke-width="2" fill="none" stroke-linecap="round"/></svg></div><div class="balance-footer"><div><div class="bfi-label">المصروف</div><div class="bfi-val c-red" id="spentVal">0.00 ⃁</div></div><div><div class="bfi-label">الكاش باك</div><div class="bfi-val c-green" id="cbVal">0.00 ⃁</div></div><div class="trend-badge" id="txCount">0 معاملة</div></div></div><div class="stat-row"><div class="stat-card"><div class="sc-dot d-green"></div><div class="sc-label">إجمالي الدخل</div><div class="sc-val c-green" id="incomeVal">0.00</div></div><div class="stat-card"><div class="sc-dot d-red"></div><div class="sc-label">إجمالي الصرف</div><div class="sc-val c-red" id="spentVal2">0.00</div></div><div class="stat-card"><div class="sc-dot d-orange"></div><div class="sc-label">كاش باك</div><div class="sc-val c-orange" id="cbVal2">0.00</div></div></div><div class="reminder-banner" id="reminderBanner"><span id="reminderText">ما سجلت أي معاملة من فترة، لا تنسى تحدّث بياناتك اليوم 👋</span><button onclick="dismissReminder()">✕</button></div><div class="tabs-wrap"><div class="tabs" id="tabsScroller" onscroll="updateTabsFade()"><button class="tab-btn active" onclick="switchTab('deposit',this)">إيداع</button><button class="tab-btn" onclick="switchTab('withdraw',this)">مصروف</button><button class="tab-btn" onclick="switchTab('history',this)">السجل</button><button class="tab-btn" onclick="switchTab('savings',this)">ادخار</button><button class="tab-btn" onclick="switchTab('budget',this)">الميزانية</button><button class="tab-btn" onclick="switchTab('analytics',this)">التحليلات</button><button class="tab-btn" onclick="switchTab('settings',this)">الإعدادات</button></div><div class="tabs-fade tabs-fade-left" id="tabsFadeLeft"><span class="tabs-fade-arrow">‹</span></div><div class="tabs-fade tabs-fade-right" id="tabsFadeRight"><span class="tabs-fade-arrow">›</span></div></div><div class="content"><div class="panel active" id="panel-deposit"><div class="form-card"><div class="sec-label">إيداع جديد</div><div class="field"><label>المبلغ</label><div class="input-wrap"><input type="number" id="depAmt" placeholder="0.00" min="0"><span class="input-unit" id="currSymDep">⃁</span></div></div><div class="field"><label>الوصف</label><input type="text" id="depDesc" placeholder="راتب، هدية، تحويل..." data-ph-ar="راتب، هدية، تحويل..." data-ph-en="Salary, gift, transfer..."></div><button class="btn btn-orange" onclick="addDeposit()">تأكيد الإيداع</button></div></div><div class="panel" id="panel-withdraw"><div class="form-card"><div class="sec-label">تسجيل مصروف</div><div class="row2"><div class="field"><label>المبلغ</label><div class="input-wrap"><input type="number" id="wdAmt" placeholder="0.00" min="0" oninput="updateCb()"><span class="input-unit" id="currSymWd">⃁</span></div></div><div class="field"><label>كاش باك %</label><div class="input-wrap"><input type="number" id="wdCbPct" placeholder="0" min="0" max="100" step="0.1" oninput="updateCb()"><span class="input-unit">%</span></div></div></div><div class="cb-preview" id="cbPreview"></div><div class="field"><label>الجهة</label><input type="text" id="wdDesc" placeholder="كارفور، أمازون، STC Pay..." data-ph-ar="كارفور، أمازون، STC Pay..." data-ph-en="Carrefour, Amazon, STC Pay..."></div><div class="field"><label>التصنيف</label><select id="wdCat"><option value="تسوق">تسوق</option><option value="مطاعم">مطاعم</option><option value="وقود">وقود</option><option value="صحة">صحة</option><option value="اتصالات">اتصالات</option><option value="ترفيه">ترفيه</option><option value="سفر">سفر</option><option value="إيجار وفواتير">إيجار وفواتير</option><option value="أخرى">أخرى</option></select></div><button class="btn btn-orange" onclick="addWithdraw()">تأكيد الصرف</button></div></div><div class="panel" id="panel-history"><div class="list-hd"><div class="sec-label" style="margin-bottom:0">كشف المعاملات</div><div class="list-hd-actions"><button class="export-btn" onclick="exportPDF()">PDF</button><button class="export-btn" onclick="exportExcel()">Excel</button><button class="clear-btn" onclick="clearAll()" id="clearAllBtn">مسح الكل</button></div></div><div class="filter-bar"><input type="text" id="fltSearch" placeholder="ابحث بالوصف أو الجهة..." oninput="renderHistory()"><select id="fltType" onchange="renderHistory()"><option value="">كل الأنواع</option><option value="deposit">إيداع فقط</option><option value="withdraw">مصروف فقط</option></select><select id="fltCat" onchange="renderHistory()"><option value="">كل التصنيفات</option><option value="تسوق">تسوق</option><option value="مطاعم">مطاعم</option><option value="وقود">وقود</option><option value="صحة">صحة</option><option value="اتصالات">اتصالات</option><option value="ترفيه">ترفيه</option><option value="سفر">سفر</option><option value="إيجار وفواتير">إيجار وفواتير</option><option value="أخرى">أخرى</option></select></div><div id="txList"></div></div><div class="panel" id="panel-savings"><div class="form-card"><div class="sec-label">تحديد هدف جديد</div><div class="field"><label>اسم الهدف</label><input type="text" id="goalNameInput" placeholder="سيارة، جوال، سفر..." data-ph-ar="سيارة، جوال، سفر..." data-ph-en="Car, phone, travel..."></div><div class="field"><label>المبلغ المطلوب</label><div class="input-wrap"><input type="number" id="goalAmtInput" placeholder="0.00" min="0"><span class="input-unit" id="currSymGoal">⃁</span></div></div><div class="field"><label>نسبة تحويل تلقائي من كل إيداع (اختياري)</label><div class="input-wrap"><input type="number" id="goalAllocInput" placeholder="0" min="0" max="100" step="1"><span class="input-unit">%</span></div></div><button class="btn btn-orange" onclick="addGoal()">حفظ الهدف</button></div><div id="goalsList"></div></div><div class="panel" id="panel-budget"><div class="form-card"><div class="sec-label">تحديد سقف مصروف لتصنيف</div><div class="row2"><div class="field"><label>التصنيف</label><select id="budgetCat"><option value="تسوق">تسوق</option><option value="مطاعم">مطاعم</option><option value="وقود">وقود</option><option value="صحة">صحة</option><option value="اتصالات">اتصالات</option><option value="ترفيه">ترفيه</option><option value="سفر">سفر</option><option value="إيجار وفواتير">إيجار وفواتير</option><option value="أخرى">أخرى</option></select></div><div class="field"><label>السقف الشهري</label><div class="input-wrap"><input type="number" id="budgetAmt" placeholder="0.00" min="0"><span class="input-unit" id="currSymBudget">⃁</span></div></div></div><button class="btn btn-orange" onclick="setBudget()">حفظ السقف</button></div><div class="sec-label">ميزانية هذا الشهر</div><div id="budgetsList"></div><div class="form-card" style="margin-top:16px"><div class="sec-label">الفواتير والاشتراكات المتكررة</div><div class="row2"><div class="field" style="margin-bottom:8px"><input type="text" id="recName" placeholder="اسم الفاتورة" data-ph-ar="اسم الفاتورة" data-ph-en="Bill name"></div><div class="field" style="margin-bottom:8px"><input type="number" id="recAmt" placeholder="المبلغ" data-ph-ar="المبلغ" data-ph-en="Amount" min="0"></div></div><div class="row2"><div class="field" style="margin-bottom:8px"><select id="recCat"><option value="تسوق">تسوق</option><option value="مطاعم">مطاعم</option><option value="وقود">وقود</option><option value="صحة">صحة</option><option value="اتصالات">اتصالات</option><option value="ترفيه">ترفيه</option><option value="سفر">سفر</option><option value="إيجار وفواتير">إيجار وفواتير</option><option value="أخرى">أخرى</option></select></div><div class="field" style="margin-bottom:8px"><input type="number" id="recDay" placeholder="يوم الاستحقاق (1-28)" data-ph-ar="يوم الاستحقاق (1-28)" data-ph-en="Due day (1-28)" min="1" max="28"></div></div><button class="btn-outline" onclick="addRecurring()" id="btnAddRec">+ إضافة فاتورة متكررة</button><div id="recurringList" style="margin-top:12px"></div></div><div class="form-card" style="margin-top:16px"><div class="sec-label">الدخل المتكرر</div><div class="row2"><div class="field" style="margin-bottom:8px"><input type="text" id="recIncName" placeholder="اسم الدخل (راتب، مكافأة...)" data-ph-ar="اسم الدخل (راتب، مكافأة...)" data-ph-en="Income name (salary, bonus...)"></div><div class="field" style="margin-bottom:8px"><input type="number" id="recIncAmt" placeholder="المبلغ" data-ph-ar="المبلغ" data-ph-en="Amount" min="0"></div></div><div class="field" style="margin-bottom:8px"><input type="number" id="recIncDay" placeholder="يوم الاستحقاق (1-28)" data-ph-ar="يوم الاستحقاق (1-28)" data-ph-en="Due day (1-28)" min="1" max="28"></div><button class="btn-outline" onclick="addRecurringIncome()" id="btnAddRecInc">+ إضافة دخل متكرر</button><div id="recurringIncomeList" style="margin-top:12px"></div></div></div><div class="panel" id="panel-analytics"><div class="chart-card"><div class="chart-title">المصروفات حسب التصنيف (هذا الشهر)</div><div class="donut-wrap" id="donutWrap"></div></div><div class="chart-card"><div class="chart-title">الدخل مقابل المصروف (آخر 6 أشهر)</div><div class="bar-chart" id="barChart"></div><div class="chart-legend-row"><span class="li" id="legendIncome">الدخل</span><span class="le" id="legendExpense">المصروف</span></div></div><div class="chart-card"><div class="chart-title">مقارنة هذا الشهر بالشهر الماضي</div><div id="monthCompare"></div></div></div><div class="panel" id="panel-settings"><div class="settings-item"><div class="settings-item-title">المظهر</div><div class="settings-row"><span style="font-size:0.78rem; color:var(--muted)">فاتح / داكن</span><div class="theme-toggle"><button id="themeDarkBtn" onclick="setTheme('dark')">داكن</button><button id="themeLightBtn" onclick="setTheme('light')">فاتح</button><button id="themeBlueBtn" onclick="setTheme('blue')">أزرق</button><button id="themeGreenBtn" onclick="setTheme('green')">أخضر</button></div></div></div><div class="settings-item"><div class="settings-item-title">العملة</div><select id="currencySelect" onchange="setCurrency()" style="width:100%; background:var(--card2); border:1.5px solid var(--border); border-radius:10px; padding:12px; color:var(--text); font-family:'Tajawal',sans-serif; font-size:0.85rem;"><option value="⃁">ريال سعودي (⃁)</option><option value="$">دولار ($)</option><option value="€">يورو (€)</option><option value="د.إ">درهم إماراتي (د.إ)</option><option value="ج.م">جنيه مصري (ج.م)</option><option value="د.ك">دينار كويتي (د.ك)</option></select></div><div class="settings-item"><div class="settings-item-title">نسخ احتياطي واستعادة</div><p id="backupNote" style="font-size:0.72rem; color:var(--muted); margin-bottom:10px; line-height:1.7">
 بياناتك محفوظة في متصفحك فقط. يُنصح بتصدير نسخة احتياطية بشكل دوري حتى لا تفقدها عند مسح ذاكرة المتصفح أو تغيير الجهاز.
 </p><button class="btn-outline" onclick="exportBackup()" style="margin-bottom:8px">⬇ تصدير نسخة احتياطية (JSON)</button><label class="btn-outline file-label" for="importFile">⬆ استيراد نسخة احتياطية</label><input type="file" id="importFile" accept=".json" style="display:none" onchange="importBackup(event)"></div></div></div><div class="toast" id="toast"></div><div id="pdfRenderArea" style="position:fixed; top:-10000px; left:-10000px; z-index:-1;"></div><div class="info-overlay" id="infoOverlay"><div class="info-sheet"><div class="info-sheet-header"><div class="info-sheet-title" id="infoTitle">القائمة</div><button class="info-close-btn" onclick="closeInfoOverlay()">✕</button></div><div id="infoMenuView"><div class="info-menu-list"><button class="info-menu-item" onclick="showInfoSection('about')" data-i18n="menu_about">
-من نحن <span class="arrow">›</span></button><button class="info-menu-item" onclick="showInfoSection('blog')" data-i18n="menu_blog">
+من نحن <span class="arrow">›</span></button><button class="info-menu-item" onclick="showInfoSection('article')" data-i18n="menu_article">
+المقال <span class="arrow">›</span></button><button class="info-menu-item" onclick="showInfoSection('blog')" data-i18n="menu_blog">
 المدونة <span class="arrow">›</span></button><button class="info-menu-item" onclick="showInfoSection('books')" data-i18n="menu_books">
 الكتب <span class="arrow">›</span></button><button class="info-menu-item" onclick="showInfoSection('tips')" data-i18n="menu_tips">
 نصائح مالية <span class="arrow">›</span></button><button class="info-menu-item" onclick="showInfoSection('courses')" data-i18n="menu_courses">
@@ -40,7 +41,7 @@ gtag('config', 'G-VJGN3NQ8WZ');</script>
 شرح المميزات <span class="arrow">›</span></button><button class="info-menu-item" onclick="showInfoSection('privacy')" data-i18n="menu_privacy">
 سياسة الخصوصية <span class="arrow">›</span></button><button class="info-menu-item" onclick="showInfoSection('terms')" data-i18n="menu_terms">
 شروط الاستخدام <span class="arrow">›</span></button><button class="info-menu-item" onclick="showInfoSection('contact')" data-i18n="menu_contact">
-اتصل بنا <span class="arrow">›</span></button></div></div><div class="info-section" id="info-about"><button class="info-back-btn" onclick="backToInfoMenu()" data-i18n="back_menu">‹ رجوع للقائمة</button><div class="info-body" id="info-about-body"></div></div><div class="info-section" id="info-blog"><button class="info-back-btn" onclick="backToInfoMenu()" data-i18n="back_menu">‹ رجوع للقائمة</button><div class="info-body" id="info-blog-body"></div></div><div class="info-section" id="info-privacy"><button class="info-back-btn" onclick="backToInfoMenu()" data-i18n="back_menu">‹ رجوع للقائمة</button><div class="info-body" id="info-privacy-body"></div></div><div class="info-section" id="info-terms"><button class="info-back-btn" onclick="backToInfoMenu()" data-i18n="back_menu">‹ رجوع للقائمة</button><div class="info-body" id="info-terms-body"></div></div><div class="info-section" id="info-contact"><button class="info-back-btn" onclick="backToInfoMenu()" data-i18n="back_menu">‹ رجوع للقائمة</button><div class="info-body" id="info-contact-body"></div></div>
+اتصل بنا <span class="arrow">›</span></button></div></div><div class="info-section" id="info-about"><button class="info-back-btn" onclick="backToInfoMenu()" data-i18n="back_menu">‹ رجوع للقائمة</button><div class="info-body" id="info-about-body"></div></div><div class="info-section" id="info-blog"><button class="info-back-btn" onclick="backToInfoMenu()" data-i18n="back_menu">‹ رجوع للقائمة</button><div class="info-body" id="info-blog-body"></div></div><div class="info-section" id="info-article"><button class="info-back-btn" onclick="backToInfoMenu()" data-i18n="back_menu">‹ رجوع للقائمة</button><div class="info-body" id="info-article-body"></div></div><div class="info-section" id="info-privacy"><button class="info-back-btn" onclick="backToInfoMenu()" data-i18n="back_menu">‹ رجوع للقائمة</button><div class="info-body" id="info-privacy-body"></div></div><div class="info-section" id="info-terms"><button class="info-back-btn" onclick="backToInfoMenu()" data-i18n="back_menu">‹ رجوع للقائمة</button><div class="info-body" id="info-terms-body"></div></div><div class="info-section" id="info-contact"><button class="info-back-btn" onclick="backToInfoMenu()" data-i18n="back_menu">‹ رجوع للقائمة</button><div class="info-body" id="info-contact-body"></div></div>
 <div class="info-section" id="info-books"><button class="info-back-btn" onclick="backToInfoMenu()" data-i18n="back_menu">‹ رجوع للقائمة</button><div class="info-body" id="booksBody">
 <h4 data-i18n="books_title">أهم الكتب في إدارة المال والادخار</h4>
 <div class="book-card"><h4>الأب الغني والأب الفقير — روبرت كيوساكي</h4><p>كتاب كلاسيكي يشرح الفرق بين عقلية الغني والفقير من خلال قصتين شخصيتين. يعلمك كيف تجعل المال يعمل لصالحك بدل أن تعمل أنت من أجله، ويركز على الأصول والاستثمار والتعليم المالي المبكر.</p></div>
@@ -110,12 +111,29 @@ if (!data.settings.currency) data.settings.currency = '⃁';
 if (!data.streak) data.streak = { count: 0, lastDate: null };
 if (typeof data.courseProgress === 'undefined') data.courseProgress = 0;
 const CATEGORIES = ['تسوق','مطاعم','وقود','صحة','اتصالات','ترفيه','سفر','إيجار وفواتير','أخرى'];
+function catName(c) {
+const ar = ['تسوق','مطاعم','وقود','صحة','اتصالات','ترفيه','سفر','إيجار وفواتير','أخرى'];
+const en = ['Shopping','Restaurants','Fuel','Health','Telecom','Entertainment','Travel','Rent & Bills','Other'];
+const i = ar.indexOf(c);
+return (getLang() === 'en' && i >= 0) ? en[i] : c;
+}
+function fmtDate(t) {
+if (getLang() === 'en' && t.iso) {
+return new Date(t.iso).toLocaleDateString('en-GB', { day:'2-digit', month:'2-digit', year:'numeric' });
+}
+return t.date || '';
+}
 function save() {
 localStorage.setItem('mhfzti_v4', JSON.stringify(data));
 render();
 }
 function curr() {
-return data.settings.currency || '⃁';
+const c = data.settings.currency || '⃁';
+if (getLang() === 'en') {
+const m = {'د.إ':'AED','ج.م':'EGP','د.ك':'KWD'};
+return m[c] || c;
+}
+return c;
 }
 function stats() {
 let bal = 0, spent = 0, cb = 0, income = 0;
@@ -134,7 +152,7 @@ cb += (t.cb || 0);
 return { bal, spent, cb, income };
 }
 function fmt(n) {
-return n.toLocaleString('ar-SA', {
+return n.toLocaleString(getLang() === 'ar' ? 'ar-SA' : 'en-US', {
 minimumFractionDigits: 2,
 maximumFractionDigits: 2
 });
@@ -144,7 +162,7 @@ const s = stats();
 document.getElementById('balVal').textContent    = fmt(s.bal);
 document.getElementById('spentVal').textContent  = fmt(s.spent) + ' ' + curr();
 document.getElementById('cbVal').textContent     = fmt(s.cb) + ' ' + curr();
-document.getElementById('txCount').textContent   = data.txs.length + ' معاملة';
+document.getElementById('txCount').textContent   = data.txs.length + ' ' + tMsg('معاملة','transactions');
 document.getElementById('incomeVal').textContent = fmt(s.income);
 document.getElementById('spentVal2').textContent = fmt(s.spent);
 document.getElementById('cbVal2').textContent    = fmt(s.cb);
@@ -160,7 +178,7 @@ renderRecurring();
 renderRecurringIncome();
 renderReminder();
 applyThemeUI();
-document.getElementById('currencySelect').value = curr();
+document.getElementById('currencySelect').value = data.settings.currency || '⃁';
 }
 function renderHistory() {
 const search = (document.getElementById('fltSearch')?.value || '').trim().toLowerCase();
@@ -188,9 +206,9 @@ return `
 <div class="tx-r">
 <div class="tx-dot-wrap"><div class="tx-dot"></div></div>
 <div>
-<div class="tx-name">${t.desc || t.cat || (isD ? tMsg('إيداع','Deposit') : tMsg('مصروف','Expense'))}</div>
-<div class="tx-meta">${t.cat ? t.cat + '  ·  ' : ''}${t.date || ''}</div>
-${t.cb ? `<div class="tx-cb-tag">كاش باك +${fmt(t.cb)} ${curr()}</div>` : ''}
+<div class="tx-name">${(t.desc === 'إيداع' && getLang() !== 'ar' ? 'Deposit' : t.desc) || catName(t.cat) || (isD ? tMsg('إيداع','Deposit') : tMsg('مصروف','Expense'))}</div>
+<div class="tx-meta">${t.cat ? catName(t.cat) + '  ·  ' : ''}${fmtDate(t)}</div>
+${t.cb ? `<div class="tx-cb-tag">${tMsg('كاش باك','Cashback')} +${fmt(t.cb)} ${curr()}</div>` : ''}
 </div>
 </div>
 <div class="tx-l" style="text-align:left">
@@ -348,7 +366,7 @@ pct = Math.min(pct, 100);
 return `
 <div class="budget-item">
 <div class="budget-top">
-<div class="budget-cat">${cat}</div>
+<div class="budget-cat">${catName(cat)}</div>
 <div class="budget-nums">${fmt(spent)} / ${fmt(limit)} ${curr()}</div>
 </div>
 <div class="progress-container">
@@ -385,7 +403,7 @@ const legend = entries.map(([cat, val], idx) => {
 const pct = ((val/total)*100).toFixed(0);
 return `<div class="legend-item">
 <span class="legend-dot" style="background:${CHART_COLORS[idx % CHART_COLORS.length]}"></span>
-<span>${cat}</span>
+<span>${catName(cat)}</span>
 <span class="legend-pct">${pct}%</span>
 </div>`;
 }).join('');
@@ -401,7 +419,7 @@ const now = new Date();
 const months = [];
 for (let i = 5; i >= 0; i--) {
 const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
-months.push({ y: d.getFullYear(), m: d.getMonth(), label: d.toLocaleDateString('ar-SA-u-ca-gregory', {month:'short'}), income: 0, expense: 0 });
+months.push({ y: d.getFullYear(), m: d.getMonth(), label: d.toLocaleDateString(getLang() === 'ar' ? 'ar-SA-u-ca-gregory' : 'en-US', {month:'short'}), income: 0, expense: 0 });
 }
 for (const t of data.txs) {
 if (!t.iso) continue;
@@ -527,7 +545,7 @@ el.innerHTML = data.recurring.map(r => `
 <div class="recurring-item">
 <div>
 <div class="recurring-name">${r.name}</div>
-<div class="recurring-meta">${r.cat} · ${tMsg('يوم','Day')} ${r.day} ${tMsg('من كل شهر','of every month')} · ${fmt(r.amount)} ${curr()}</div>
+<div class="recurring-meta">${catName(r.cat)} · ${tMsg('يوم','Day')} ${r.day} ${tMsg('من كل شهر','of every month')} · ${fmt(r.amount)} ${curr()}</div>
 </div>
 <div style="display:flex; gap:6px">
 <button class="btn-sm" onclick="addRecurringNow('${r.id}')">${tMsg('تسجيل الآن','Log now')}</button>
@@ -882,6 +900,7 @@ ar: {
 app_name: 'قِن<span>طار</span>',
 menu_about: 'من نحن <span class="arrow">›</span>',
 menu_blog: 'المدونة <span class="arrow">›</span>',
+menu_article: 'المقال <span class="arrow">›</span>',
 menu_books: 'الكتب <span class="arrow">›</span>',
 menu_tips: 'نصائح مالية <span class="arrow">›</span>',
 menu_courses: 'دورات <span class="arrow">›</span>',
@@ -971,6 +990,7 @@ en: {
 app_name: 'Qin<span>tar</span>',
 menu_about: 'About Us <span class="arrow">›</span>',
 menu_blog: 'Blog <span class="arrow">›</span>',
+menu_article: 'Article <span class="arrow">›</span>',
 menu_books: 'Books <span class="arrow">›</span>',
 menu_tips: 'Financial Tips <span class="arrow">›</span>',
 menu_courses: 'Courses <span class="arrow">›</span>',
@@ -1455,6 +1475,92 @@ function renderContact() {
   }
 }
 
+function renderArticle() {
+const lang = getLang();
+const el = document.getElementById('info-article-body');
+if (!el) return;
+if (lang === 'ar') {
+el.innerHTML = `<h4>دليلك الشامل لإدارة أموالك الشخصية وبناء عادة الادخار</h4>
+<p>إدارة المال الشخصي مهارة يحتاجها كل إنسان بغض النظر عن حجم دخله. كثيرون يظنون أن المشكلة المالية سببها قلة الراتب، بينما الحقيقة أن أغلب المشكلات تبدأ من غياب الوعي بكيفية دخول المال وخروجه. في هذا المقال نستعرض خطوات عملية ومجربة تساعدك على تنظيم ميزانيتك، وبناء عادة ادخار مستدامة، والوصول إلى استقرار مالي أفضل خطوة بعد خطوة.</p>
+
+<h4>أولاً: ابدأ بمعرفة وضعك المالي الحقيقي</h4>
+<p>الخطوة الأولى في أي رحلة مالية ناجحة هي معرفة أين تقف الآن. اجمع كل مصادر دخلك الشهري، ثم اكتب جميع مصاريفك الثابتة مثل الإيجار والفواتير والاشتراكات والأقساط، ثم قدّر مصاريفك المتغيرة مثل الطعام والمواصلات والترفيه. عندما تضع الأرقام أمامك بوضوح ستكتشف غالباً أن هناك مبالغ صغيرة تتسرب كل يوم دون أن تنتبه لها، كالمشروبات الجاهزة وطلبات التوصيل والاشتراكات المنسية. هذه المبالغ الصغيرة قد تصل مع نهاية الشهر إلى رقم كبير يستحق الانتباه.</p>
+
+<h4>ثانياً: تتبّع مصاريفك بانتظام</h4>
+<p>التسجيل المنتظم للمصروفات هو الأساس الذي تُبنى عليه كل القرارات المالية الجيدة. لا يهم أن تستخدم دفتراً أو جدول بيانات أو تطبيقاً بسيطاً، المهم أن تسجل كل عملية في يومها. التأجيل يجعلك تنسى التفاصيل ويعطيك صورة مشوّهة عن إنفاقك الفعلي. بعد شهر واحد فقط من التسجيل الدقيق ستحصل على بيانات حقيقية تساعدك على تحديد التصنيفات التي تستهلك النسبة الأكبر من دخلك، وتعرف أين يمكنك التقليل دون أن تتأثر جودة حياتك.</p>
+
+<h4>ثالثاً: ضع ميزانية واقعية وطبّق قاعدة 50/30/20</h4>
+<p>الميزانية ليست قيداً يمنعك من الاستمتاع بالحياة، بل خريطة توضح لك كيف توزع دخلك بذكاء. من أشهر القواعد المستخدمة قاعدة 50/30/20، وتنص على تخصيص نصف الدخل للاحتياجات الأساسية كالسكن والطعام والفواتير والمواصلات، وثلاثين بالمئة للرغبات كالترفيه والمطاعم والتسوق غير الضروري، وعشرين بالمئة للادخار وسداد الديون. هذه النسب إرشادية وليست ثابتة، فيمكنك تعديلها بحسب ظروفك، فمن عنده التزامات عائلية كبيرة قد تكون نسبة الاحتياجات عنده أعلى، والمهم أن تحافظ على جزء ثابت للادخار مهما كانت الظروف.</p>
+
+<h4>رابعاً: ادفع لنفسك أولاً</h4>
+<p>من أقوى المبادئ في الادخار مبدأ الدفع للنفس أولاً، ويعني أن تقتطع مبلغ الادخار فور استلام الراتب قبل أن تبدأ بالإنفاق، بدلاً من أن تدخر ما تبقى آخر الشهر، فغالباً لا يتبقى شيء. حدد نسبة بسيطة تناسبك، حتى لو كانت خمسة بالمئة في البداية، ثم ارفعها تدريجياً مع الوقت. الأهم من حجم المبلغ هو الاستمرارية، فالادخار المنتظم لسنوات يصنع فرقاً كبيراً بفضل تراكم المبالغ الصغيرة.</p>
+
+<h4>خامساً: ابنِ صندوق الطوارئ</h4>
+<p>الحياة مليئة بالمفاجآت: عطل في السيارة، أو مرض، أو فقدان وظيفة. وجود صندوق طوارئ يغطي مصاريفك الأساسية لمدة ثلاثة إلى ستة أشهر يمنحك أماناً نفسياً كبيراً ويحميك من اللجوء إلى الاقتراض بفوائد مرتفعة وقت الأزمات. ابدأ بهدف صغير مثل راتب شهر واحد، ثم زد المبلغ تدريجياً. احتفظ بهذا المال في حساب منفصل يسهل الوصول إليه عند الحاجة، ولا تستخدمه إلا للحالات الطارئة الحقيقية.</p>
+
+<h4>سادساً: حدد أهدافاً ادخارية واضحة</h4>
+<p>الادخار بلا هدف محدد يفقد حماسه بسرعة. عندما تحوّل حلمك إلى رقم وموعد يصبح الطريق واضحاً. فمثلاً إذا أردت ادخار ستة آلاف خلال اثني عشر شهراً فأنت بحاجة إلى خمسمئة شهرياً. قسّم أهدافك إلى قصيرة المدى كجهاز أو سفرة، ومتوسطة كدفعة أولى لسيارة، وطويلة كالتقاعد أو شراء منزل. ومتابعة نسبة التقدم بشكل مرئي تمنحك دافعاً للاستمرار وتجعلك تحتفل بكل إنجاز صغير في الطريق.</p>
+
+<h4>سابعاً: تعامل بحكمة مع الديون</h4>
+<p>الديون الاستهلاكية ذات الفوائد العالية، مثل رصيد بطاقات الائتمان غير المسدد، من أكبر أعداء الثروة. إن كان عليك ديون فاعتمد إحدى طريقتين: طريقة الانهيار الجليدي بسداد الدين الأعلى فائدة أولاً لتوفير أكبر قدر من المال، أو طريقة كرة الثلج بسداد أصغر دين أولاً لتحصل على انتصارات نفسية سريعة تحفزك. وفي الحالتين ادفع الحد الأدنى لجميع الديون وركّز أي مبلغ إضافي على الدين المستهدف، وتجنب الاقتراض الجديد غير الضروري.</p>
+
+<h4>ثامناً: ضبط الإنفاق العاطفي</h4>
+<p>كثير من المشتريات لا تكون بدافع الحاجة بل بدافع الملل أو الضغط أو العروض المغرية. لمواجهة ذلك جرّب قاعدة الأربع والعشرين ساعة: قبل أي شراء غير ضروري انتظر يوماً كاملاً ثم اسأل نفسك هل ما زلت أريده فعلاً. غالباً ستجد أن الرغبة تتلاشى. وانتبه أيضاً للكاش باك والخصومات، فهي مفيدة عندما تكون على شراء كنت ستقوم به أصلاً، لكنها تتحول إلى فخ عندما تشتري شيئاً لا تحتاجه فقط لتحصل على نسبة استرداد.</p>
+
+<h4>تاسعاً: راجع وطوّر بشكل دوري</h4>
+<p>الوضع المالي يتغير مع الوقت، فقد يزيد الدخل أو تتغير الالتزامات. خصص وقتاً في نهاية كل شهر لمراجعة إنفاقك ومقارنته بالشهر السابق، وتأكد من أن ميزانيتك ما زالت مناسبة لك. راجع اشتراكاتك كل ثلاثة أشهر وألغِ ما لا تستخدمه فعلياً. وواصل التعلم بقراءة كتاب أو مقال مالي بين حين وآخر، فالمعرفة المالية استثمار يعود عليك بأفضل العوائد.</p>
+
+<h4>عاشراً: الفرق بين الادخار والاستثمار</h4>
+<p>يخلط كثيرون بين الادخار والاستثمار، مع أن لكل منهما دوراً مختلفاً. الادخار هو حفظ المال بأمان لهدف قريب أو لوقت الطوارئ، وغايته الحفاظ على المبلغ وسهولة الوصول إليه. أما الاستثمار فهو توظيف المال في أدوات تنمو مع الزمن كالأسهم والصناديق والعقار، مقابل قبول درجة من المخاطرة وانتظار مدة أطول. القاعدة الآمنة أن تبدأ بالادخار وصندوق الطوارئ أولاً، ثم تتعلم بهدوء قبل أن تفكر في الاستثمار، ولا تضع في أي استثمار مبلغاً لا تحتمل خسارته.</p>
+
+<h4>الأخطاء المالية الشائعة التي يجب تجنبها</h4>
+<p>من أكثر الأخطاء انتشاراً الاعتماد على الذاكرة بدل التسجيل، فالمصاريف الصغيرة تُنسى بسرعة وتتراكم دون انتباه. ومن الأخطاء أيضاً وضع ميزانية صارمة جداً لا يمكن الالتزام بها، فتتوقف عن تطبيقها بعد أسابيع قليلة. وكذلك مقارنة نفسك بالآخرين وتقليد أنماط إنفاقهم، وتأجيل الادخار إلى حين ارتفاع الدخل، مع أن العادة تُبنى بالمبالغ الصغيرة قبل الكبيرة. وأخيراً الشراء بالتقسيط لكل شيء دون حساب مجموع الأقساط التي تلتزم بها شهرياً، فهذه الأقساط تضيّق ميزانيتك وتقلل قدرتك على الادخار.</p>
+
+<h4>كيف تحافظ على حماسك على المدى الطويل؟</h4>
+<p>الاستمرارية أصعب من البداية، ولذلك اجعل الرحلة ممتعة وقابلة للقياس. حدد لنفسك مكافأة صغيرة عند تحقيق كل مرحلة، وشارك هدفك مع شخص تثق به ليشجعك، وراجع تقدمك بصرياً من خلال الرسوم والنسب. وإذا تعثرت في شهر ما فلا تعتبر ذلك فشلاً، بل فرصة لفهم السبب وتعديل الخطة. فالنجاح المالي هو مجموع قرارات صغيرة صحيحة تتكرر مع الوقت.</p>
+
+<h4>الخلاصة</h4>
+<p>الاستقرار المالي لا يتحقق بقرار واحد ولا بين ليلة وضحاها، بل يُبنى بعادات صغيرة مستمرة: تسجيل المصروفات، والالتزام بميزانية واقعية، والادخار المنتظم، وبناء صندوق الطوارئ، والتحكم في الديون والإنفاق العاطفي. ابدأ اليوم بخطوة بسيطة، وستلاحظ خلال أشهر قليلة الفرق في وعيك وراحتك المالية. وتذكر دائماً أن المال وسيلة لحياة أفضل وليس غاية بحد ذاته.</p>
+
+<p style="margin-top:14px;color:var(--muted);font-size:0.72rem">هذا المقال لأغراض تثقيفية عامة فقط وليس استشارة مالية أو استثمارية متخصصة.</p>`;
+} else {
+el.innerHTML = `<h4>Your Complete Guide to Personal Finance and Building a Saving Habit</h4>
+<p>Managing personal money is a skill everyone needs, regardless of income level. Many people assume their financial trouble comes from a low salary, while in reality most problems begin with a lack of awareness about how money comes in and goes out. In this article we walk through practical, proven steps that help you organize your budget, build a sustainable saving habit, and reach better financial stability one step at a time.</p>
+
+<h4>1. Start by knowing your real financial situation</h4>
+<p>The first step in any successful financial journey is knowing where you stand right now. Gather all your monthly income sources, then list your fixed expenses such as rent, bills, subscriptions and installments, and estimate your variable expenses such as food, transport and entertainment. Once the numbers are in front of you, you will often discover small amounts leaking away every day without notice, like takeaway drinks, delivery orders and forgotten subscriptions. By the end of the month these small amounts can add up to a figure worth paying attention to.</p>
+
+<h4>2. Track your expenses regularly</h4>
+<p>Regular expense tracking is the foundation of every good financial decision. It does not matter whether you use a notebook, a spreadsheet or a simple app; what matters is recording each transaction on the day it happens. Postponing makes you forget details and gives a distorted picture of your real spending. After just one month of careful tracking you will have real data that shows which categories consume the largest share of your income and where you can cut back without hurting your quality of life.</p>
+
+<h4>3. Build a realistic budget and apply the 50/30/20 rule</h4>
+<p>A budget is not a restriction that stops you from enjoying life; it is a map that shows how to distribute your income wisely. One of the most popular guidelines is the 50/30/20 rule: half of your income goes to essential needs like housing, food, bills and transport, thirty percent to wants like entertainment, restaurants and non-essential shopping, and twenty percent to savings and debt repayment. These ratios are guidelines, not fixed laws. Someone with heavy family obligations may need a higher share for essentials, but the key is to keep a steady portion for saving whatever the circumstances.</p>
+
+<h4>4. Pay yourself first</h4>
+<p>One of the most powerful saving principles is paying yourself first. Set aside your saving amount as soon as you receive your salary, before you start spending, instead of saving whatever is left at the end of the month, because usually nothing is left. Choose a small percentage that suits you, even five percent at the start, and raise it gradually over time. More important than the amount is consistency, since regular saving over years makes a big difference thanks to the accumulation of small sums.</p>
+
+<h4>5. Build an emergency fund</h4>
+<p>Life is full of surprises: a car breakdown, an illness, or losing a job. An emergency fund that covers three to six months of essential expenses gives you great peace of mind and protects you from turning to high-interest borrowing during a crisis. Start with a small target such as one month of salary, then increase it gradually. Keep this money in a separate account that is easy to reach when needed, and use it only for genuine emergencies.</p>
+
+<h4>6. Set clear savings goals</h4>
+<p>Saving without a specific goal quickly loses its momentum. When you turn a dream into a number and a date, the path becomes clear. For example, if you want to save six thousand within twelve months you need five hundred per month. Divide your goals into short-term ones like a gadget or a trip, medium-term ones like a car down payment, and long-term ones like retirement or buying a home. Watching your progress visually keeps you motivated and lets you celebrate every small win along the way.</p>
+
+<h4>7. Handle debt wisely</h4>
+<p>High-interest consumer debt, such as unpaid credit card balances, is one of the biggest enemies of wealth. If you owe money, choose one of two methods: the avalanche method, paying the highest-interest debt first to save the most money, or the snowball method, paying the smallest debt first to earn quick psychological wins that keep you motivated. In both cases pay the minimum on all debts and put any extra money on the target debt, and avoid unnecessary new borrowing.</p>
+
+<h4>8. Control emotional spending</h4>
+<p>Many purchases are driven not by need but by boredom, stress or tempting offers. To counter this, try the 24-hour rule: before any non-essential purchase, wait a full day and then ask yourself whether you still really want it. Often the urge fades away. Also be careful with cashback and discounts; they are useful when attached to a purchase you were going to make anyway, but they become a trap when you buy something you do not need just to earn a rebate.</p>
+
+<h4>9. Review and improve periodically</h4>
+<p>Your financial situation changes over time; income may rise or obligations may change. Set aside time at the end of each month to review your spending, compare it with the previous month, and make sure your budget still suits you. Review your subscriptions every three months and cancel what you do not actually use. Keep learning by reading a finance book or article from time to time, because financial knowledge is an investment that pays some of the best returns.</p>
+
+<h4>Conclusion</h4>
+<p>Financial stability is not achieved by a single decision or overnight. It is built from small, consistent habits: tracking expenses, sticking to a realistic budget, saving regularly, building an emergency fund, and controlling debt and emotional spending. Start today with one simple step, and within a few months you will notice the difference in your awareness and financial peace of mind. Always remember that money is a means to a better life, not an end in itself.</p>
+
+<p style="margin-top:14px;color:var(--muted);font-size:0.72rem">This article is for general educational purposes only and is not specialized financial or investment advice.</p>`;
+}
+}
+
 function applyLang() {
 const lang = getLang();
 const t = I18N[lang];
@@ -1585,6 +1691,14 @@ if (expBackup) expBackup.textContent = t.btn_export_backup;
 const impLabel = document.querySelector('label.file-label');
 if (impLabel) impLabel.textContent = t.btn_import_backup;
 
+// Currency names
+const curNames = {
+ar: ['ريال سعودي (⃁)','دولار ($)','يورو (€)','درهم إماراتي (د.إ)','جنيه مصري (ج.م)','دينار كويتي (د.ك)'],
+en: ['Saudi Riyal (⃁)','US Dollar ($)','Euro (€)','UAE Dirham (AED)','Egyptian Pound (EGP)','Kuwaiti Dinar (KWD)']
+};
+const curSel = document.getElementById('currencySelect');
+if (curSel) Array.from(curSel.options).forEach((o, i) => { if (curNames[lang][i]) o.text = curNames[lang][i]; });
+
 // Reminder
 const remText = document.getElementById('reminderText');
 if (remText) remText.textContent = t.reminder_text;
@@ -1599,6 +1713,7 @@ renderBlog();
 renderPrivacy();
 renderTerms();
 renderContact();
+renderArticle();
 
 const clearBtn = document.getElementById('clearAllBtn');
 if (clearBtn) clearBtn.textContent = tMsg('مسح الكل','Clear all');
@@ -1753,6 +1868,7 @@ infoTitles.books = 'الكتب';
 infoTitles.tips = 'نصائح مالية';
 infoTitles.courses = 'دورات';
 infoTitles.features = 'شرح المميزات';
+infoTitles.article = 'المقال';
 
 const originalShowInfoSection = showInfoSection;
 showInfoSection = function(key) {
@@ -1760,6 +1876,7 @@ originalShowInfoSection(key);
 const lang = getLang();
 const titles = {
 about: lang==='ar'?'من نحن':'About Us',
+article: lang==='ar'?'المقال':'Article',
 blog: lang==='ar'?'المدونة':'Blog',
 books: lang==='ar'?'الكتب':'Books',
 tips: lang==='ar'?'نصائح مالية':'Financial Tips',
@@ -1775,6 +1892,7 @@ if (key === 'books') renderBooks();
 if (key === 'tips') renderTips();
 if (key === 'features') renderFeatures();
 if (key === 'about') renderAbout();
+if (key === 'article') renderArticle();
 if (key === 'blog') renderBlog();
 if (key === 'privacy') renderPrivacy();
 if (key === 'terms') renderTerms();
@@ -1793,4 +1911,3 @@ applyLang();
 
 </script>
 </body></html>
- 
