@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>قاعدة 50/30/20 لتوزيع الراتب مع أمثلة عملية بالأرقام | قِنطار</title>
-<meta name="description" content="تعرّف على قاعدة 50/30/20 لتوزيع الراتب بين الاحتياجات والرغبات والادخار، مع أمثلة بالأرقام لرواتب مختلفة، وكيف تعدّلها إذا كانت مصاريفك الأساسية مرتفعة.">
+<meta name="description" content="تعرّف على قاعدة 50/30/20 لتوزيع الراتب بين الاحتياجات والرغبات والادخار، مع حاسبة تفاعلية ورسم بياني وأمثلة بالأرقام لرواتب مختلفة.">
 <link rel="canonical" href="https://qintar.sbs/budget-50-30-20.html">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9889859839429237" crossorigin="anonymous"></script>
 <style>
@@ -28,6 +28,33 @@ th{background:#1a1a1a;color:#e8650a}
 .note{margin-top:24px;color:#7a7a7a;font-size:0.8rem}
 footer{margin-top:40px;padding-top:20px;border-top:1px solid #2a2a2a;text-align:center;font-size:0.8rem;line-height:2.2}
 footer a{color:#7a7a7a;margin:0 8px;text-decoration:none}
+
+/* الحاسبة التفاعلية */
+.calc-card{background:#1a1a1a;border:1px solid #2a2a2a;border-radius:16px;padding:20px 18px;margin:20px 0}
+.calc-title{font-size:1.05rem;font-weight:800;color:#fff;margin-bottom:14px}
+.calc-input-row{display:flex;gap:10px;margin-bottom:16px}
+.calc-input-row input{flex:1;background:#0e0e0e;border:1.5px solid #333;border-radius:10px;padding:13px 14px;color:#fff;font-family:Tahoma,Arial,sans-serif;font-size:0.95rem;outline:none}
+.calc-input-row input:focus{border-color:#e8650a}
+.calc-input-row button{background:#e8650a;color:#fff;border:none;border-radius:10px;padding:0 20px;font-weight:800;font-size:0.9rem;cursor:pointer;font-family:Tahoma,Arial,sans-serif;white-space:nowrap}
+.calc-input-row button:hover{background:#ff7a1f}
+.calc-results{display:none}
+.calc-results.show{display:block}
+.calc-bars{margin-bottom:18px}
+.calc-bar-row{margin-bottom:12px}
+.calc-bar-label{display:flex;justify-content:space-between;font-size:0.82rem;margin-bottom:6px;color:#ddd}
+.calc-bar-label .amt{font-weight:800;color:#fff;direction:ltr;display:inline-block}
+.calc-bar-track{background:#0e0e0e;border-radius:8px;height:14px;overflow:hidden;border:1px solid #2a2a2a}
+.calc-bar-fill{height:100%;border-radius:8px;width:0%;transition:width 0.6s ease}
+.fill-needs{background:linear-gradient(90deg,#e8650a,#ff7a1f)}
+.fill-wants{background:linear-gradient(90deg,#3498db,#5dade2)}
+.fill-save{background:linear-gradient(90deg,#2ecc71,#58d68d)}
+.calc-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.calc-mini{background:#0e0e0e;border:1px solid #2a2a2a;border-radius:12px;padding:12px 8px;text-align:center}
+.calc-mini .dot{width:8px;height:8px;border-radius:50%;margin:0 auto 8px}
+.calc-mini .lbl{font-size:0.68rem;color:#999;margin-bottom:4px}
+.calc-mini .val{font-size:0.95rem;font-weight:800;color:#fff;direction:ltr}
+.calc-note{font-size:0.75rem;color:#888;margin-top:14px;text-align:center}
+@media (max-width:420px){.calc-cards{gap:6px}.calc-mini{padding:10px 4px}.calc-mini .val{font-size:0.82rem}}
 </style>
 </head>
 <body>
@@ -45,6 +72,42 @@ footer a{color:#7a7a7a;margin:0 8px;text-decoration:none}
 <li><strong>20% للادخار وسداد الديون:</strong> صندوق الطوارئ وأهدافك المستقبلية وأي مبالغ إضافية لسداد الديون.</li>
 </ul>
 <p>القاعدة معروفة ومتداولة في التخطيط المالي الشخصي، وهي إرشاد عام وليست قانوناً ثابتاً، فيمكنك تعديلها بحسب ظروفك.</p>
+
+<h2>احسب توزيعك الآن</h2>
+<p>أدخل صافي راتبك الشهري وشاهد التوزيع مباشرة:</p>
+
+<div class="calc-card">
+<div class="calc-title">🧮 حاسبة قاعدة 50/30/20</div>
+<div class="calc-input-row">
+<input type="number" id="salaryInput" placeholder="أدخل راتبك الشهري، مثلاً 6000" min="0">
+<button onclick="calcBudget()">احسب</button>
+</div>
+
+<div class="calc-results" id="calcResults">
+<div class="calc-bars">
+<div class="calc-bar-row">
+<div class="calc-bar-label"><span>الاحتياجات (50%)</span><span class="amt" id="needsAmt">0</span></div>
+<div class="calc-bar-track"><div class="calc-bar-fill fill-needs" id="needsBar"></div></div>
+</div>
+<div class="calc-bar-row">
+<div class="calc-bar-label"><span>الرغبات (30%)</span><span class="amt" id="wantsAmt">0</span></div>
+<div class="calc-bar-track"><div class="calc-bar-fill fill-wants" id="wantsBar"></div></div>
+</div>
+<div class="calc-bar-row">
+<div class="calc-bar-label"><span>الادخار (20%)</span><span class="amt" id="saveAmt">0</span></div>
+<div class="calc-bar-track"><div class="calc-bar-fill fill-save" id="saveBar"></div></div>
+</div>
+</div>
+
+<div class="calc-cards">
+<div class="calc-mini"><div class="dot" style="background:#e8650a"></div><div class="lbl">احتياجات يومياً</div><div class="val" id="needsDaily">0</div></div>
+<div class="calc-mini"><div class="dot" style="background:#3498db"></div><div class="lbl">ادخار سنوياً</div><div class="val" id="saveYearly">0</div></div>
+<div class="calc-mini"><div class="dot" style="background:#2ecc71"></div><div class="lbl">ادخار 5 سنوات</div><div class="val" id="save5y">0</div></div>
+</div>
+
+<p class="calc-note">هذه أرقام تقديرية بحسب القاعدة العامة، وقد تحتاج تعديلها حسب ظروفك الفعلية.</p>
+</div>
+</div>
 
 <h2>كيف تحسبها؟</h2>
 <p>الخطوات بسيطة:</p>
@@ -144,5 +207,42 @@ footer a{color:#7a7a7a;margin:0 8px;text-decoration:none}
 <p style="margin-top:12px;color:#555">© قِنطار — جميع الحقوق محفوظة</p>
 </footer>
 </div>
+
+<script>
+function fmt(n){
+  return Math.round(n).toLocaleString('en-US');
+}
+function calcBudget(){
+  var salary = parseFloat(document.getElementById('salaryInput').value);
+  if(!salary || salary <= 0){
+    alert('يرجى إدخال راتب صحيح');
+    return;
+  }
+  var needs = salary * 0.5;
+  var wants = salary * 0.3;
+  var save = salary * 0.2;
+
+  document.getElementById('needsAmt').textContent = fmt(needs);
+  document.getElementById('wantsAmt').textContent = fmt(wants);
+  document.getElementById('saveAmt').textContent = fmt(save);
+
+  document.getElementById('needsDaily').textContent = fmt(needs / 30);
+  document.getElementById('saveYearly').textContent = fmt(save * 12);
+  document.getElementById('save5y').textContent = fmt(save * 12 * 5);
+
+  document.getElementById('calcResults').classList.add('show');
+
+  setTimeout(function(){
+    document.getElementById('needsBar').style.width = '50%';
+    document.getElementById('wantsBar').style.width = '30%';
+    document.getElementById('saveBar').style.width = '20%';
+  }, 50);
+}
+
+document.getElementById('salaryInput').addEventListener('keypress', function(e){
+  if(e.key === 'Enter'){ calcBudget(); }
+});
+</script>
+
 </body>
 </html>
