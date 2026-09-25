@@ -21,15 +21,10 @@ ul,ol{margin:8px 0 12px;padding-right:22px}
 li{margin-bottom:8px;font-size:0.95rem}
 a{color:#e8650a}
 .box{background:#1a1a1a;border:1px solid #2a2a2a;border-radius:14px;padding:16px;margin:16px 0}
-.tbl-wrap{overflow-x:auto;margin:16px 0}
-table{width:100%;border-collapse:collapse;font-size:0.9rem;min-width:420px}
-th,td{border:1px solid #2a2a2a;padding:10px;text-align:center}
-th{background:#1a1a1a;color:#e8650a}
 .note{margin-top:24px;color:#7a7a7a;font-size:0.8rem}
 footer{margin-top:40px;padding-top:20px;border-top:1px solid #2a2a2a;text-align:center;font-size:0.8rem;line-height:2.2}
 footer a{color:#7a7a7a;margin:0 8px;text-decoration:none}
 
-/* حاسبة الفائدة المركبة */
 .calc-card{background:#1a1a1a;border:1px solid #2a2a2a;border-radius:16px;padding:20px 18px;margin:20px 0}
 .calc-title{font-size:1.05rem;font-weight:800;color:#fff;margin-bottom:14px}
 .calc-field{margin-bottom:14px}
@@ -39,6 +34,8 @@ footer a{color:#7a7a7a;margin:0 8px;text-decoration:none}
 .calc-row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .calc-btn{width:100%;background:#e8650a;color:#fff;border:none;border-radius:10px;padding:13px;font-weight:800;font-size:0.9rem;cursor:pointer;font-family:Tahoma,Arial,sans-serif;margin-top:4px}
 .calc-btn:hover{background:#ff7a1f}
+.calc-error{display:none;color:#ff6b5b;font-size:0.8rem;margin-top:10px;text-align:center}
+.calc-error.show{display:block}
 .calc-results{display:none;margin-top:18px}
 .calc-results.show{display:block}
 .calc-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
@@ -48,8 +45,7 @@ footer a{color:#7a7a7a;margin:0 8px;text-decoration:none}
 .calc-mini.highlight{border-color:#2ecc71}
 .calc-mini.highlight .val{color:#2ecc71}
 .calc-chart{height:120px;display:flex;align-items:flex-end;gap:4px;margin-top:14px;padding-top:10px}
-.calc-chart-bar{flex:1;background:linear-gradient(180deg,#ff7a1f,#e8650a);border-radius:4px 4px 0 0;min-height:2px;position:relative}
-.calc-chart-label{text-align:center;font-size:0.62rem;color:#888;margin-top:6px}
+.calc-chart-bar{flex:1;background:linear-gradient(180deg,#ff7a1f,#e8650a);border-radius:4px 4px 0 0;min-height:2px}
 .calc-note{font-size:0.75rem;color:#888;margin-top:14px;text-align:center}
 @media (max-width:420px){.calc-cards{gap:6px}.calc-mini{padding:10px 4px}.calc-mini .val{font-size:0.78rem}}
 </style>
@@ -82,19 +78,20 @@ footer a{color:#7a7a7a;margin:0 8px;text-decoration:none}
 <div class="calc-title">📈 حاسبة نمو الاستثمار</div>
 <div class="calc-field">
 <label>المبلغ الشهري الذي تستثمره</label>
-<input type="number" id="monthlyInput" placeholder="مثلاً 500" min="0">
+<input type="number" id="monthlyInput" placeholder="مثلاً 500" min="0" inputmode="decimal">
 </div>
 <div class="calc-row2">
 <div class="calc-field">
 <label>عدد السنوات</label>
-<input type="number" id="yearsInput" placeholder="مثلاً 10" min="1" max="40">
+<input type="number" id="yearsInput" placeholder="مثلاً 10" min="1" max="40" inputmode="decimal">
 </div>
 <div class="calc-field">
 <label>العائد السنوي المتوقع %</label>
-<input type="number" id="rateInput" placeholder="مثلاً 7" min="0" max="30" step="0.5">
+<input type="number" id="rateInput" placeholder="مثلاً 7" min="0" max="30" step="0.5" inputmode="decimal">
 </div>
 </div>
-<button class="calc-btn" onclick="calcInvest()">احسب النمو</button>
+<button class="calc-btn" id="calcBtn" type="button">احسب النمو</button>
+<div class="calc-error" id="calcError">يرجى تعبئة الحقول الثلاثة بأرقام صحيحة</div>
 
 <div class="calc-results" id="calcResults">
 <div class="calc-cards">
@@ -159,34 +156,83 @@ footer a{color:#7a7a7a;margin:0 8px;text-decoration:none}
 </div>
 
 <script>
-function fmt(n){
-  return Math.round(n).toLocaleString('en-US');
-}
-function calcInvest(){
-  var monthly = parseFloat(document.getElementById('monthlyInput').value);
-  var years = parseFloat(document.getElementById('yearsInput').value);
-  var ratePct = parseFloat(document.getElementById('rateInput').value);
-
-  if(!monthly || monthly <= 0 || !years || years <= 0 || ratePct === '' || isNaN(ratePct)){
-    alert('يرجى تعبئة جميع الحقول بأرقام صحيحة');
-    return;
+(function(){
+  function fmt(n){
+    return Math.round(n).toLocaleString('en-US');
   }
 
-  var monthlyRate = (ratePct / 100) / 12;
-  var months = years * 12;
-  var balance = 0;
-  var yearlyBalances = [];
+  function calcInvest(){
+    var monthlyEl = document.getElementById('monthlyInput');
+    var yearsEl = document.getElementById('yearsInput');
+    var rateEl = document.getElementById('rateInput');
+    var errorEl = document.getElementById('calcError');
+    var resultsEl = document.getElementById('calcResults');
 
-  for(var m = 1; m <= months; m++){
-    balance = balance * (1 + monthlyRate) + monthly;
-    if(m % 12 === 0){
+    var monthly = parseFloat(monthlyEl.value);
+    var years = parseFloat(yearsEl.value);
+    var ratePct = parseFloat(rateEl.value);
+
+    if(isNaN(monthly) || monthly <= 0 || isNaN(years) || years <= 0 || isNaN(ratePct) || ratePct < 0){
+      errorEl.classList.add('show');
+      resultsEl.classList.remove('show');
+      return;
+    }
+    errorEl.classList.remove('show');
+
+    var monthlyRate = (ratePct / 100) / 12;
+    var months = Math.round(years * 12);
+    var balance = 0;
+    var yearlyBalances = [];
+
+    for(var m = 1; m <= months; m++){
+      balance = balance * (1 + monthlyRate) + monthly;
+      if(m % 12 === 0){
+        yearlyBalances.push(balance);
+      }
+    }
+    if(yearlyBalances.length === 0){
       yearlyBalances.push(balance);
     }
+
+    var totalDeposited = monthly * months;
+    var totalGrowth = balance - totalDeposited;
+
+    document.getElementById('totalDeposited').textContent = fmt(totalDeposited);
+    document.getElementById('totalGrowth').textContent = fmt(totalGrowth);
+    document.getElementById('finalValue').textContent = fmt(balance);
+
+    var chartEl = document.getElementById('chartBars');
+    chartEl.innerHTML = '';
+    var maxVal = yearlyBalances[yearlyBalances.length - 1] || 1;
+    var step = Math.max(1, Math.ceil(yearlyBalances.length / 10));
+
+    for(var i = 0; i < yearlyBalances.length; i += step){
+      var h = Math.max(2, (yearlyBalances[i] / maxVal) * 100);
+      var bar = document.createElement('div');
+      bar.className = 'calc-chart-bar';
+      bar.style.height = h + '%';
+      chartEl.appendChild(bar);
+    }
+
+    resultsEl.classList.add('show');
   }
 
-  var totalDeposited = monthly * months;
-  var totalGrowth = balance - totalDeposited;
+  document.addEventListener('DOMContentLoaded', function(){
+    var btn = document.getElementById('calcBtn');
+    if(btn){
+      btn.addEventListener('click', calcInvest);
+    }
+    ['monthlyInput','yearsInput','rateInput'].forEach(function(id){
+      var el = document.getElementById(id);
+      if(el){
+        el.addEventListener('keypress', function(e){
+          if(e.key === 'Enter'){ calcInvest(); }
+        });
+      }
+    });
+  });
+})();
+</script>
 
-  document.getElementById('totalDeposited').textContent = fmt(totalDeposited);
-  document.getElementById('totalGrowth').textContent = fmt(totalGrowth);
-  document.getElementById('finalValue').textContent = fmt(balance);
+</body>
+</html>
