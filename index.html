@@ -79,8 +79,8 @@ gtag('config', 'G-VJGN3NQ8WZ');</script>
 <h4 data-i18n="tips_title">نصائح مالية عملية</h4>
 <div class="tip-item">سجّل كل مصروف فور حدوثه — التأجيل يجعل التفاصيل تضيع ويشوه صورة إنفاقك الحقيقية.</div>
 <div class="tip-item">طبّق قاعدة 50/30/20: 50% للاحتياجات، 30% للرغبات، و20% للادخار وسداد الديون.</div>
-<div class="tip-item">ابنِ صندوق طوارئ يغطي 3 إلى 6 أشهر من مصاريفك الأساسية قبل أي استثمار عالي المخاطر.</div>
-<div class="tip-item">فعّل التحويل التلقائي لنسبة بسيطة من كل راتب إلى حساب ادخار منفصل — الادخار بدون تفكير أقوى.</div>
+<div class="tip-item">يستخدم بعض الناس احتياطياً لعدة أشهر من الضروريات (غالباً 3–6) كنقطة بداية؛ يختلف الهدف المناسب باختلاف الظروف.</div>
+<div class="tip-item">يمكنك إعداد تحويل ادخار مع مصرفك إن رغبت؛ قِنطار لا يحول الأموال ويسجل فقط ما تدخله يدوياً.</div>
 <div class="tip-item">راجع اشتراكاتك الشهرية كل ربع سنة وألغِ ما لا تستخدمه فعلياً (تطبيقات، اشتراكات، خدمات).</div>
 <div class="tip-item">لا تشتري شيئاً فقط من أجل الكاش باك — الكاش باك مكسب إضافي على شراء كنت ستقوم به أصلاً.</div>
 <div class="tip-item">حدد سقفاً شهرياً لأكثر تصنيف تصرف فيه (مثل المطاعم أو التوصيل) وتابعه أسبوعياً.</div>
@@ -784,7 +784,7 @@ container.innerHTML = `
 </thead>
 <tbody>${rows || '<tr><td colspan="5" style="padding:24px; text-align:center; color:#999;">لا توجد معاملات مسجلة</td></tr>'}</tbody>
 </table>
-<div style="margin-top:22px; font-size:10px; color:#aaa; text-align:center;">تم إنشاء هذا الكشف بواسطة تطبيق قِنطار — mohammed.alhadidi@hotmail.com</div>
+<div style="margin-top:22px; font-size:10px; color:#aaa; text-align:center;">هذا تقرير للتتبع الشخصي مبني على البيانات التي أدخلتها، وليس كشف حساب بنكي رسمي — تطبيق قِنطار — mohammed.alhadidi@hotmail.com</div>
 </div>`;
 try {
 await Promise.all([loadScript(LIB_PDF), loadScript(LIB_H2C)]);
@@ -970,12 +970,12 @@ courses_intro: 'أكمل كل مرحلة بالترتيب لفتح المرحل�
 features_title: 'شرح مميزات قِنطار',
 feat1_t: 'تتبع الرصيد والمعاملات', feat1_d: 'سجّل كل إيداع ومصروف يدوياً لترى رصيدك المتوقع في أي لحظة. التطبيق يحسب الرصيد والدخل والمصروف والكاش باك تلقائياً.',
 feat2_t: 'الكاش باك', feat2_d: 'أدخل نسبة الكاش باك مع كل مصروف لترى كم وفّرت فعلياً من العروض والبطاقات على المدى الطويل.',
-feat3_t: 'أهداف الادخار', feat3_d: 'أنشئ أهدافاً واضحة (سيارة، سفر، جهاز...) وحدد نسبة تحويل تلقائي من كل إيداع. تابع تقدمك بشريط النسبة.',
+feat3_t: 'أهداف الادخار', feat3_d: 'أنشئ أهدافاً واضحة وخصص نسبة من الإيداعات المسجلة داخل التطبيق. تابع تقدمك بشريط النسبة؛ لا يحوّل قِنطار أموالاً.',
 feat4_t: 'الميزانية الشهرية', feat4_d: 'ضع سقفاً لكل تصنيف (مطاعم، تسوق...) وراقب استهلاكك الشهري حتى لا تتجاوز الحدود التي حددتها لنفسك.',
-feat5_t: 'الفواتير والدخل المتكرر', feat5_d: 'سجّل الإيجار والاشتراكات والراتب مرة واحدة، والتطبيق يضيفها تلقائياً في يوم الاستحقاق كل شهر.',
+feat5_t: 'الفواتير والدخل المتكرر', feat5_d: 'سجّل القيود المتكررة داخل التطبيق؛ يحدّث قِنطار سجلك في الموعد لكنه لا ينفذ خصماً أو إيداعاً بنكياً.',
 feat6_t: 'التحليلات والرسوم', feat6_d: 'دائرة توزيع المصروفات حسب التصنيف، ومقارنة الدخل بالمصروف لآخر 6 أشهر، ومقارنة هذا الشهر بالسابق.',
 feat7_t: 'التصدير والنسخ الاحتياطي', feat7_d: 'صدّر كشف PDF أو Excel في أي وقت، واحفظ نسخة احتياطية JSON كاملة لاستعادتها لاحقاً أو نقلها لجهاز آخر.',
-feat8_t: 'الخصوصية الكاملة', feat8_d: 'كل بياناتك تبقى داخل متصفحك فقط (Local Storage). لا حسابات، لا سيرفرات، ولا مشاركة لأي معلومة مالية.',
+feat8_t: 'خصوصية سجلات التطبيق', feat8_d: 'سجلاتك المالية تُحفظ محلياً ولا يرسلها التطبيق إلى خوادم قِنطار. يستخدم الموقع Google Analytics وAdSense؛ راجع سياسة الخصوصية لمعرفة التفاصيل.',
 info_menu: 'القائمة',
 tx_count: 'معاملة',
 complete_stage: 'إكمال المرحلة',
@@ -1001,7 +1001,7 @@ all_cats: 'كل التصنيفات',
 sec_new_goal: 'تحديد هدف جديد',
 lbl_goal_name: 'اسم الهدف',
 lbl_goal_amt: 'المبلغ المطلوب',
-lbl_goal_alloc: 'نسبة تحويل تلقائي من كل إيداع (اختياري)',
+lbl_goal_alloc: 'نسبة تخصيص داخل التطبيق من كل إيداع (اختياري)',
 btn_save_goal: 'حفظ الهدف',
 sec_budget_cap: 'تحديد سقف مصروف لتصنيف',
 lbl_monthly_cap: 'السقف الشهري',
@@ -1060,12 +1060,12 @@ courses_intro: 'Complete each stage in order to unlock the next one. Progress is
 features_title: 'Qintar Features Guide',
 feat1_t: 'Balance & Transactions', feat1_d: 'Log every deposit and expense manually to see your expected balance anytime. The app calculates balance, income, spending and cashback automatically.',
 feat2_t: 'Cashback Tracking', feat2_d: 'Enter the cashback percentage with each expense to see how much you actually saved from offers and cards over time.',
-feat3_t: 'Savings Goals', feat3_d: 'Create clear goals (car, travel, gadget...) and set an auto-allocation percentage from every deposit. Track progress with the percentage bar.',
+feat3_t: 'Savings Goals', feat3_d: 'Create clear goals and allocate a percentage of deposits recorded in the app. Track progress; Qintar does not transfer money.',
 feat4_t: 'Monthly Budget Caps', feat4_d: 'Set a monthly limit for each category (restaurants, shopping...) and monitor your spending so you stay within the limits you chose.',
-feat5_t: 'Recurring Bills & Income', feat5_d: 'Register rent, subscriptions and salary once; the app adds them automatically on the due day every month.',
+feat5_t: 'Recurring Bills & Income', feat5_d: 'Record recurring items in the app; Qintar updates your local record on schedule but does not debit or deposit money.',
 feat6_t: 'Analytics & Charts', feat6_d: 'Donut chart of expenses by category, income vs expense for the last 6 months, and this month vs last month comparison.',
 feat7_t: 'Export & Backup', feat7_d: 'Export a PDF or Excel statement anytime, and save a full JSON backup to restore later or move to another device.',
-feat8_t: 'Full Privacy', feat8_d: 'All your data stays inside your browser only (Local Storage). No accounts, no servers, and no sharing of any financial information.',
+feat8_t: 'Privacy of app records', feat8_d: 'Your financial records are stored locally and are not sent by the app to Qintar servers. The site uses Google Analytics and AdSense; see the Privacy Policy for details.',
 info_menu: 'Menu',
 tx_count: 'transactions',
 complete_stage: 'Complete Stage',
@@ -1091,7 +1091,7 @@ all_cats: 'All categories',
 sec_new_goal: 'New Savings Goal',
 lbl_goal_name: 'Goal name',
 lbl_goal_amt: 'Target amount',
-lbl_goal_alloc: 'Auto-allocate % from each deposit (optional)',
+lbl_goal_alloc: 'In-app allocation % from each deposit (optional)',
 btn_save_goal: 'Save Goal',
 sec_budget_cap: 'Set Category Spending Cap',
 lbl_monthly_cap: 'Monthly limit',
@@ -1169,7 +1169,7 @@ ar: [
 
 في قِنطار:
 • أنشئ الهدف من تبويب «ادخار».
-• فعّل نسبة التحويل التلقائي من كل إيداع (مثلاً 10% أو 15%).
+• يمكنك تخصيص نسبة من كل إيداع مسجل لهدف داخل التطبيق؛ هذا ليس تحويلاً بنكياً.
 • تابع شريط التقدم بانتظام — التقدم المرئي يحفّز الاستمرار.
 
 قاعدة ذهبية: التقدم الصغير المستمر أفضل بكثير من الاندفاع ثم التوقف. حتى 200 أو 300 شهرياً تتراكم وتصبح مبلغاً محترماً خلال سنة.`},
@@ -1246,7 +1246,7 @@ How to set a smart goal:
 
 In Qintar:
 • Create the goal from the Savings tab.
-• Enable the auto-allocation percentage from every deposit (e.g. 10% or 15%).
+• Allocate a percentage of recorded deposits to goals inside the app; this does not transfer money between bank accounts.
 • Check the progress bar regularly — visible progress keeps you motivated.
 
 Golden rule: small consistent progress beats bursts followed by stopping. Even 200 or 300 per month adds up to a respectable sum within a year.`},
@@ -1330,7 +1330,7 @@ function renderAbout() {
 <p>"قِنطار" هو تطبيق ويب بسيط لإدارة الميزانية الشخصية، صُمم لمساعدتك على تتبع إيداعاتك ومصروفاتك اليومية، ومتابعة الكاش باك الذي تحصل عليه، وتحديد أهداف ادخار واضحة يمكنك متابعة تقدمها بسهولة.</p>
 <p>الهدف من التطبيق هو تبسيط إدارة المال اليومي دون تعقيد، من خلال واجهة عربية سريعة وواضحة تعمل مباشرة من متصفحك.</p>
 <h4>كيف يعمل التطبيق</h4>
-<p>يقوم التطبيق بحفظ بياناتك (المعاملات والأهداف) داخل متصفحك فقط على جهازك، وهو غير مرتبط بأي حساب بنكي حقيقي، ولا يقوم بأي تحويلات مالية فعلية. كل ما تُدخله هو لأغراض التتبع والتنظيم الشخصي فقط.</p>`;
+<p>يحفظ التطبيق سجلات المعاملات والأهداف محلياً في المتصفح، ولا يتصل بحسابك البنكي أو ينفذ تحويلات. ويحمّل الموقع Google Analytics وAdSense؛ راجع سياسة الخصوصية لمعرفة بيانات الاستخدام والإعلانات التي قد تعالجها Google.</p>`;
   } else {
     el.innerHTML = `<h4>About Us</h4>
 <p>"Qintar" is a simple web app for personal budget management, designed to help you track your daily deposits and expenses, monitor the cashback you receive, and set clear savings goals whose progress you can follow easily.</p>
@@ -1349,7 +1349,7 @@ function renderBlog() {
 <p>مجموعة مقالات تشرح كيف تدير فلوسك بذكاء، وكيف تستفيد من ميزات "قِنطار" لتنظيم ادخارك ومصاريفك اليومية.</p>
 
 <h4>1. كيف تحفظ فلوسك في قِنطار؟</h4>
-<p>"قِنطار" لا يتعامل مع فلوسك الحقيقية ولا يملك أي وصول لحسابك البنكي؛ هو أداة تتبّع وتنظيم فقط. أنت تسجّل يدوياً كل إيداع (راتب، هدية، دخل إضافي) وكل مصروف (تسوق، مطاعم، فواتير...)، والتطبيق يحسب لك رصيدك المتوقع تلقائياً. كل هذه البيانات تُحفظ داخل متصفحك فقط (Local Storage) ولا تُرسل لأي خادم، فخصوصيتك بيدك بالكامل.</p>
+<p>"قِنطار" لا يصل إلى حسابك البنكي ولا ينفذ تحويلات. تسجّل الإيداعات والمصروفات يدوياً، ويحسب التطبيق رصيداً متوقعاً؛ وتُحفظ سجلاتك المالية محلياً ولا يرسلها منطق التطبيق إلى خوادم قِنطار. لكن الموقع يحمّل Google Analytics وAdSense، لذا راجع سياسة الخصوصية لمعرفة معالجة Google لبيانات الاستخدام والإعلانات.</p>
 <p>لأن البيانات محلية، ننصحك بشدة باستخدام ميزة "تصدير نسخة احتياطية" الموجودة في الإعدادات بشكل دوري (أسبوعياً مثلاً)، حتى لو غيّرت جهازك أو مسحت المتصفح لا تفقد سجلك المالي.</p>
 
 <h4>2. لماذا تتبع مصاريفك يغيّر وضعك المالي؟</h4>
@@ -1357,7 +1357,7 @@ function renderBlog() {
 <p>جرّب لمدة شهر كامل أن تسجل كل شيء في قسم "مصروف"، وفي نهاية الشهر افتح تبويب "التحليلات" وشاهد الدائرة التي توضح توزيع مصاريفك حسب التصنيف. غالباً ستتفاجأ بأكبر تصنيف يستهلك ميزانيتك.</p>
 
 <h4>3. قاعدة 50/30/20 لتوزيع الدخل</h4>
-<p>من أشهر قواعد الميزانية الشخصية: خصص 50% من دخلك للاحتياجات الأساسية (سكن، فواتير، طعام)، 30% للرغبات (ترفيه، تسوق)، و20% للادخار وسداد الديون. يمكنك تقريب هذه النسب داخل قِنطار عن طريق تحديد سقوف ميزانية لكل تصنيف من تبويب "الميزانية"، ومتابعة مدى التزامك بها شهرياً.</p>
+<p>قاعدة 50/30/20 مثال إرشادي للميزانية: 50% للاحتياجات، و30% للرغبات، و20% للادخار وسداد الديون. ليست معياراً رسمياً ولا تناسب كل دخل أو تكلفة معيشة. يمكنك تحديد سقوف للفئات في قِنطار وتعديلها بما يلائم التزاماتك وميزانيتك.</p>
 <p>لا تشترط الدقة المطلقة من اليوم الأول. ابدأ بنسب تقريبية وعدّلها بعد شهر أو شهرين حسب واقع إنفاقك. الهدف هو الوعي والتحكم، لا الكمال.</p>
 
 <h4>4. الكاش باك... كيف تستفيد منه صح؟</h4>
@@ -1365,19 +1365,19 @@ function renderBlog() {
 <p>القاعدة الذهبية: لا تشتري شيئاً فقط من أجل الحصول على كاش باك — الكاش باك مكسب إضافي على شراء كنت تحتاجه أصلاً، وليس سبباً للشراء.</p>
 
 <h4>5. الفرق بين الادخار والاستثمار</h4>
-<p>الادخار هو تجميع مبلغ من المال بأمان لهدف قريب أو للطوارئ (مثل رصيد الطوارئ الذي يغطي 3-6 أشهر مصاريف). أما الاستثمار فهو تحريك المال في أدوات تنمو بمرور الوقت (أسهم، صناديق، عقار) مقابل قبول درجة من المخاطرة. قِنطار مصمم لمساعدتك على الادخار وتتبع أهدافك القريبة، وليس أداة استثمارية، ولا يقدم أي استشارة مالية.</p>
+<p>الادخار قد يناسب الأهداف القريبة التي تتطلب سهولة الوصول؛ أما الاستثمار فيتضمن تقلباً واحتمال خسارة. يستخدم بعض الناس احتياطياً لعدة أشهر من الضروريات (غالباً 3–6) كنقطة بداية، لا كقاعدة ثابتة. قِنطار أداة تتبع ولا يقدم استشارة استثمارية.</p>
 
 <h4>6. خمس عادات بسيطة توفر لك فلوس شهرياً</h4>
 <ul>
 <li>سجّل كل مصروف أولاً بأول بدل أن تؤجله — كلما قرب التسجيل من لحظة الصرف كان أدق.</li>
 <li>حدد سقفاً شهرياً لأكثر تصنيف تصرف فيه (غالباً المطاعم أو التسوق) وتابعه أسبوعياً.</li>
-<li>فعّل ميزة "التحويل التلقائي" لهدف الادخار بنسبة بسيطة من كل إيداع، حتى تدخر دون أن تشعر.</li>
+<li>يمكنك تخصيص نسبة من كل إيداع تسجله لهدف داخل قِنطار؛ هذا تحديث لسجل التطبيق وليس تحويلاً بنكياً.</li>
 <li>راجع تبويب "التحليلات" في نهاية كل شهر وقارنه بالشهر الذي قبله.</li>
-<li>سجّل فواتيرك الثابتة (إيجار، اشتراكات) كفواتير متكررة حتى لا تنسى احتسابها ضمن ميزانيتك.</li>
+<li>سجّل الفواتير كقيود متكررة في التطبيق؛ لا تنفذ هذه القيود مدفوعات بنكية فعلية.</li>
 </ul>
 
 <h4>7. كيف تبني هدف ادخار واقعي؟</h4>
-<p>بدل أن تحدد رقماً عشوائياً، اقسم المبلغ المطلوب على عدد الأشهر التي تريد التوفير خلالها، وشوف إذا كان الرقم الشهري الناتج منطقياً مقارنة بدخلك. مثلاً لو هدفك 6000 خلال سنة، فأنت تحتاج توفير 500 شهرياً. سجّل هذا الهدف في تبويب "ادخار" وحدد نسبة تحويل تلقائي تقارب هذا المبلغ من دخلك الشهري، وتابع تقدمك من شريط النسبة.</p>
+<p>قسّم المبلغ المستهدف على عدد الأشهر، ثم قيّم ما إذا كان القسط الشهري ملائماً لميزانيتك. فمثلاً 6000 على 12 شهراً تعني 500 شهرياً قبل مراعاة الظروف الأخرى. يمكنك تحديد نسبة تخصيص داخل التطبيق من كل إيداع تسجله ومتابعة التقدم؛ لا ينفذ قِنطار تحويلاً بنكياً.</p>
 
 <h4>8. كيف تتجنب الإفراط في الإنفاق؟</h4>
 <p>استخدم قاعدة الـ 24 ساعة: قبل أي شراء غير ضروري، انتظر يوماً كاملاً ثم قرر. كثيراً ما يختفي الدافع الشرائي بعد ساعات قليلة. أيضاً افصل حساب المصاريف اليومية عن حساب الادخار حتى لا يغريك الرصيد العالي بالإنفاق الزائد.</p>
@@ -1388,7 +1388,7 @@ function renderBlog() {
 <p>A collection of articles that explain how to manage your money smartly and how to use Qintar's features to organize your savings and daily expenses.</p>
 
 <h4>1. How do you keep your money in Qintar?</h4>
-<p>Qintar does not handle your real money and has no access to your bank account; it is only a tracking and organization tool. You manually log every deposit (salary, gift, extra income) and every expense (shopping, restaurants, bills...), and the app automatically calculates your expected balance. All this data is stored only inside your browser (Local Storage) and is never sent to any server, so your privacy stays fully in your hands.</p>
+<p>Qintar does not handle your real money and has no access to your bank account; it is only a tracking and organization tool. You manually log every deposit and expense. Qintar calculates an estimated balance from those entries and stores the financial records locally; the site also loads Google Analytics and AdSense as described in the Privacy Policy. Qintar does not access your bank account or move money.</p>
 <p>Because the data is local, we strongly recommend using the "Export Backup" feature in Settings regularly (for example weekly), so that even if you change devices or clear the browser you do not lose your financial record.</p>
 
 <h4>2. Why does tracking expenses change your financial situation?</h4>
@@ -1396,7 +1396,7 @@ function renderBlog() {
 <p>Try for a full month to log everything in the Expense section. At the end of the month open the Analytics tab and look at the donut that shows your spending by category. You will often be surprised by the largest category consuming your budget.</p>
 
 <h4>3. The 50/30/20 rule for income allocation</h4>
-<p>One of the most popular personal budget rules: allocate 50% of your income to essential needs (housing, bills, food), 30% to wants (entertainment, shopping), and 20% to savings and debt repayment. You can approximate these ratios inside Qintar by setting budget caps for each category from the Budget tab and monitoring how well you stick to them monthly.</p>
+<p>The 50/30/20 rule is an illustrative budgeting guideline: 50% for needs, 30% for wants, and 20% for savings and debt repayment. It is not an official standard or suitable for every income or cost of living. You can set category caps in Qintar and adapt them to your obligations and budget.</p>
 <p>You do not need perfect accuracy from day one. Start with approximate ratios and adjust them after one or two months according to your real spending. The goal is awareness and control, not perfection.</p>
 
 <h4>4. Cashback... how to benefit from it correctly?</h4>
@@ -1404,19 +1404,19 @@ function renderBlog() {
 <p>Golden rule: never buy something only to get cashback — cashback is an extra gain on a purchase you already needed, not a reason to buy.</p>
 
 <h4>5. The difference between saving and investing</h4>
-<p>Saving is accumulating money safely for a near-term goal or emergencies (such as an emergency fund covering 3–6 months of expenses). Investing is putting money into instruments that grow over time (stocks, funds, real estate) in exchange for accepting some risk. Qintar is designed to help you save and track near-term goals; it is not an investment tool and does not provide any financial advice.</p>
+<p>Saving may suit near-term needs where access and value stability matter; investing involves market risk and possible loss. Some people use several months of essential expenses (often 3–6) as an emergency-fund starting point, but circumstances vary. Qintar is designed to help you save and track near-term goals; it is not an investment tool and does not provide any financial advice.</p>
 
 <h4>6. Five simple habits that save you money every month</h4>
 <ul>
 <li>Log every expense as soon as it happens instead of postponing — the closer the log is to the moment of spending, the more accurate it is.</li>
 <li>Set a monthly ceiling for the category you spend most on (often restaurants or shopping) and check it weekly.</li>
-<li>Enable the auto-allocation feature for a savings goal with a small percentage of every deposit, so you save without feeling it.</li>
+<li>Set a savings goal to allocate a percentage of each manually recorded deposit to that goal inside Qintar; this is tracking only and does not transfer money between bank accounts.</li>
 <li>Review the Analytics tab at the end of every month and compare it with the previous one.</li>
-<li>Register your fixed bills (rent, subscriptions) as recurring bills so you never forget to include them in your budget.</li>
+<li>Record fixed bills (rent, subscriptions) as recurring entries in Qintar; these app records do not charge a bank account or initiate a payment.</li>
 </ul>
 
 <h4>7. How to build a realistic savings goal?</h4>
-<p>Instead of picking a random number, divide the target amount by the number of months you want to save over, and check whether the resulting monthly figure is realistic compared with your income. For example, if your goal is 6000 in one year, you need to save 500 per month. Register this goal in the Savings tab, set an auto-allocation percentage close to that monthly amount from your income, and track progress on the percentage bar.</p>
+<p>Instead of picking a random number, divide the target amount by the number of months you want to save over, and check whether the resulting monthly figure is realistic compared with your income. For example, if your goal is 6000 in one year, you need to save 500 per month. Register this goal in the Savings tab, set an in-app allocation percentage close to that monthly amount from each deposit you record, and track progress on the percentage bar; Qintar does not make bank transfers.</p>
 
 <h4>8. How to avoid overspending?</h4>
 <p>Use the 24-hour rule: before any non-essential purchase, wait a full day and then decide. The urge to buy often disappears after a few hours. Also keep your daily spending account separate from your savings account so a high balance does not tempt you into extra spending.</p>
@@ -1434,18 +1434,20 @@ function renderPrivacy() {
 <p>نحن في "قِنطار" نقدّر خصوصية مستخدمينا، وتوضح هذه السياسة كيفية التعامل مع بياناتك عند استخدام الموقع.</p>
 <h4>البيانات التي تُدخلها</h4>
 <ul>
-<li>جميع المعاملات المالية والأهداف التي تُدخلها (المبالغ، الأوصاف، التصنيفات) تُحفظ محلياً داخل متصفحك فقط (Local Storage)، ولا تُرسل إلى أي خادم خارجي أو تُخزَّن لدينا.</li>
+<li>سجلات المعاملات والأهداف التي تدخلها تُحفظ محلياً في المتصفح؛ منطق التطبيق لا يرسل هذه السجلات المالية إلى خوادم قِنطار. ويستخدم الموقع Google Analytics وAdSense وفق ما هو موضح في سياسة الخصوصية.</li>
 <li>لا نطلب منك اسمك الحقيقي، ولا رقم حسابك البنكي، ولا أي بيانات دفع فعلية.</li>
-<li>حذف بيانات المتصفح أو مسح ذاكرة التخزين المؤقت سيؤدي إلى فقدان هذه البيانات نهائياً، لأنها غير محفوظة لدينا — لذلك نوفر ميزة تصدير نسخة احتياطية من داخل الإعدادات.</li>
+<li>حذف بيانات الموقع أو التخزين المحلي من المتصفح قد يؤدي إلى فقد سجلات التطبيق؛ صدّر نسخة JSON احتياطية من الإعدادات واحفظها في مكان آمن.</li>
 </ul>
+<h4>التحليلات</h4>
+<p>تُحمّل الصفحة الرئيسية Google Analytics لقياس مشاهدات الصفحات وبعض معلومات الاستخدام التقنية. لا يرسل كود التحليلات الحالي مبالغ المعاملات أو أوصافها أو أهدافك المالية. قد تعالج Google بيانات استخدام أو ملفات تعريف ارتباط/معرّفات وفق إعدادات الخدمة وسياساتها.</p>
 <h4>الإعلانات وملفات تعريف الارتباط (Cookies)</h4>
-<p>قد يعرض هذا الموقع إعلانات عبر خدمة Google AdSense، والتي قد تستخدم ملفات تعريف الارتباط لعرض إعلانات ذات صلة باهتماماتك.</p>
+<p>يحمّل الموقع مكتبة Google AdSense؛ وقد تعالج Google وشركاؤها بيانات أو معرّفات للإعلانات بحسب إعدادات الخدمة والمنطقة وخياراتك.</p>
 <ul>
 <li>يمكنك التحكم في الإعلانات المخصصة من خلال: <a href="https://adssettings.google.com" target="_blank" rel="noopener">adssettings.google.com</a></li>
 <li>سياسة Google: <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">policies.google.com/technologies/ads</a></li>
 </ul>
 <h4>حقوقك</h4>
-<p>بما أن جميع بياناتك تبقى على جهازك فقط، فإن التحكم الكامل بها بيدك؛ يمكنك حذفها أو تعديلها أو مسحها بالكامل في أي وقت من داخل التطبيق نفسه.</p>
+<p>يمكنك تعديل سجلات التطبيق أو حذفها من داخله أو مسح التخزين المحلي من إعدادات المتصفح. أما بيانات الاستخدام والإعلانات التي تعالجها Google فتخضع لخياراتها وسياساتها.</p>
 <h4>تواصل معنا</h4>
 <p>لأي استفسار يخص الخصوصية: <a href="mailto:mohammed.alhadidi@hotmail.com">mohammed.alhadidi@hotmail.com</a></p>`;
   } else {
@@ -1453,18 +1455,20 @@ function renderPrivacy() {
 <p>At Qintar we value our users' privacy. This policy explains how your data is handled when you use the site.</p>
 <h4>Data You Enter</h4>
 <ul>
-<li>All financial transactions and goals you enter (amounts, descriptions, categories) are stored locally inside your browser only (Local Storage) and are never sent to any external server or stored by us.</li>
+<li>The app stores your transaction and goal records locally in your browser; Qintar app logic does not send those financial records to Qintar servers. The site also loads Google Analytics and AdSense as described in the Privacy Policy.</li>
 <li>We do not ask for your real name, bank account number, or any actual payment details.</li>
-<li>Clearing browser data or cache will permanently delete this information because it is not stored on our side — that is why we provide a backup export feature inside Settings.</li>
+<li>Clearing site data or local storage may permanently remove app records. Export a JSON backup from Settings and keep it in a safe place.</li>
 </ul>
+<h4>Analytics</h4>
+<p>The homepage loads Google Analytics to measure page views and some technical usage information. The current Analytics code does not send transaction amounts, descriptions, or savings goals. Google may process usage data or cookies/identifiers according to service settings and policies.</p>
 <h4>Ads and Cookies</h4>
-<p>This site may show ads via Google AdSense, which may use cookies to display ads related to your interests.</p>
+<p>The site loads Google AdSense; Google and its partners may process data or identifiers for advertising depending on service settings, region, and your choices.</p>
 <ul>
 <li>You can control personalized ads at: <a href="https://adssettings.google.com" target="_blank" rel="noopener">adssettings.google.com</a></li>
 <li>Google policy: <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">policies.google.com/technologies/ads</a></li>
 </ul>
 <h4>Your Rights</h4>
-<p>Because all your data stays on your device only, full control is in your hands; you can delete, edit, or clear it completely at any time from inside the app itself.</p>
+<p>You can edit or delete app records or clear local storage through your browser settings. Usage or advertising data handled by Google is subject to Google’s options and policies.</p>
 <h4>Contact Us</h4>
 <p>For any privacy inquiry: <a href="mailto:mohammed.alhadidi@hotmail.com">mohammed.alhadidi@hotmail.com</a></p>`;
   }
@@ -1543,7 +1547,7 @@ el.innerHTML = `<h4>دليلك الشامل لإدارة أموالك الشخص
 <p>الادخار بلا هدف محدد يفقد حماسه بسرعة. عندما تحوّل حلمك إلى رقم وموعد يصبح الطريق واضحاً. فمثلاً إذا أردت ادخار ستة آلاف خلال اثني عشر شهراً فأنت بحاجة إلى خمسمئة شهرياً. قسّم أهدافك إلى قصيرة المدى كجهاز أو سفرة، ومتوسطة كدفعة أولى لسيارة، وطويلة كالتقاعد أو شراء منزل. ومتابعة نسبة التقدم بشكل مرئي تمنحك دافعاً للاستمرار وتجعلك تحتفل بكل إنجاز صغير في الطريق.</p>
 
 <h4>سابعاً: تعامل بحكمة مع الديون</h4>
-<p>الديون الاستهلاكية ذات الفوائد العالية، مثل رصيد بطاقات الائتمان غير المسدد، من أكبر أعداء الثروة. إن كان عليك ديون فاعتمد إحدى طريقتين: طريقة الانهيار الجليدي بسداد الدين الأعلى فائدة أولاً لتوفير أكبر قدر من المال، أو طريقة كرة الثلج بسداد أصغر دين أولاً لتحصل على انتصارات نفسية سريعة تحفزك. وفي الحالتين ادفع الحد الأدنى لجميع الديون وركّز أي مبلغ إضافي على الدين المستهدف، وتجنب الاقتراض الجديد غير الضروري.</p>
+<p>الديون مرتفعة التكلفة قد تضغط على الميزانية. يمكن أن يساعد ترتيب السداد حسب التكلفة أو الرصيد في التخطيط، لكن راجع مستحقات وشروط كل دين والأنظمة المحلية، وقارن التكلفة الإجمالية قبل الاختيار. تجنب التزامات جديدة لا تحتاجها.</p>
 
 <h4>ثامناً: ضبط الإنفاق العاطفي</h4>
 <p>كثير من المشتريات لا تكون بدافع الحاجة بل بدافع الملل أو الضغط أو العروض المغرية. لمواجهة ذلك جرّب قاعدة الأربع والعشرين ساعة: قبل أي شراء غير ضروري انتظر يوماً كاملاً ثم اسأل نفسك هل ما زلت أريده فعلاً. غالباً ستجد أن الرغبة تتلاشى. وانتبه أيضاً للكاش باك والخصومات، فهي مفيدة عندما تكون على شراء كنت ستقوم به أصلاً، لكنها تتحول إلى فخ عندما تشتري شيئاً لا تحتاجه فقط لتحصل على نسبة استرداد.</p>
@@ -1575,19 +1579,19 @@ el.innerHTML = `<h4>Your Complete Guide to Personal Finance and Building a Savin
 <p>Regular expense tracking is the foundation of every good financial decision. It does not matter whether you use a notebook, a spreadsheet or a simple app; what matters is recording each transaction on the day it happens. Postponing makes you forget details and gives a distorted picture of your real spending. After just one month of careful tracking you will have real data that shows which categories consume the largest share of your income and where you can cut back without hurting your quality of life.</p>
 
 <h4>3. Build a realistic budget and apply the 50/30/20 rule</h4>
-<p>A budget is not a restriction that stops you from enjoying life; it is a map that shows how to distribute your income wisely. One of the most popular guidelines is the 50/30/20 rule: half of your income goes to essential needs like housing, food, bills and transport, thirty percent to wants like entertainment, restaurants and non-essential shopping, and twenty percent to savings and debt repayment. These ratios are guidelines, not fixed laws. Someone with heavy family obligations may need a higher share for essentials, but the key is to keep a steady portion for saving whatever the circumstances.</p>
+<p>A budget is not a restriction that stops you from enjoying life; it is a map that shows how to distribute your income wisely. The 50/30/20 rule is one illustrative budgeting guideline: 50% for needs, 30% for wants, and 20% for savings and debt repayment. It is not an official standard or suitable for every income or cost of living; adapt it to obligations, debt, and what your budget can support.</p>
 
 <h4>4. Pay yourself first</h4>
-<p>One of the most powerful saving principles is paying yourself first. Set aside your saving amount as soon as you receive your salary, before you start spending, instead of saving whatever is left at the end of the month, because usually nothing is left. Choose a small percentage that suits you, even five percent at the start, and raise it gradually over time. More important than the amount is consistency, since regular saving over years makes a big difference thanks to the accumulation of small sums.</p>
+<p>One option is to set a savings amount when income arrives rather than relying on what remains at month-end, if essential costs and obligations allow. Choose an amount that fits your budget and revisit it when circumstances change.</p>
 
 <h4>5. Build an emergency fund</h4>
-<p>Life is full of surprises: a car breakdown, an illness, or losing a job. An emergency fund that covers three to six months of essential expenses gives you great peace of mind and protects you from turning to high-interest borrowing during a crisis. Start with a small target such as one month of salary, then increase it gradually. Keep this money in a separate account that is easy to reach when needed, and use it only for genuine emergencies.</p>
+<p>An emergency reserve may help with unexpected expenses. Some use several months of essential costs (often 3–6) as a starting target, not a universal rule; the right amount depends on income stability, obligations, insurance, and access to funds. Start with an amount your budget can support.</p>
 
 <h4>6. Set clear savings goals</h4>
 <p>Saving without a specific goal quickly loses its momentum. When you turn a dream into a number and a date, the path becomes clear. For example, if you want to save six thousand within twelve months you need five hundred per month. Divide your goals into short-term ones like a gadget or a trip, medium-term ones like a car down payment, and long-term ones like retirement or buying a home. Watching your progress visually keeps you motivated and lets you celebrate every small win along the way.</p>
 
 <h4>7. Handle debt wisely</h4>
-<p>High-interest consumer debt, such as unpaid credit card balances, is one of the biggest enemies of wealth. If you owe money, choose one of two methods: the avalanche method, paying the highest-interest debt first to save the most money, or the snowball method, paying the smallest debt first to earn quick psychological wins that keep you motivated. In both cases pay the minimum on all debts and put any extra money on the target debt, and avoid unnecessary new borrowing.</p>
+<p>High-interest consumer debt, such as unpaid credit card balances, is one of the biggest enemies of wealth. If you owe money, choose one of two methods: the avalanche method, paying the highest-interest debt first to save the most money, or the snowball method, paying the smallest debt first to earn quick psychological wins that keep you motivated. For either approach, review each debt’s due amounts, contract, and local rules, and compare total costs before choosing a payoff order. Fees and options vary; avoid obligations you do not need.</p>
 
 <h4>8. Control emotional spending</h4>
 <p>Many purchases are driven not by need but by boredom, stress or tempting offers. To counter this, try the 24-hour rule: before any non-essential purchase, wait a full day and then ask yourself whether you still really want it. Often the urge fades away. Also be careful with cashback and discounts; they are useful when attached to a purchase you were going to make anyway, but they become a trap when you buy something you do not need just to earn a rebate.</p>
@@ -1818,8 +1822,8 @@ if (lang === 'ar') {
 body.innerHTML = `<h4>نصائح مالية عملية</h4>
 <div class="tip-item">سجّل كل مصروف فور حدوثه — التأجيل يجعل التفاصيل تضيع ويشوه صورة إنفاقك الحقيقية.</div>
 <div class="tip-item">طبّق قاعدة 50/30/20: 50% للاحتياجات، 30% للرغبات، و20% للادخار وسداد الديون.</div>
-<div class="tip-item">ابنِ صندوق طوارئ يغطي 3 إلى 6 أشهر من مصاريفك الأساسية قبل أي استثمار عالي المخاطر.</div>
-<div class="tip-item">فعّل التحويل التلقائي لنسبة بسيطة من كل راتب إلى حساب ادخار منفصل — الادخار بدون تفكير أقوى.</div>
+<div class="tip-item">يستخدم بعض الناس احتياطياً لعدة أشهر من الضروريات (غالباً 3–6) كنقطة بداية؛ يختلف الهدف المناسب باختلاف الظروف.</div>
+<div class="tip-item">يمكنك إعداد تحويل ادخار مع مصرفك إن رغبت؛ قِنطار لا يحول الأموال ويسجل فقط ما تدخله يدوياً.</div>
 <div class="tip-item">راجع اشتراكاتك الشهرية كل ربع سنة وألغِ ما لا تستخدمه فعلياً (تطبيقات، اشتراكات، خدمات).</div>
 <div class="tip-item">لا تشتري شيئاً فقط من أجل الكاش باك — الكاش باك مكسب إضافي على شراء كنت ستقوم به أصلاً.</div>
 <div class="tip-item">حدد سقفاً شهرياً لأكثر تصنيف تصرف فيه (مثل المطاعم أو التوصيل) وتابعه أسبوعياً.</div>
@@ -1981,16 +1985,16 @@ applyLang();
 </ol>
 
 <h3>شرح تبويبات التطبيق</h3>
-<p><strong>إيداع:</strong> لتسجيل أي دخل، من راتب أو مكافأة أو هدية أو تحويل. كل إيداع يرفع رصيدك، وإن كانت لديك أهداف بنسبة تحويل تلقائي فسيُحتسب لها جزء منه.</p>
+<p><strong>إيداع:</strong> لتسجيل أي دخل، من راتب أو مكافأة أو هدية أو تحويل. كل إيداع تسجله يحدّث رصيد التطبيق، ويمكن تخصيص نسبة منه لهدف ادخار داخل قِنطار فقط؛ لا يحول التطبيق أموالاً من حسابك البنكي.</p>
 <p><strong>مصروف:</strong> لتسجيل كل ما تصرفه مع اسم الجهة وتصنيف المصروف، ونسبة الكاش باك إن وجدت. يعرض التطبيق لك قيمة الكاش باك فور إدخالها، ويضيفها إلى رصيدك ويحسب إجمالي ما وفرته منها.</p>
 <p><strong>السجل:</strong> كشف بكل معاملاتك مع بحث وفلترة حسب النوع والتصنيف، وإمكانية تصدير الكشف بصيغة PDF أو Excel عندما تحتاج مراجعته أو الاحتفاظ به.</p>
-<p><strong>ادخار:</strong> لإنشاء أهداف متعددة، يظهر لكل هدف شريط تقدم ونسبة إنجاز والمبلغ المتبقي. يمكنك إضافة مبالغ يدوياً أو ربط الهدف بنسبة من كل إيداع فيدخر لك تلقائياً.</p>
-<p><strong>الميزانية:</strong> سقف شهري لكل تصنيف مع شريط يوضح كم استهلكت منه، وفيها أيضاً الفواتير والاشتراكات المتكررة والدخل المتكرر، فتسجل الإيجار أو الراتب مرة واحدة ويُضاف تلقائياً في يوم الاستحقاق كل شهر.</p>
+<p><strong>ادخار:</strong> لإنشاء أهداف متعددة، يظهر لكل هدف شريط تقدم ونسبة إنجاز والمبلغ المتبقي. يمكنك إضافة مبالغ يدوياً أو تخصيص نسبة من كل إيداع تسجله للهدف داخل التطبيق؛ لا يحدث تحويل بنكي.</p>
+<p><strong>الميزانية:</strong> سقف شهري لكل تصنيف مع شريط يوضح كم استهلكت منه، وفيها أيضاً الفواتير والاشتراكات المتكررة والدخل المتكرر، فتسجل الإيجار أو الراتب أو الاشتراكات كقيود متكررة داخل التطبيق؛ وهي ليست مدفوعات بنكية فعلية.</p>
 <p><strong>التحليلات:</strong> رسم دائري لتوزيع مصروفات الشهر حسب التصنيف، ورسم أعمدة يقارن دخلك بمصروفك لآخر ستة أشهر، ومقارنة بين الشهر الحالي والسابق.</p>
 <p><strong>الإعدادات:</strong> اختيار المظهر (داكن أو فاتح أو أزرق أو أخضر) والعملة، والنسخ الاحتياطي بصيغة JSON لاستعادة بياناتك أو نقلها إلى جهاز آخر.</p>
 
 <h3>خصوصيتك وبياناتك</h3>
-<p>تُحفظ بياناتك داخل متصفحك على جهازك فقط ولا تُرسل إلى أي خادم لدينا. لا نطلب اسمك ولا رقم حسابك ولا أي بيانات دفع. وهذا يعني أنك المتحكم الوحيد في بياناتك، لكنه يعني أيضاً أن مسح بيانات المتصفح أو تغيير الجهاز قد يفقدك السجل. لذلك ننصح بتصدير نسخة احتياطية من الإعدادات بشكل دوري، مرة أسبوعياً أو شهرياً. للتفاصيل الكاملة اقرأ <a href="/privacy.html">سياسة الخصوصية</a>.</p>
+<p>تُحفظ سجلات التطبيق المالية محلياً ولا يرسلها منطق قِنطار إلى خوادمنا، لكن الموقع يحمّل Google Analytics وAdSense للقياس والإعلانات كما توضح <a href="/privacy.html">سياسة الخصوصية</a>. لا يطلب التطبيق بيانات دخول البنك ولا ينفذ تحويلات. مسح بيانات المتصفح قد يفقد السجل؛ صدّر نسخة JSON احتياطية بانتظام.</p>
 
 <h3>مكتبة مقالات قِنطار</h3>
 <p>الأداة وحدها لا تكفي دون فهم المبادئ المالية وراءها. لذلك نكتب أدلة عملية بأمثلة رقمية، ومعظمها فيه حاسبات تفاعلية تجرّب بها أرقامك مباشرة. اختر ما يناسب مرحلتك:</p>

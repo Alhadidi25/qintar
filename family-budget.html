@@ -5,8 +5,8 @@
 <link rel="icon" href="/favicon.ico">
 <link rel="apple-touch-icon" href="/icon-180.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>كيف تدير ميزانية الأسرة بشكل عادل | قِنطار</title>
-<meta name="description" content="طرق عملية لإدارة ميزانية الأسرة وتقسيم المصاريف المشتركة بين الزوجين بعدالة، مع حاسبة تفاعلية لتقسيم المصاريف حسب نسبة الدخل.">
+<title>ميزانية الأسرة: التوزيع النسبي للمصاريف المشتركة | قِنطار</title>
+<meta name="description" content="إرشادات مرنة لإدارة ميزانية الأسرة، مع حاسبة تقديرية لتوزيع المصاريف المشتركة بحسب نسبة الدخل والعملة التي تدخلها.">
 <link rel="canonical" href="https://qintar.sbs/family-budget.html">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9889859839429237" crossorigin="anonymous"></script>
 <style>
@@ -66,16 +66,16 @@ footer a{color:#7a7a7a;margin:0 8px;text-decoration:none}
 <h2>ثلاثة أنظمة شائعة لتقسيم المصاريف</h2>
 <ul>
 <li><strong>التقسيم بالتساوي:</strong> كل طرف يدفع نصف المصاريف المشتركة بغض النظر عن دخله. بسيط لكنه قد يكون مجحفاً إذا كان الفارق في الدخل كبيراً.</li>
-<li><strong>التقسيم حسب نسبة الدخل:</strong> كل طرف يساهم بنسبة تعادل نسبة دخله من إجمالي دخل الأسرة. هذا النظام غالباً الأكثر عدالة، لأنه يراعي الفارق في القدرة المالية.</li>
+<li><strong>التقسيم حسب نسبة الدخل:</strong> كل طرف يساهم بنسبة تعادل نسبة دخله من إجمالي دخل الأسرة. قد يناسب بعض الأسر لأنه يراعي تفاوت الدخل، لكنه لا يقيس وحده العمل غير المدفوع أو المسؤوليات والاتفاقات الأخرى.</li>
 <li><strong>حساب مشترك كامل:</strong> كل الدخل يذهب لحساب واحد، وتُدار منه كل المصاريف والادخار. يتطلب ثقة عالية وتواصلاً مستمراً، ويناسب من يفضل الاندماج المالي الكامل.</li>
 </ul>
 
-<h2>جرّب: احسب تقسيماً عادلاً حسب الدخل</h2>
-<p>أدخل دخل كل طرف وإجمالي المصاريف المشتركة الشهرية، لترى نسبة مساهمة عادلة لكل شخص:</p>
+<h2>جرّب: احسب توزيعاً نسبياً بحسب الدخل</h2>
+<p>أدخل الدخل الشهري لكل طرف وإجمالي المصاريف المشتركة لتقدير توزيع نسبي بحسب الدخل:</p>
 
 <div class="calc-card">
 <div class="calc-title">👨‍👩‍👧 حاسبة تقسيم المصاريف المشتركة</div>
-<div class="calc-sub">تقسيم عادل بناءً على نسبة كل دخل من الإجمالي</div>
+<div class="calc-sub">توزيع حسابي إرشادي بحسب نسبة كل دخل من الإجمالي</div>
 
 <div class="calc-row2">
 <div class="calc-field">
@@ -91,8 +91,8 @@ footer a{color:#7a7a7a;margin:0 8px;text-decoration:none}
 <label>إجمالي المصاريف المشتركة الشهرية</label>
 <input type="number" id="sharedExpenses" placeholder="مثلاً 6000" min="0" inputmode="decimal">
 </div>
-<button class="calc-btn" id="famBtn" type="button">احسب التقسيم العادل</button>
-<div class="calc-error" id="famError">يرجى تعبئة الحقول الثلاثة بأرقام صحيحة أكبر من صفر</div>
+<button class="calc-btn" id="famBtn" type="button">احسب التوزيع النسبي</button>
+<div class="calc-error" id="famError">أدخلوا مصاريف مشتركة موجبة وإجمالي دخل موجب؛ يمكن أن يكون دخل أحد الطرفين صفراً</div>
 
 <div class="calc-results" id="famResults">
 <div class="calc-bar-track">
@@ -111,7 +111,7 @@ footer a{color:#7a7a7a;margin:0 8px;text-decoration:none}
 <div class="amt" id="amtB">0</div>
 </div>
 </div>
-<p class="calc-note">هذا تقسيم إرشادي بناءً على نسبة الدخل، ويمكن تعديله حسب اتفاقكما ومسؤوليات أخرى غير مالية.</p>
+<p class="calc-note">توزيع حسابي إرشادي؛ أدخلوا دخلي الطرفين على الأساس والفترة نفسيهما (مثلاً صافي شهري)، وبالعملة نفسها. لا يقيس وحده العمل المنزلي أو رعاية الأطفال أو الديون أو الالتزامات الأخرى، ويمكن تعديله باتفاق الطرفين.</p>
 </div>
 </div>
 
@@ -145,6 +145,7 @@ footer a{color:#7a7a7a;margin:0 8px;text-decoration:none}
 
 <p>سجّلا مصاريفكما المشتركة وتابعا أهدافكما عبر <a href="/">تطبيق قِنطار المجاني</a>، أو اقرأ أيضاً <a href="/budget-50-30-20.html">قاعدة 50/30/20 لتوزيع الراتب</a> و<a href="/emergency-fund.html">كيف تبني صندوق طوارئ خطوة بخطوة</a>.</p>
 
+<p class="note">الناشر: قِنطار · آخر مراجعة تحريرية: 28 سبتمبر 2026.</p>
 <p class="note">هذا المقال لأغراض تثقيفية عامة فقط وليس استشارة مالية أو أسرية متخصصة.</p>
 
 <footer>

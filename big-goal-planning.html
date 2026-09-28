@@ -138,7 +138,7 @@ footer a{color:#7a7a7a;margin:0 8px;text-decoration:none}
 </div>
 </div>
 
-<p class="calc-note">حساب تقديري مبسّط بدون احتساب أي عائد على المدخرات، لأغراض التخطيط الأولي فقط.</p>
+<p class="calc-note">حساب تقديري يفترض ادخاراً منتظماً بلا عائد أو تضخم؛ استخدم العملة نفسها في جميع الحقول. إذا كان المدخر يساوي الهدف أو يتجاوزه، تظهر رسالة «تم بلوغ الهدف».</p>
 </div>
 
 <h2>الخطوة الثانية: افصل المال عن حسابك اليومي</h2>
@@ -173,6 +173,7 @@ footer a{color:#7a7a7a;margin:0 8px;text-decoration:none}
 
 <p>سجّل هدفك وتابع تقدمه بشكل مرئي عبر <a href="/">تطبيق قِنطار المجاني</a>، أو اقرأ أيضاً <a href="/emergency-fund.html">كيف تبني صندوق طوارئ خطوة بخطوة</a> و<a href="/budget-50-30-20.html">قاعدة 50/30/20 لتوزيع الراتب</a>.</p>
 
+<p class="note">الناشر: قِنطار · آخر مراجعة تحريرية: 28 سبتمبر 2026.</p>
 <p class="note">هذا المقال لأغراض تثقيفية عامة فقط وليس استشارة مالية متخصصة. الأرقام والحسابات تقديرية ولا تأخذ بعين الاعتبار التضخم أو أي عائد استثماري.</p>
 
 <footer>
@@ -206,7 +207,7 @@ footer a{color:#7a7a7a;margin:0 8px;text-decoration:none}
     var errorEl = document.getElementById('errorByTime');
     var resultsEl = document.getElementById('resultsByTime');
 
-    if(isNaN(goal) || goal <= 0 || isNaN(months) || months <= 0){
+    if(isNaN(goal) || goal <= 0 || isNaN(months) || months <= 0 || Math.floor(months) !== months || isNaN(saved) || saved < 0){
       errorEl.classList.add('show');
       resultsEl.classList.remove('show');
       return;
@@ -218,7 +219,7 @@ footer a{color:#7a7a7a;margin:0 8px;text-decoration:none}
 
     document.getElementById('monthlyNeeded').textContent = fmt(monthly);
     document.getElementById('remainingAmt').textContent = fmt(remaining);
-    document.getElementById('targetDate').textContent = addMonthsLabel(months);
+    document.getElementById('targetDate').textContent = remaining === 0 ? 'تم بلوغ الهدف' : addMonthsLabel(months);
 
     resultsEl.classList.add('show');
   }
@@ -230,7 +231,7 @@ footer a{color:#7a7a7a;margin:0 8px;text-decoration:none}
     var errorEl = document.getElementById('errorByAmount');
     var resultsEl = document.getElementById('resultsByAmount');
 
-    if(isNaN(goal) || goal <= 0 || isNaN(monthly) || monthly <= 0){
+    if(isNaN(goal) || goal <= 0 || isNaN(monthly) || monthly <= 0 || isNaN(saved) || saved < 0){
       errorEl.classList.add('show');
       resultsEl.classList.remove('show');
       return;
@@ -240,9 +241,9 @@ footer a{color:#7a7a7a;margin:0 8px;text-decoration:none}
     var remaining = Math.max(goal - saved, 0);
     var months = Math.ceil(remaining / monthly);
 
-    document.getElementById('monthsNeeded').textContent = months + ' شهر';
+    document.getElementById('monthsNeeded').textContent = months === 0 ? 'تم بلوغ الهدف' : months + ' شهر';
     document.getElementById('remainingAmt2').textContent = fmt(remaining);
-    document.getElementById('targetDate2').textContent = addMonthsLabel(months);
+    document.getElementById('targetDate2').textContent = months === 0 ? 'تم بلوغ الهدف' : addMonthsLabel(months);
 
     resultsEl.classList.add('show');
   }
