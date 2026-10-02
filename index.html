@@ -1408,16 +1408,40 @@ function renderAbout() {
   if (!el) return;
   if (lang === 'ar') {
     el.innerHTML = `<h4>من نحن</h4>
-<p>"قِنطار" هو تطبيق ويب بسيط لإدارة الميزانية الشخصية، صُمم لمساعدتك على تتبع إيداعاتك ومصروفاتك اليومية، ومتابعة الكاش باك الذي تحصل عليه، وتحديد أهداف ادخار واضحة يمكنك متابعة تقدمها بسهولة.</p>
-<p>الهدف من التطبيق هو تبسيط إدارة المال اليومي دون تعقيد، من خلال واجهة عربية سريعة وواضحة تعمل مباشرة من متصفحك.</p>
-<h4>كيف يعمل التطبيق</h4>
-<p>يحفظ التطبيق سجلات المعاملات والأهداف محلياً في المتصفح، ولا يتصل بحسابك البنكي أو ينفذ تحويلات. ويحمّل الموقع Google Analytics وAdSense؛ راجع سياسة الخصوصية لمعرفة بيانات الاستخدام والإعلانات التي قد تعالجها Google.</p>`;
+<p>قِنطار موقع وأداة مجانية تساعدك على تنظيم أموالك اليومية وفهمها بصورة أوضح. صُمم ليجعل تسجيل الدخل والمصروفات ومراجعة العادات المالية أمراً سهلاً، سواء كنت تدير ميزانيتك وحدك أو تتابع هدف ادخار محدداً.</p>
+<h4>ماذا يمكنك أن تفعل في قِنطار؟</h4>
+<ul>
+<li>تسجيل الإيداعات والمصروفات يدوياً ومراجعة سجل العمليات.</li>
+<li>تنظيم المصروفات ضمن تصنيفات جاهزة أو كتابة تصنيف مخصص يناسبك.</li>
+<li>متابعة الكاش باك الذي تسجله بنفسك، ووضع أهداف ادخار ومراقبة تقدمها.</li>
+<li>تحديد حدود للميزانية ومراجعة الرسوم والتحليلات لمقارنة الدخل والمصروفات.</li>
+<li>اختيار اللغة والعملة والمظهر، وتصدير نسخة احتياطية للاحتفاظ ببياناتك.</li>
+</ul>
+<h4>كيف تعمل الأداة؟</h4>
+<p>تُدخل العمليات بنفسك، ويحسب التطبيق رصيداً تقديرياً من البيانات التي تسجلها. قِنطار ليس بنكاً ولا يتصل بحسابك البنكي، ولا ينفذ مدفوعات أو تحويلات فعلية. كما أن الأرقام المعروضة تعتمد على دقة إدخالاتك ولا تمثل كشف حساب مصرفياً.</p>
+<h4>الخصوصية والبيانات</h4>
+<p>تُحفظ سجلاتك المالية في مساحة التخزين المحلية لمتصفحك ولا يرسلها منطق التطبيق إلى خوادم قِنطار. لكن الموقع يستخدم Google Analytics وAdSense، وقد تعالج Google بيانات الاستخدام والإعلانات وفق إعداداتها وسياساتها. راجع <a href="/privacy.html">سياسة الخصوصية</a>، وصدّر نسخة احتياطية بانتظام؛ فقد يؤدي مسح بيانات المتصفح أو تغيير الجهاز إلى فقدان السجل.</p>
+<h4>المحتوى وطريقة العمل</h4>
+<p>ننشر إلى جانب الأداة مقالات وشروحات وحاسبات تفاعلية في الميزانية والادخار وإدارة الدخل. نحرص على أن تكون المعلومات عملية وواضحة، وأن نبيّن أن الأمثلة والنسب الواردة إرشادية وقد لا تناسب الجميع.</p>
+<p>الموقع لأغراض التنظيم والتثقيف المالي العام، ولا يقدم استشارة مالية أو استثمارية أو ضريبية متخصصة. نرحب بملاحظاتك وتصحيحاتك عبر <a href="/contact.html">صفحة اتصل بنا</a>، ويمكنك الاطلاع على <a href="/terms.html">شروط الاستخدام</a>.</p>`;
   } else {
     el.innerHTML = `<h4>About Us</h4>
-<p>"Qintar" is a simple web app for personal budget management, designed to help you track your daily deposits and expenses, monitor the cashback you receive, and set clear savings goals whose progress you can follow easily.</p>
-<p>The goal of the app is to simplify everyday money management without complexity, through a fast and clear interface that runs directly in your browser.</p>
-<h4>How the App Works</h4>
-<p>The app stores your data (transactions and goals) only inside your browser on your device. It is not linked to any real bank account and does not perform any actual money transfers. Everything you enter is for personal tracking and organization only.</p>`;
+<p>Qintar is a free website and tool that helps you organize and better understand your day-to-day finances. It is designed to make it easier to record income and expenses and review your money habits, whether you manage a personal budget or track a specific savings goal.</p>
+<h4>What You Can Do with Qintar</h4>
+<ul>
+<li>Manually record deposits and expenses and review your transaction history.</li>
+<li>Organize expenses with built-in categories or create a custom category.</li>
+<li>Track cashback that you enter, set savings goals, and monitor progress.</li>
+<li>Set budget limits and use charts to review and compare income and spending.</li>
+<li>Choose your language, currency, and theme, and export a backup of your data.</li>
+</ul>
+<h4>How the Tool Works</h4>
+<p>You enter transactions yourself, and the app calculates an estimated balance from those entries. Qintar is not a bank, does not connect to your bank account, and does not make real payments or transfers. Displayed figures depend on the accuracy of your entries and are not a bank statement.</p>
+<h4>Privacy and Your Data</h4>
+<p>Your financial records are stored in your browser's local storage, and the app logic does not send them to Qintar servers. The website does use Google Analytics and AdSense, and Google may process usage and advertising data under its settings and policies. Read our <a href="/privacy.html">Privacy Policy</a> and export a backup regularly; clearing browser data or changing devices may remove your records.</p>
+<h4>Our Content and Approach</h4>
+<p>Alongside the tool, we publish practical articles, guides, and interactive calculators about budgeting, saving, and managing income. We aim to make the information clear and useful, and to explain that examples and percentages are general guidance that may not suit everyone.</p>
+<p>Qintar is for personal organization and general financial education. It does not provide individualized financial, investment, or tax advice. We welcome feedback and corrections through our <a href="/contact.html">Contact Us page</a>; you can also read our <a href="/terms.html">Terms of Use</a>.</p>`;
   }
 }
 
@@ -1590,14 +1614,38 @@ function renderContact() {
   if (!el) return;
   if (lang === 'ar') {
     el.innerHTML = `<h4>اتصل بنا</h4>
-<p>يسعدنا تواصلك معنا لأي استفسار أو ملاحظة أو مشكلة تقنية تخص الموقع.</p>
-<p>البريد الإلكتروني: <a href="mailto:mohammed.alhadidi@hotmail.com">mohammed.alhadidi@hotmail.com</a></p>
-<p>سنحرص على الرد على رسالتك في أقرب وقت ممكن.</p>`;
+<p>يسعدنا تواصلك معنا لأي استفسار أو ملاحظة أو اقتراح يتعلق بموقع قِنطار. نرحب بملاحظاتك التي تساعدنا على تحسين تجربة الاستخدام وتطوير المحتوى والأدوات.</p>
+<p>اختر وسيلة التواصل المناسبة، واكتب شرحاً مختصراً وواضحاً لطلبك حتى نتمكن من فهمه والرد عليه بشكل أفضل.</p>
+<h4>وسائل التواصل</h4>
+<ul>
+<li>واتساب: <a href="https://wa.me/qr/6QLMWL66Q3JVB1" target="_blank" rel="noopener noreferrer">افتح محادثة واتساب مع قِنطار</a></li>
+<li>البريد الإلكتروني: <a href="mailto:mohammed.alhadidi@hotmail.com">mohammed.alhadidi@hotmail.com</a></li>
+</ul>
+<p>إذا كانت رسالتك عن مشكلة تقنية، اذكر الخطوات التي أدت إليها، وما كنت تتوقع حدوثه، وما ظهر لك فعلياً. أضف نوع الجهاز والمتصفح، ولا ترفق إلا لقطة شاشة خالية من المعلومات الشخصية أو المالية. أما الاقتراحات والأسئلة العامة فاكتبها مباشرة؛ نراجع الرسائل ونرد عند التوفر وقد يختلف وقت الرد.</p>
+<h4>حافظ على بياناتك</h4>
+<ul>
+<li>لا ترسل أرقام البطاقات أو كلمات المرور أو رموز التحقق أو بيانات الدخول البنكية عبر واتساب أو البريد.</li>
+<li>لا ترسل ملف النسخة الاحتياطية؛ فقد يحتوي على سجلاتك المالية. قِنطار لا يتصل بحسابك البنكي ولا ينفذ تحويلات أو مدفوعات.</li>
+<li>عند مشاركة صورة لمشكلة، أخفِ الأرصدة والأسماء وأي بيانات لا ترغب في مشاركتها.</li>
+</ul>
+<p>للمزيد، يمكنك زيارة <a href="/contact.html">صفحة اتصل بنا</a> أو الاطلاع على <a href="/privacy.html">سياسة الخصوصية</a>.</p>`;
   } else {
     el.innerHTML = `<h4>Contact Us</h4>
-<p>We are happy to hear from you for any inquiry, feedback, or technical issue related to the site.</p>
-<p>Email: <a href="mailto:mohammed.alhadidi@hotmail.com">mohammed.alhadidi@hotmail.com</a></p>
-<p>We will do our best to reply as soon as possible.</p>`;
+<p>We welcome questions, feedback, and suggestions about Qintar. Your comments help us improve the site's tools, content, and overall experience.</p>
+<p>Choose the contact method that works for you and briefly explain your request so we can understand it and respond more effectively.</p>
+<h4>Contact Methods</h4>
+<ul>
+<li>WhatsApp: <a href="https://wa.me/qr/6QLMWL66Q3JVB1" target="_blank" rel="noopener noreferrer">Start a WhatsApp conversation with Qintar</a></li>
+<li>Email: <a href="mailto:mohammed.alhadidi@hotmail.com">mohammed.alhadidi@hotmail.com</a></li>
+</ul>
+<p>For a technical issue, describe the steps that led to it, what you expected, and what happened instead. Include your device and browser, and only attach screenshots with personal and financial details removed. Send general questions or suggestions directly. We review messages and reply when available; response times may vary.</p>
+<h4>Protect Your Information</h4>
+<ul>
+<li>Do not send card numbers, passwords, verification codes, or bank login details by WhatsApp or email.</li>
+<li>Do not send your backup file; it may contain financial records. Qintar does not connect to bank accounts or make transfers or payments.</li>
+<li>Before sharing a screenshot, hide balances, names, and any information you do not want to disclose.</li>
+</ul>
+<p>For more information, visit the <a href="/contact.html">Contact Us page</a> or read our <a href="/privacy.html">Privacy Policy</a>.</p>`;
   }
 }
 
