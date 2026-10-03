@@ -1035,7 +1035,16 @@ tab_settings: 'الإعدادات',
 books_title: 'أهم الكتب في إدارة المال والادخار',
 tips_title: 'نصائح مالية عملية',
 courses_title: 'دورات إدارة المال',
-courses_intro: 'أكمل كل مرحلة بالترتيب لفتح المرحلة التالية. التقدم يُحفظ تلقائياً على جهازك.',
+courses_intro: 'تتكون الدورة من ست مراحل قصيرة مرتبة من تسجيل العمليات إلى بناء العادات. اقرأ كل مرحلة وطبّق تمرينها، ثم اضغط «إكمال المرحلة» لفتح التالية. بعد إكمال المرحلة السادسة سيظهر اختبار ختامي من خمسة أسئلة؛ تحتاج إلى أربع إجابات صحيحة للنجاح، ويمكنك المحاولة مرة أخرى. يُحفظ تقدمك ونتيجة النجاح على جهازك.',
+course_progress: 'التقدم في الدورة',
+course_quiz_title: 'الاختبار الختامي للدورة',
+course_quiz_intro: 'أجب عن الأسئلة الخمسة باختيار إجابة واحدة لكل سؤال. تحتاج إلى أربع إجابات صحيحة على الأقل لاجتياز الاختبار. الاختبار تعليمي ويمكنك إعادة المحاولة.',
+course_quiz_submit: 'تحقق من إجاباتي',
+course_quiz_answer_all: 'اختر إجابة لكل سؤال قبل إرسال الاختبار.',
+course_quiz_fail: 'لم تصل إلى درجة النجاح بعد. نتيجتك:',
+course_quiz_retry: 'راجع الدروس وحاول مرة أخرى.',
+course_quiz_pass: 'أحسنت! اجتزت الاختبار الختامي وأكملت الدورة.',
+course_quiz_passed: 'تم اجتياز الاختبار الختامي بنجاح.',
 features_title: 'شرح مميزات قِنطار',
 features_intro: 'استعرض الأدوات المتاحة وكيف يمكن أن تساعدك على متابعة ميزانيتك. جميع الأرصدة والعمليات ناتجة عن إدخالك اليدوي؛ قِنطار لا يتصل بحسابك البنكي ولا ينفّذ معاملات فعلية.',
 feat1_t: 'تتبع الرصيد والمعاملات', feat1_d: 'سجّل الإيداعات والمصروفات بنفسك مع المبلغ والتاريخ والوصف، ثم راجعها في سجل المعاملات. يحسب التطبيق الرصيد المتوقع وإجمالي الدخل والمصروف والكاش باك اعتماداً على إدخالاتك، وليس على رصيد بنكي مباشر. ويمكنك البحث أو التصفية لمراجعة عملية أو فترة معينة.',
@@ -1129,7 +1138,16 @@ tab_settings: 'Settings',
 books_title: 'Top Books on Money & Saving',
 tips_title: 'Practical Financial Tips',
 courses_title: 'Money Management Courses',
-courses_intro: 'Complete each stage in order to unlock the next one. Progress is saved automatically on your device.',
+courses_intro: 'This course has six short stages, from tracking transactions to building sustainable habits. Read each stage and try its exercise, then select “Complete Stage” to unlock the next. After stage six, a five-question final quiz appears. You need at least four correct answers to pass, and you can retry. Your progress and passing result are saved on your device.',
+course_progress: 'Course progress',
+course_quiz_title: 'Final Course Quiz',
+course_quiz_intro: 'Answer all five questions by choosing one option for each. You need at least four correct answers to pass. This is an educational quiz and you can try again.',
+course_quiz_submit: 'Check My Answers',
+course_quiz_answer_all: 'Choose an answer for every question before submitting.',
+course_quiz_fail: 'Not quite a passing score yet. Your result:',
+course_quiz_retry: 'Review the lessons and try again.',
+course_quiz_pass: 'Well done! You passed the final quiz and completed the course.',
+course_quiz_passed: 'Final quiz passed successfully.',
 features_title: 'Qintar Features Guide',
 features_intro: 'Explore the available tools and how they can help you review your budget. Balances and transactions are based on entries you make; Qintar does not connect to your bank account or perform real transactions.',
 feat1_t: 'Balance & Transactions', feat1_d: 'Enter deposits and expenses yourself with an amount, date, and description, then review them in your transaction history. The app calculates your estimated balance and totals for income, spending, and cashback from your entries—not from a live bank balance. Search and filters help you review a particular transaction or period.',
@@ -1198,158 +1216,85 @@ empty_month_exp: 'No expenses this month yet',
 
 const COURSES = {
 ar: [
-{id:1, title:'أساسيات إدارة المال', content:`مرحباً بك في المرحلة الأولى من رحلة إدارة المال.
+{id:1, title:'أساسيات إدارة المال', content:`مرحباً بك في المرحلة الأولى. إدارة المال تبدأ بمعرفة ما يدخل وما يخرج، لا بالحكم على نفسك أو محاولة تقليل كل شيء فوراً. فرّق بين الدخل، والمصروف الثابت مثل الإيجار، والمصروف المتغير مثل الطعام، والمشتريات غير المتكررة. وقد تبدو المبالغ الصغيرة غير مهمة منفردة، لكنها قد تشكل مجموعاً ملحوظاً عند تكرارها.
 
-الوعي هو الخطوة الأولى والأكثر أهمية. كثير من الناس لا يعرفون فعلياً أين تذهب أموالهم كل شهر، لأن المصاريف الصغيرة المتكررة (قهوة، توصيل، اشتراكات) تتراكم دون أن يلاحظوها.
+ابدأ بتسجيل المعاملات فور حدوثها، واكتب وصفاً يساعدك على تذكر الغرض منها. سجّل الأسبوع كاملاً بما فيه النقد والدفعات المتكررة، ثم قارن المجموع مع كشوفك أو إيصالاتك؛ قِنطار يعتمد على إدخالك اليدوي ولا يستورد العمليات البنكية تلقائياً. صحح الأخطاء والتكرار قبل تفسير الرسوم.
 
-المطلوب منك الآن:
-1. افتح تبويب «مصروف» وسجّل كل شيء لمدة أسبوع كامل — حتى أصغر مبلغ.
-2. لا تؤجل التسجيل؛ افعله فور الصرف حتى تكون البيانات دقيقة.
-3. في نهاية الأسبوع افتح تبويب «التحليلات» وشاهد دائرة توزيع المصروفات.
+تمرين قِنطار: سجّل مصروفات أسبوع واحد، ثم افتح السجل والتحليلات وحدد تصنيفاً واحداً تريد فهمه. اكتب ملاحظة: ما الذي كان ضرورياً؟ وما الذي فاجأك؟ الهدف هو بناء صورة واقعية، لا الشعور بالذنب. بعد أسبوعين، أعد المراجعة لترى ما إذا كانت عاداتك أو بياناتك قد تغيرت.`},
+{id:2, title:'بناء الميزانية الشخصية', content:`الميزانية خطة مرنة لتوزيع الدخل وفق أولوياتك، وليست عقوبة أو تنبؤاً دقيقاً بكل مصروف. ابدأ بصافي الدخل المتوقع، ثم اكتب الضروريات والالتزامات التي يصعب تغييرها، وبعدها المصروفات المرنة والأهداف. قاعدة 50/30/20 قد تكون نقطة نقاش تقريبية، لكنها ليست معياراً إلزامياً؛ عدّلها عندما تختلف تكاليف السكن أو الدخل أو المسؤوليات.
 
-ستتفاجأ غالباً بأكبر تصنيف يستهلك ميزانيتك. هذه المعرفة وحدها كافية لتغيير سلوكك المالي. لا تنتقل للمرحلة التالية قبل أن تكمل أسبوعاً كاملاً من التسجيل.`},
-{id:2, title:'بناء الميزانية الشخصية', content:`الآن وقد عرفت أين تذهب فلوسك، حان وقت وضع حدود واضحة.
+استخدم متوسط عدة أشهر للبنود المتذبذبة مثل الوقود والفواتير إن توفر. ضع سقفاً واقعياً للتصنيفات التي تتحكم بها واترك هامشاً للمفاجآت الصغيرة. عند وجود عجز، ابحث عن السبب: هل التقدير غير واقعي؟ هل هناك التزام مؤقت؟ أم تحتاج إلى تعديل إنفاق أو دخل؟ لا تعتبر تجاوزاً واحداً فشلاً؛ راجع الخطة وأصلحها.
 
-أشهر قاعدة عملية هي 50/30/20:
-• 50% للاحتياجات الأساسية (سكن، فواتير، طعام، مواصلات)
-• 30% للرغبات (ترفيه، مطاعم، تسوق غير ضروري)
-• 20% للادخار وسداد الديون
+تمرين قِنطار: اختر تصنيفين وضع لهما حدوداً شهرية في تبويب «الميزانية». راجع التقدم أسبوعياً وقارن المسجل بالسقف. في نهاية الشهر، لاحظ ما إذا كان السقف مناسباً وعدّله للشهر المقبل. الميزانية مفيدة عندما تساعدك على اتخاذ قرار مسبق، مع ترك مساحة للحياة والتغيّر.`},
+{id:3, title:'صندوق الطوارئ', content:`صندوق الطوارئ احتياطي مخصص للأحداث غير المخطط لها مثل إصلاح ضروري أو انقطاع مؤقت للدخل. يساعد على عدم تحويل كل مفاجأة إلى دين، لكنه لا يغني عن التأمين أو خطة الأمان المناسبة لظروفك. يفكر بعض الناس في احتياطي يغطي عدة أشهر من الضروريات (مثل 3–6 أشهر) كمرجع، بينما يختلف المبلغ الأنسب باختلاف استقرار الدخل، وعدد المعالين، والتغطيات والالتزامات.
 
-كيف تطبقها في قِنطار:
-1. من تبويب «الميزانية» ضع سقفاً شهرياً لكل تصنيف مهم (مطاعم، تسوق، ترفيه...).
-2. راجع التقدم أسبوعياً حتى لا تتجاوز الحد في منتصف الشهر.
-3. إذا تجاوزت سقفاً، لا تيأس — عدّل السلوك في الأسبوع التالي.
+احسب الضروريات الأساسية فقط، مثل السكن والطعام والفواتير والمواصلات، ثم اختر هدفاً أولياً يمكن بلوغه. اجعل المال متاحاً عند الحاجة وفي مكان منخفض المخاطر بحسب الخيارات النظامية في بلدك؛ لا تطارد عائداً مرتفعاً بأموال قد تحتاجها سريعاً. إذا كان لديك دين مكلف أو دخل غير منتظم، قد تحتاج إلى موازنة بناء الاحتياطي مع ترتيب سداد الالتزامات.
 
-الميزانية ليست قيداً خانقاً، بل خريطة تخبرك أين تستطيع الإنفاق بحرية وأين تحتاج للتقشف.`},
-{id:3, title:'صندوق الطوارئ', content:`قبل أي استثمار أو هدف ادخار كبير، ابنِ صندوق طوارئ.
+تمرين قِنطار: اكتب تقديراً شهرياً للضروريات واضربه في عدد الأشهر الذي تراه مناسباً كنقطة تخطيط، ثم اطرح المدخر الحالي. قسّم المتبقي إلى مساهمات واقعية. استخدم هدف الادخار في التطبيق للمتابعة اليدوية، وتذكر أن قِنطار لا ينقل المال إلى حساب منفصل.`},
+{id:4, title:'أهداف الادخار الذكية', content:`الهدف الواضح يسهّل اتخاذ قرارات يومية لأنه يربط الادخار بشيء محدد. صف هدفك، وحدد تكلفته المتوقعة والموعد المرغوب، ثم اطرح ما ادخرته بالفعل. اقسم المبلغ المتبقي على الأشهر المتاحة لتعرف المساهمة التقريبية المطلوبة. هذا تقدير أولي؛ قد تتغير الأسعار أو الموعد، لذلك أعد الحساب كلما تغيرت الظروف.
 
-الهدف: تغطية 3 إلى 6 أشهر من مصاريفك الأساسية (ليس كل مصاريفك، بل الضرورية فقط: إيجار، طعام، فواتير، مواصلات).
+رتّب أكثر من هدف حسب الأهمية والوقت، ولا تضع كل السيولة في هدف بعيد إذا كان لديك احتياج قريب أو احتياطي ضعيف. اجعل المساهمة واقعية حتى تستطيع الاستمرار، واستخدم مبلغاً متغيراً إذا كان دخلك غير ثابت. افصل أموال الأهداف عن الإنفاق اليومي عندما يكون ذلك عملياً وآمناً.
 
-لماذا هو مهم؟
-• يمنحك أماناً نفسياً عند فقدان العمل أو مرض أو عطل مفاجئ.
-• يمنعك من اللجوء لديون عالية الفائدة في الأزمات.
-• يفصل «مال الأمان» عن «مال الأهداف» حتى لا تلمس أهدافك عند الحاجة.
+تمرين قِنطار: أنشئ هدفاً باسم واضح ومبلغ مستهدف في تبويب «ادخار». سجل مساهمة تجريبية أو خصص نسبة داخل التطبيق، ثم راجع نسبة الإنجاز والمبلغ المتبقي. هذه سجلات تنظيمية فقط وليست تحويلات مالية. اكتب موعداً شهرياً لمراجعة الهدف بدلاً من متابعة الرقم يومياً أو لوم نفسك عند أي تأخير.`},
+{id:5, title:'التعامل مع الديون', content:`ابدأ بجمع صورة كاملة عن كل دين: الرصيد الحالي، ومعدل التكلفة أو الفائدة، والحد الأدنى، وتاريخ الاستحقاق، وأي رسوم أو شروط للسداد المبكر. تحقق من الأرقام في مستندات الجهة الدائنة؛ لا تعتمد على الذاكرة وحدها. حافظ على دفع المستحقات المطلوبة في مواعيدها قدر الإمكان، وتجنب أخذ دين جديد لتغطية القديم دون فهم كامل للتكلفة والشروط.
 
-نصائح عملية:
-• ابدأ بمبلغ صغير (مثلاً راتب شهر واحد) ثم زد تدريجياً.
-• ضعه في حساب منفصل سهل الوصول لكن ليس مربوطاً ببطاقة يومية.
-• لا تستثمره في أدوات عالية المخاطر — الأمان أولاً.
+هناك طريقتان شائعتان لترتيب الديون. «الانهيار الجليدي» يوجه المبلغ الإضافي نحو الدين الأعلى فائدة عادةً لتقليل كلفة الفائدة مع الوقت. «كرة الثلج» تبدأ بأصغر رصيد لتشجيع الاستمرار عبر إنجازات سريعة. في الطريقتين استمر في دفع الحد الأدنى لبقية الديون، وبعد إغلاق دين وجّه المبلغ الذي كان يذهب إليه نحو الدين التالي.
 
-أكمل هذه المرحلة عندما يكون لديك خطة واضحة لمبلغ صندوق الطوارئ وكيف ستصل إليه.`},
-{id:4, title:'أهداف الادخار الذكية', content:`الادخار بدون هدف واضح غالباً ما يفشل. حوّل الحلم إلى رقم وخطة.
+تمرين قِنطار: اكتب قائمة ديونك في جدول خاص وآمن، واختر استراتيجية تناسب أرقامك وقدرتك على الالتزام. لا تدخل معلومات حساسة في موقع عام. إذا تعذرت عليك الدفعات، تواصل مبكراً مع الجهة الدائنة أو مستشار مؤهل لمعرفة الخيارات النظامية؛ هذا الدرس تثقيف عام وليس استشارة ديون شخصية.`},
+{id:6, title:'عادات مالية مستدامة', content:`الخطة المالية الناجحة ليست جدولاً تكتبه مرة واحدة، بل مراجعة خفيفة تتكيف مع الحياة. اختر روتيناً أسبوعياً قصيراً لتسجيل ما فاتك ومراجعة التصنيفات، ومراجعة شهرية لمقارنة المخطط بالواقع وتحديث الأهداف والفواتير. كل بضعة أشهر، أعد فحص الاشتراكات والالتزامات وتأكد أن السقوف لا تزال مناسبة لدخلك وأسعارك الحالية.
 
-طريقة تحديد هدف ذكي:
-1. اختر هدفاً محدداً (سيارة، سفر، جهاز، دفعة أولى...).
-2. حدد المبلغ المطلوب بدقة.
-3. حدد الزمن (مثلاً 12 شهراً).
-4. اقسم المبلغ على عدد الأشهر → هذا هو القسط الشهري.
+عندما يتغير دخلك، استخدم تقديراً محافظاً للمبلغ المتاح ولا تبنِ الالتزامات الثابتة على أفضل شهر. خطط للمصاريف السنوية أو الموسمية بقسمة تقديرها على الأشهر المتبقية. احتفل بالخطوات الصغيرة، لكن لا تقارن خطتك بأشخاص ظروفهم مختلفة. احتفظ بنسخة احتياطية آمنة من سجلاتك؛ بيانات التطبيق محفوظة محلياً وقد تفقدها عند مسح المتصفح أو تبديل الجهاز.
 
-في قِنطار:
-• أنشئ الهدف من تبويب «ادخار».
-• يمكنك تخصيص نسبة من كل إيداع مسجل لهدف داخل التطبيق؛ هذا ليس تحويلاً بنكياً.
-• تابع شريط التقدم بانتظام — التقدم المرئي يحفّز الاستمرار.
-
-قاعدة ذهبية: التقدم الصغير المستمر أفضل بكثير من الاندفاع ثم التوقف. حتى 200 أو 300 شهرياً تتراكم وتصبح مبلغاً محترماً خلال سنة.`},
-{id:5, title:'التعامل مع الديون', content:`إذا كان لديك ديون (خاصة بفائدة عالية مثل بطاقات الائتمان)، ركّز على سدادها قبل التوسع في الادخار أو الاستثمار.
-
-طريقتان شائعتان:
-1. الانهيار الجليدي (Avalanche): سدد أعلى فائدة أولاً — توفر أكثر على المدى الطويل.
-2. كرة الثلج (Snowball): سدد أصغر دين أولاً — يعطيك انتصارات سريعة وتحفيزاً نفسياً.
-
-خطوات عملية:
-• أوقف أي اقتراض استهلاكي جديد قدر الإمكان.
-• ادفع الحد الأدنى على كل الديون، وركّز المبلغ الإضافي على الدين المختار.
-• بعد سداد دين، انقل قسطه للدين التالي (هذا سر التسارع).
-
-الدين الاستهلاكي عالي الفائدة هو عدو صامت لثروتك. كلما أسرعت في التخلص منه، كلما تحررت ميزانيتك للادخار الحقيقي.`},
-{id:6, title:'عادات مالية مستدامة', content:`آخر مرحلة — تحويل المعرفة إلى عادة يومية وشهرية.
-
-عادات يُنصح بالالتزام بها:
-• سجّل كل مصروف في يومه (لا تؤجل لنهاية الأسبوع).
-• راجع تبويب «التحليلات» في نهاية كل شهر وقارن بالشهر السابق.
-• عدّل سقوف الميزانية إذا تغيّرت ظروفك.
-• احتفل بالتقدم الصغير (وصول لـ 25% أو 50% من هدف).
-• راجع الاشتراكات كل 3 أشهر وألغِ ما لا تستخدمه.
-• استمر في التعلم: اقرأ مقالاً أو فصلاً من كتاب مالي كل شهر.
-
-تذكر: المال أداة لتحقيق حياة أفضل — ليس هدفاً بحد ذاته. استخدم قِنطار كمرآة صادقة لسلوكك المالي، وعدّل المسار باستمرار. أنت الآن تمتلك الأدوات الأساسية — الاستمرار هو السر.`}
+تمرين ختامي: اختر يوماً أسبوعياً للتسجيل، ويوماً شهرياً لمراجعة الميزانية، وحدد مؤشراً واحداً ستتابعه مثل انتظام الادخار أو خفض بند متكرر. اكتب ماذا ستفعل إذا تغيرت الظروف. تذكر أن المال وسيلة لدعم أولوياتك، وأن الخطة قابلة للتعديل وليست وعداً بعائد أو نتيجة محددة.`}
 ],
 en: [
-{id:1, title:'Money Management Basics', content:`Welcome to stage one of your money management journey.
+{id:1, title:'Money Management Basics', content:`Welcome to stage one. Managing money starts with understanding what comes in and what goes out, not judging yourself or trying to cut everything immediately. Distinguish income, fixed costs such as housing, variable expenses such as food, and occasional purchases. Small amounts may seem insignificant on their own but can add up when they recur.
 
-Awareness is the first and most important step. Many people don't actually know where their money goes each month because small recurring expenses (coffee, delivery, subscriptions) add up unnoticed.
+Record transactions soon after they happen and use descriptions that will help you remember their purpose. Track a full week, including cash and recurring payments, then compare your entries with statements or receipts. Qintar relies on manual entries and does not import bank transactions automatically. Correct missing or duplicate entries before interpreting charts.
 
-What you need to do now:
-1. Open the Expense tab and log everything for a full week — even the smallest amounts.
-2. Don't delay logging; do it right after spending so the data stays accurate.
-3. At the end of the week open the Analytics tab and look at the expense distribution donut.
+Qintar exercise: record one week of spending, open the history and analytics, and choose one category to understand better. Note what was necessary and what surprised you. The goal is an accurate picture, not guilt. Review again in two weeks to see whether your habits or records have changed.`},
+{id:2, title:'Building a Personal Budget', content:`A budget is a flexible plan for assigning income to your priorities, not a punishment or a perfect prediction. Start with expected take-home income, list essential costs and hard-to-change commitments, then add flexible spending and goals. The 50/30/20 rule can be a rough discussion point, not a required standard; adjust it when housing costs, income, or responsibilities differ.
 
-You'll often be surprised by the category that consumes most of your budget. This knowledge alone is enough to change your financial behavior. Don't move to the next stage until you've completed a full week of logging.`},
-{id:2, title:'Building a Personal Budget', content:`Now that you know where the money goes, it's time to set clear limits.
+If available, use several months of history to estimate variable items such as fuel or utilities. Set realistic limits for categories you can influence and leave room for small surprises. If the plan shows a shortfall, look for its cause: an unrealistic estimate, a temporary obligation, or a need to adjust spending or income. One overshoot is not failure; review and improve the plan.
 
-The most popular practical rule is 50/30/20:
-• 50% for essential needs (housing, bills, food, transport)
-• 30% for wants (entertainment, restaurants, non-essential shopping)
-• 20% for savings and debt repayment
+Qintar exercise: choose two categories and set monthly caps in the Budget tab. Check progress weekly and compare recorded spending with each limit. At month-end, decide whether the caps were realistic and adjust for next month. A useful budget helps you make decisions in advance while leaving room for life to change.`},
+{id:3, title:'Emergency Fund', content:`An emergency fund is money reserved for unplanned events such as an essential repair or a temporary interruption in income. It can help prevent every surprise from becoming debt, but it does not replace insurance or a safety plan suited to your circumstances. Some people use several months of essential costs (for example, 3–6 months) as a reference; a suitable amount depends on income stability, dependents, coverage, and obligations.
 
-How to apply it in Qintar:
-1. From the Budget tab set a monthly cap for each important category (restaurants, shopping, entertainment...).
-2. Review progress weekly so you don't blow the limit mid-month.
-3. If you exceed a cap, don't despair — adjust behavior the following week.
+Estimate essential costs such as housing, food, utilities, and transport, then choose an initial milestone that feels achievable. Keep the reserve accessible and in a lower-risk place appropriate to lawful options in your country; do not chase a high return with money you may need soon. If you have costly debt or irregular income, you may need to balance saving a reserve with organizing repayments.
 
-A budget is not a tight prison; it's a map that tells you where you can spend freely and where you need to cut back.`},
-{id:3, title:'Emergency Fund', content:`Before any investment or large savings goal, build an emergency fund.
+Qintar exercise: estimate essential monthly costs and multiply by a planning horizon that suits you, then subtract current savings. Divide the remainder into realistic contributions. Use an in-app savings goal to track entries manually; Qintar does not transfer money to a separate account.`},
+{id:4, title:'Smart Savings Goals', content:`A clear goal helps with everyday choices because it connects saving to something specific. Describe the goal, estimate its cost and desired date, and subtract what you have already saved. Divide the remaining amount by the months available to estimate a contribution. This is only a starting estimate: costs or timing may change, so recalculate when circumstances change.
 
-The goal: cover 3 to 6 months of your essential expenses (not all expenses — only the necessary ones: rent, food, bills, transport).
+Rank multiple goals by importance and timing, and avoid tying up all available cash in a distant goal if you have near-term needs or a small emergency reserve. Choose a contribution you can sustain, and use a variable amount if your income is irregular. Separate goal money from daily spending when practical and safe.
 
-Why it matters:
-• Gives you peace of mind if you lose your job, get sick, or face a sudden breakdown.
-• Prevents you from turning to high-interest debt in a crisis.
-• Separates "safety money" from "goal money" so you don't touch your goals when you need cash.
+Qintar exercise: create a clearly named goal and target amount in the Savings tab. Record a sample contribution or allocate a percentage in the app, then review progress and the remaining amount. These are organizational records only, not money transfers. Set a monthly review date instead of checking the number every day or blaming yourself for delays.`},
+{id:5, title:'Handling Debt', content:`Build a complete picture of each debt: current balance, rate or cost, minimum payment, due date, and any fees or early repayment terms. Verify amounts in statements from the creditor rather than relying on memory. Try to keep required payments on time, and avoid taking new debt to cover old debt without understanding the full cost and conditions.
 
-Practical tips:
-• Start with a small amount (e.g. one month's salary) then increase gradually.
-• Keep it in a separate easy-access account that is not linked to your daily card.
-• Don't invest it in high-risk instruments — safety first.
+Two common ways to prioritize repayment are the avalanche and snowball methods. Avalanche directs extra money to the highest-rate debt first and may reduce interest cost over time. Snowball starts with the smallest balance and may make progress feel more visible. With either method, continue minimum payments on other debts and roll the cleared payment into the next target.
 
-Complete this stage once you have a clear plan for the emergency fund amount and how you'll reach it.`},
-{id:4, title:'Smart Savings Goals', content:`Saving without a clear goal often fails. Turn the dream into a number and a plan.
+Qintar exercise: prepare a debt list in a private, secure place and choose a method that fits both the numbers and your ability to stick with it. Do not enter sensitive account details into a public website. If payments become difficult, contact the creditor early or seek a qualified adviser to understand lawful options. This lesson is general education, not personal debt advice.`},
+{id:6, title:'Sustainable Money Habits', content:`A useful financial plan is not a spreadsheet you make once; it is a light routine that adapts to life. Set a short weekly time to log anything you missed and review categories, and a monthly time to compare plans with reality and update goals and bills. Every few months, recheck subscriptions and obligations and make sure your limits still fit current income and prices.
 
-How to set a smart goal:
-1. Choose a specific goal (car, travel, gadget, down payment...).
-2. Define the exact amount needed.
-3. Set a timeline (e.g. 12 months).
-4. Divide the amount by the number of months → that's your monthly installment.
+When income changes, use a conservative estimate of what is available and avoid basing fixed commitments on your best month. Plan for annual or seasonal costs by estimating them and setting aside portions over the months remaining. Celebrate small steps, but do not compare your plan with people whose circumstances differ. Keep a secure backup of your records; app data is stored locally and may be lost when browser data is cleared or you change devices.
 
-In Qintar:
-• Create the goal from the Savings tab.
-• Allocate a percentage of recorded deposits to goals inside the app; this does not transfer money between bank accounts.
-• Check the progress bar regularly — visible progress keeps you motivated.
+Final exercise: choose a weekly day for logging and a monthly day for reviewing your budget, then pick one indicator to follow, such as regular saving or reducing a recurring expense. Write down what you will do if circumstances change. Money can support your priorities; plans can be adjusted and do not promise a particular return or outcome.`}
+]
+};
 
-Golden rule: small consistent progress beats bursts followed by stopping. Even 200 or 300 per month adds up to a respectable sum within a year.`},
-{id:5, title:'Handling Debt', content:`If you have debt (especially high-interest like credit cards), focus on paying it off before expanding savings or investing.
-
-Two common methods:
-1. Avalanche: pay the highest interest rate first — saves more money long-term.
-2. Snowball: pay the smallest balance first — gives quick wins and psychological momentum.
-
-Practical steps:
-• Stop any new consumer borrowing whenever possible.
-• Pay the minimum on every debt and put extra money on the chosen target debt.
-• After clearing one debt, roll its payment into the next one (this is the acceleration secret).
-
-High-interest consumer debt is a silent enemy of your wealth. The faster you eliminate it, the freer your budget becomes for real saving.`},
-{id:6, title:'Sustainable Money Habits', content:`Final stage — turning knowledge into daily and monthly habits.
-
-Recommended habits:
-• Log every expense on the same day (don't postpone to the end of the week).
-• Review the Analytics tab at the end of every month and compare with the previous one.
-• Adjust budget caps when your circumstances change.
-• Celebrate small wins (reaching 25% or 50% of a goal).
-• Review subscriptions every 3 months and cancel what you don't use.
-• Keep learning: read an article or a chapter of a money book every month.
-
-Remember: money is a tool for a better life — not an end in itself. Use Qintar as an honest mirror of your financial behavior and keep adjusting the path. You now have the basic tools — consistency is the secret.`}
+const COURSE_FINAL_QUIZ = {
+ar: [
+{q:'من أين تأتي سجلات المعاملات التي يعرضها قِنطار؟', options:['من اتصال تلقائي بحساب البنك','من الإدخالات اليدوية التي يسجلها المستخدم','من رسائل البنك النصية'], answer:1},
+{q:'ما الغرض الأساسي من صندوق الطوارئ؟', options:['توفير مال متاح لمصروف ضروري غير متوقع','تحقيق أعلى عائد استثماري ممكن','تمويل المشتريات الترفيهية المخطط لها فقط'], answer:0},
+{q:'كيف ينبغي التعامل مع قاعدة 50/30/20؟', options:['نسب ثابتة يجب أن يلتزم بها الجميع','مرجع تقريبي يمكن تعديله حسب الظروف','طريقة لحساب فائدة القروض'], answer:1},
+{q:'في طريقة الانهيار الجليدي لسداد الديون، أين يذهب المبلغ الإضافي عادةً؟', options:['إلى الدين ذي أعلى فائدة مع دفع الحد الأدنى لبقية الديون','إلى الدين الأحدث فقط مع إهمال الاستحقاقات الأخرى','يوزع بالتساوي مهما اختلفت الفوائد'], answer:0},
+{q:'ما المراجعة التي تساعد على معرفة مدى واقعية الميزانية؟', options:['عدم مراجعتها بعد إعدادها','مقارنة مصروف أسبوع واحد فقط بكل أهداف السنة','مراجعة دورية تقارن الخطة بالإنفاق الفعلي وتعدلها عند الحاجة'], answer:2}
+],
+en: [
+{q:'Where do the transaction records shown in Qintar come from?', options:['An automatic connection to your bank','Manual entries made by the user','Bank text messages'], answer:1},
+{q:'What is the main purpose of an emergency fund?', options:['Keeping money available for an unexpected essential expense','Seeking the highest possible investment return','Funding planned entertainment purchases only'], answer:0},
+{q:'How should the 50/30/20 rule be treated?', options:['Fixed percentages everyone must follow','A rough reference that can be adjusted to circumstances','A method for calculating loan interest'], answer:1},
+{q:'With the debt avalanche method, where does extra repayment usually go?', options:['Toward the highest-rate debt while minimums are paid on the others','Only toward the newest debt while other due payments are ignored','Split equally regardless of interest rates'], answer:0},
+{q:'What review helps you see whether a budget is realistic?', options:['Never reviewing it after it is created','Comparing one week of spending with all annual goals','Regularly comparing the plan with actual spending and adjusting when needed'], answer:2}
 ]
 };
 
@@ -1943,20 +1888,36 @@ const body = document.getElementById('booksBody');
 if (!body) return;
 if (lang === 'ar') {
 body.innerHTML = `<h4 data-i18n="books_title">أهم الكتب في إدارة المال والادخار</h4>
-<div class="book-card"><h4>الأب الغني والأب الفقير — روبرت كيوساكي</h4><p>كتاب كلاسيكي يشرح الفرق بين عقلية الغني والفقير من خلال قصتين شخصيتين. يعلمك كيف تجعل المال يعمل لصالحك بدل أن تعمل أنت من أجله، ويركز على الأصول والاستثمار والتعليم المالي المبكر.</p></div>
-<div class="book-card"><h4>أغنى رجل في بابل — جورج صامويل كلاسون</h4><p>مجموعة حكايات من بابل القديمة تقدم قواعد خالدة للثروة: ادخر عشر دخلك، استثمر بحكمة، واحمِ رأس مالك. أسلوبه القصصي يجعل المبادئ سهلة التذكر والتطبيق في حياتك اليومية.</p></div>
-<div class="book-card"><h4>علم نفس المال — مورغان هاوسل</h4><p>يستكشف الجانب النفسي لعلاقتنا بالمال أكثر من الأرقام نفسها. يوضح لماذا يتخذ الأذكياء قرارات مالية سيئة أحياناً، وكيف تلعب العواطف والتجارب الشخصية دوراً أكبر من المعرفة التقنية.</p></div>
-<div class="book-card"><h4>المليونير السريع — ديفيد باخ</h4><p>يركز على مبدأ «ادفع لنفسك أولاً» وتحويل الادخار إلى عادة تلقائية. يقدم خطة عملية لبناء ثروة تدريجياً من خلال قرارات يومية بسيطة دون الحاجة لدخل استثنائي.</p></div>
-<div class="book-card"><h4>أموالك أو حياتك — فيكي روبن وجو دومينغيز</h4><p>يساعدك على إعادة تعريف علاقتك بالعمل والمال من خلال حساب «تكلفة الفرصة» لكل مصروف. يهدف إلى الوصول للاستقلال المالي عبر تقليل المصاريف وزيادة الوعي بقيمة الوقت.</p></div>
-<div class="book-card"><h4>الذكاء المالي — روبرت كيوساكي</h4><p>يكمل أفكار الأب الغني بشرح أنواع الذكاء المالي الأربعة: كسب المال، حمايته، تسجيله، واستثماره. كتاب عملي لمن يريد بناء نظام مالي شخصي متكامل.</p></div>`;
+<p>هذه قائمة قراءة تثقيفية وليست توصية استثمارية أو ضماناً للنتائج. تختلف بعض الأمثلة باختلاف البلد والزمن؛ قارن الأفكار بواقعك وبمصادر موثوقة، واستفد من المبدأ الذي يناسبك دون تطبيق كل نصيحة حرفياً.</p>
+<div class="book-card"><h4>الأب الغني والأب الفقير — روبرت كيوساكي</h4><p>يعرض الكتاب أفكاراً عن الثقافة المالية والفرق بين الدخل والأصول والالتزامات من خلال قصص ومقارنات بين أسلوبين في التفكير. قد يكون مدخلاً محفزاً للتساؤل عن طريقة تعاملك مع المال، لكنه ليس كتاباً دراسياً محاسبياً ولا ينبغي اعتبار أمثلته وصفة جاهزة للاستثمار. اقرأه بعين ناقدة، وتحقق من الادعاءات والأرقام قبل اتخاذ أي قرار.</p></div>
+<div class="book-card"><h4>أغنى رجل في بابل — جورج صامويل كلاسون</h4><p>مجموعة حكايات مالية رمزية تشرح مبادئ مثل ادخار جزء من الدخل، وضبط الإنفاق، وفهم المخاطر قبل إقراض المال أو استثماره. بساطة القصص تساعد القارئ على تذكر الأفكار ومناقشتها مع الأسرة. خذ النسب الواردة كأمثلة تاريخية لا كمعايير ثابتة؛ عدّل خطتك وفق دخلك والتزاماتك وأسعار بلدك.</p></div>
+<div class="book-card"><h4>سيكولوجية المال — مورغان هاوسل</h4><p>يركز على السلوك والعاطفة والحظ والمخاطرة، ويوضح أن القرارات المالية لا تعتمد على الحساب وحده. تساعد مقالاته القصيرة على فهم أثر المقارنة الاجتماعية والخوف والطمع والصبر على الادخار والاستثمار. من المفيد أن تسأل بعد كل فصل: ما القرار الذي أستطيع تغييره؟ تذكّر أن القصص توضح أفكاراً ولا تتنبأ بنتائجك الشخصية.</p></div>
+<div class="book-card"><h4>المليونير التلقائي — ديفيد باخ</h4><p>يشرح مبدأ «ادفع لنفسك أولاً» وبناء عادة ادخار منتظمة عبر أتمتة التحويلات التي يرتبها القارئ بنفسه مع مؤسسته المالية. الفكرة الأساسية هي تقليل الاعتماد على قوة الإرادة اليومية، لا أن كل شخص يحتاج النسبة أو الحساب نفسه. أي تحويل تلقائي يكون بينك وبين مصرفك خارج قِنطار؛ التطبيق لا يحول الأموال، لذا راجع الرسوم والسيولة وشروط الحساب.</p></div>
+<div class="book-card"><h4>أموالك أو حياتك — فيكي روبن وجو دومينغيز</h4><p>يدعو إلى النظر للمال بوصفه مرتبطاً بالوقت والطاقة والعمل، ويقترح مراجعة الإنفاق وفق ما يضيف قيمة حقيقية لحياتك. يساعدك هذا المنظور على مقارنة تكلفة الشراء بما بذلته من وقت لكسب ثمنه، وعلى التفكير في التوازن بين الاستهلاك والأهداف طويلة الأجل. التمارين الواردة تحتاج إلى تكييفها مع مسؤوليات الأسرة وتكاليف المعيشة.</p></div>
+<div class="book-card"><h4>الذكاء المالي — روبرت كيوساكي</h4><p>يتناول مهارات فهم الأرقام المالية، وتوليد الدخل، وإدارة المخاطر والضرائب والاستثمار وفق طرح المؤلف. قد يشجعك على تعلم قراءة الميزانية والتدفق النقدي بدلاً من الاكتفاء بالانطباعات العامة. قارن المصطلحات والأمثلة بمصادر مستقلة وبقوانين بلدك، فالأطر الضريبية والاستثمارية تختلف كثيراً ولا تصلح النصائح العابرة للحدود للجميع.</p></div>
+<div class="book-card"><h4>التحول المالي الكلي — ديف رامزي</h4><p>دليل عملي يركز على إعداد ميزانية، وتكوين احتياطي أولي، وخطة لسداد الديون خطوة بخطوة. أسلوبه مباشر ويحفز على تقسيم الهدف الكبير إلى مهام يمكن متابعتها، وهو مفيد لمن يريد إطاراً واضحاً للبدء. تختلف الآراء حول ترتيب بعض الأولويات ونسب الادخار؛ وازن اقتراحاته مع تكلفة الدين وظروفك، واطلب مساعدة مختص إذا كانت التزاماتك متعثرة.</p></div>
+<div class="book-card"><h4>الطريق البسيط إلى الثروة — ج. ل. كولينز</h4><p>يقدم مقدمة مبسطة عن الادخار طويل الأجل والاستثمار المتنوع منخفض التكلفة، مع التركيز على فهم الرسوم والمخاطر والصبر. يناقش الكتاب أيضاً تقلب الأسواق وأهمية تجنب القرارات الانفعالية. بعض الأمثلة مبنية على السوق الأمريكي؛ قبل تطبيق أي فكرة تحقق من المنتجات المتاحة والضرائب والأنظمة والمخاطر في بلدك، ولا تعتبر الكتاب توصية بشراء أصل معين.</p></div>
+<div class="book-card"><h4>سأعلّمك كيف تصبح غنياً — راميت سيثي</h4><p>يجمع بين الميزانية المرنة، والتفاوض على بعض المصروفات، وبناء عادات ادخار واستثمار قابلة للاستمرار. يشجع القارئ على توجيه المال نحو أولوياته بدلاً من محاولة خفض كل المتع الصغيرة. يحتوي على أمثلة وخدمات أمريكية قد لا تتوفر في منطقتك؛ ركز على منهج التخطيط والتحقق، واستبدل المنتجات المذكورة بخيارات نظامية ومناسبة محلياً.</p></div>
+<div class="book-card"><h4>المليونير المجاور — توماس ستانلي وويليام دانكو</h4><p>يعرض نتائج أبحاث ومقابلات عن عادات بعض الأسر التي بنت ثروتها، مثل التحكم في الإنفاق والتخطيط والاستهلاك الأقل من الدخل. يساعد على التمييز بين المظهر الغالي والاستقرار المالي الفعلي، لكنه يعتمد على عينات وسياق زمني واجتماعي معين. استخدمه لطرح الأسئلة عن عاداتك لا لمقارنة حياتك أو افتراض أن طريقاً واحداً يناسب الجميع.</p></div>
+<div class="book-card"><h4>الكتاب الصغير للاستثمار المنطقي — جون بوغل</h4><p>يشرح فكرة الاستثمار طويل الأجل والتنويع والانتباه إلى أثر الرسوم، ويناقش لماذا يصعب على كثير من المستثمرين التفوق باستمرار على السوق. يقدم إطاراً تعليمياً لفهم الصناديق والمؤشرات، لا ضماناً للأرباح ولا اختياراً جاهزاً لمحفظتك. تحقّق من المخاطر والرسوم والأنظمة المحلية، ولا تستثمر مالاً تحتاجه قريباً دون فهم احتمال انخفاض قيمته.</p></div>
+<div class="book-card"><h4>أتقن إدارة أموالك — تيفاني أليش</h4><p>يقسم الثقافة المالية إلى موضوعات عملية مثل تنظيم السجلات، وفهم الائتمان، والادخار، وإدارة المصروفات والتخطيط للأهداف. أسلوب الخطوات والقوائم قد يساعد القارئ على تحويل المفاهيم إلى مهام ومواعيد مراجعة. تختلف أنظمة الائتمان والتأمين والضرائب بين البلدان؛ استخدم التمارين العامة وتحقق من التفاصيل من الجهات الرسمية في منطقتك.</p></div>
+<p>اقتراح للقراءة: اختر كتاباً واحداً، دوّن فكرة قابلة للتطبيق، ثم راجع بعد شهر إن كانت مناسبة لك. المعرفة العامة لا تغني عن التحقق من الأنظمة أو الاستشارة المهنية عند الحاجة.</p>`;
 } else {
 body.innerHTML = `<h4>Top Books on Money & Saving</h4>
-<div class="book-card"><h4>Rich Dad Poor Dad — Robert Kiyosaki</h4><p>A classic that contrasts the mindset of the rich and the poor through two father figures. Teaches you how to make money work for you instead of working for money, focusing on assets, investing, and early financial education.</p></div>
-<div class="book-card"><h4>The Richest Man in Babylon — George S. Clason</h4><p>A collection of ancient Babylonian parables that deliver timeless wealth rules: save a tenth of your income, invest wisely, and protect your capital. The storytelling style makes the principles easy to remember and apply daily.</p></div>
-<div class="book-card"><h4>The Psychology of Money — Morgan Housel</h4><p>Explores the psychological side of our relationship with money more than the numbers themselves. Shows why smart people sometimes make poor financial decisions and how emotions and personal experience matter more than pure technical knowledge.</p></div>
-<div class="book-card"><h4>The Automatic Millionaire — David Bach</h4><p>Focuses on the “pay yourself first” principle and turning saving into an automatic habit. Offers a practical plan to build wealth gradually through simple daily decisions without needing an extraordinary income.</p></div>
-<div class="book-card"><h4>Your Money or Your Life — Vicki Robin & Joe Dominguez</h4><p>Helps you redefine your relationship with work and money by calculating the true “life energy” cost of every expense. Aims at financial independence through lower spending and higher awareness of the value of time.</p></div>
-<div class="book-card"><h4>Rich Dad’s Increase Your Financial IQ — Robert Kiyosaki</h4><p>Extends the Rich Dad ideas by explaining the four types of financial intelligence: making money, protecting it, recording it, and investing it. A practical book for anyone building a complete personal financial system.</p></div>`;
+<p>This is an educational reading list, not an investment recommendation or a promise of results. Examples can depend on country and time; compare ideas with your circumstances and reliable sources, and use what is helpful without treating every suggestion as a rule.</p>
+<div class="book-card"><h4>Rich Dad Poor Dad — Robert Kiyosaki</h4><p>The book presents ideas about financial literacy and the difference between income, assets, and liabilities through stories and contrasting mindsets. It can prompt useful questions about how you handle money, but it is not an accounting textbook or a ready-made investment plan. Read critically and verify claims and figures before making decisions.</p></div>
+<div class="book-card"><h4>The Richest Man in Babylon — George S. Clason</h4><p>A set of financial parables introduces ideas such as saving part of your income, controlling spending, and understanding risk before lending or investing. The simple stories make the principles easy to remember and discuss with family. Treat the percentages as historical examples rather than fixed standards, and adapt any plan to your income, obligations, and local costs.</p></div>
+<div class="book-card"><h4>The Psychology of Money — Morgan Housel</h4><p>Explores how behavior, emotion, luck, and risk shape financial decisions, showing why money choices are not based on arithmetic alone. Its short essays help readers reflect on comparison, fear, greed, and patience in saving and investing. After each chapter, ask what practical decision you might change; remember that stories illustrate ideas but cannot predict your personal results.</p></div>
+<div class="book-card"><h4>The Automatic Millionaire — David Bach</h4><p>Explains the “pay yourself first” principle and building regular saving habits through transfers a reader arranges with their own financial institution. The central idea is to rely less on daily willpower, not to use the same percentage or account as everyone else. Any automatic transfer happens between you and your bank, outside Qintar; check fees, access, and account terms.</p></div>
+<div class="book-card"><h4>Your Money or Your Life — Vicki Robin & Joe Dominguez</h4><p>Connects money with time, energy, and work, and encourages readers to review spending according to the value it adds to their lives. This perspective can help compare the cost of a purchase with the time spent earning its price and consider balance between consumption and long-term goals. Adapt the exercises to family responsibilities and living costs.</p></div>
+<div class="book-card"><h4>Rich Dad’s Increase Your Financial IQ — Robert Kiyosaki</h4><p>Discusses understanding financial numbers, generating income, managing risk and taxes, and investing through the author’s framework. It may encourage readers to learn how to read budgets and cash flow rather than rely on impressions. Compare terminology and examples with independent sources and local rules, since tax and investment systems vary significantly.</p></div>
+<div class="book-card"><h4>The Total Money Makeover — Dave Ramsey</h4><p>A practical guide focused on budgeting, building an initial reserve, and following a step-by-step debt repayment plan. Its direct style encourages turning a large goal into trackable actions and can help readers who want a clear starting framework. People differ on the order of priorities and savings amounts; weigh suggestions against debt costs and your circumstances, and seek qualified help if payments are unmanageable.</p></div>
+<div class="book-card"><h4>The Simple Path to Wealth — J. L. Collins</h4><p>An accessible introduction to long-term saving and diversified, low-cost investing, with emphasis on fees, risk, and patience. It also discusses market volatility and avoiding emotional decisions. Many examples use the US market; verify products, taxes, regulations, and risks in your own country, and do not treat the book as a recommendation to buy a particular asset.</p></div>
+<div class="book-card"><h4>I Will Teach You to Be Rich — Ramit Sethi</h4><p>Combines flexible budgeting, negotiating some expenses, and building sustainable saving and investing habits. It encourages directing money toward personal priorities instead of cutting every small pleasure. Some examples and services are specific to the United States; focus on the planning method, verify details, and find lawful local alternatives where needed.</p></div>
+<div class="book-card"><h4>The Millionaire Next Door — Thomas J. Stanley & William D. Danko</h4><p>Presents research and interviews about habits among some households that accumulated wealth, including controlled spending, planning, and living below their means. It helps distinguish an expensive appearance from financial stability, but reflects specific samples and a particular social and historical context. Use it to examine your habits rather than compare your life or assume there is one path for everyone.</p></div>
+<div class="book-card"><h4>The Little Book of Common Sense Investing — John C. Bogle</h4><p>Explains long-term investing, diversification, and the impact of fees, and discusses why consistently outperforming the market is difficult for many investors. It provides an educational framework for understanding index funds, not a guarantee of profit or a portfolio chosen for you. Check local risks, fees, and rules, and do not invest money you may need soon without understanding the possibility of loss.</p></div>
+<div class="book-card"><h4>Get Good with Money — Tiffany Aliche</h4><p>Breaks financial literacy into practical topics such as organizing records, understanding credit, saving, managing expenses, and planning goals. Its step-by-step approach can help turn concepts into tasks and review dates. Credit, insurance, and tax systems differ by country; use the general exercises and verify local details with official sources.</p></div>
+<p>Reading suggestion: choose one book, note one idea you could test, and review after a month whether it fits your needs. General reading does not replace checking regulations or getting professional advice when appropriate.</p>`;
 }
 }
 
@@ -2026,10 +1987,10 @@ function renderCourses() {
 const lang = getLang();
 const t = I18N[lang];
 const list = COURSES[lang];
-const progress = data.courseProgress || 0;
+const progress = Math.min(list.length, Math.max(0, Number(data.courseProgress) || 0));
 const el = document.getElementById('coursesList');
 if (!el) return;
-el.innerHTML = list.map((c, idx) => {
+const cards = list.map((c, idx) => {
 const unlocked = idx <= progress;
 const done = idx < progress;
 if (!unlocked) {
@@ -2037,18 +1998,66 @@ return `<div class="course-card locked"><h4>${t.stage} ${c.id}: ${c.title}</h4><
 }
 return `<div class="course-card">
 <h4>${t.stage} ${c.id}: ${c.title}</h4>
-<p>${c.content}</p>
+${c.content.split('\n\n').map(paragraph => `<p>${paragraph.replace(/\n/g,'<br>')}</p>`).join('')}
 ${done ? `<div class="course-done">${t.completed}</div>` : `<button class="btn-sm" style="margin-top:8px" onclick="completeCourseStage(${c.id})">${t.complete_stage}</button>`}
 </div>`;
 }).join('');
+const progressHtml = `<p>${t.course_progress}: <strong>${progress} / ${list.length}</strong></p><progress aria-label="${t.course_progress}" value="${progress}" max="${list.length}" style="width:100%;height:10px;accent-color:var(--orange);margin-bottom:12px"></progress>`;
+const quizHtml = progress >= list.length && !data.courseQuizPassed ? renderCourseQuiz() : '';
+const passedHtml = data.courseQuizPassed ? `<div class="course-done" role="status">${t.course_quiz_passed} (${Number(data.courseQuizScore) || 5}/${COURSE_FINAL_QUIZ[lang].length})</div>` : '';
+el.innerHTML = progressHtml + cards + quizHtml + passedHtml;
+}
+
+function renderCourseQuiz() {
+const lang = getLang();
+const t = I18N[lang];
+const questions = COURSE_FINAL_QUIZ[lang];
+const questionHtml = questions.map((item, questionIndex) => `<fieldset style="border:1px solid var(--border);border-radius:12px;padding:10px 12px;margin:10px 0">
+<legend><strong>${lang === 'ar' ? 'السؤال' : 'Question'} ${questionIndex + 1}</strong></legend>
+<p>${item.q}</p>
+${item.options.map((option, optionIndex) => `<label style="display:flex;gap:8px;align-items:flex-start;margin:9px 0;cursor:pointer;line-height:1.6"><input type="radio" name="courseQuiz${questionIndex}" value="${optionIndex}" style="margin-top:5px;accent-color:var(--orange)"><span>${option}</span></label>`).join('')}
+</fieldset>`).join('');
+return `<section class="course-card" aria-labelledby="courseQuizTitle">
+<h4 id="courseQuizTitle">${t.course_quiz_title}</h4>
+<p>${t.course_quiz_intro}</p>
+${questionHtml}
+<p id="courseQuizFeedback" aria-live="polite" role="status"></p>
+<button class="btn-sm" onclick="submitCourseQuiz()">${t.course_quiz_submit}</button>
+</section>`;
+}
+
+function submitCourseQuiz() {
+const lang = getLang();
+const t = I18N[lang];
+const questions = COURSE_FINAL_QUIZ[lang];
+const answers = questions.map((item, index) => {
+const selected = document.querySelector(`input[name="courseQuiz${index}"]:checked`);
+return selected ? Number(selected.value) : null;
+});
+const feedback = document.getElementById('courseQuizFeedback');
+if (answers.some(answer => answer === null)) {
+if (feedback) feedback.textContent = t.course_quiz_answer_all;
+return;
+}
+const score = answers.reduce((total, answer, index) => total + (answer === questions[index].answer ? 1 : 0), 0);
+if (score >= 4) {
+data.courseQuizPassed = true;
+data.courseQuizScore = score;
+localStorage.setItem('mhfzti_v4', JSON.stringify(data));
+renderCourses();
+showToast(t.course_quiz_pass);
+} else if (feedback) {
+feedback.textContent = `${t.course_quiz_fail} ${score}/${questions.length}. ${t.course_quiz_retry}`;
+}
 }
 
 function completeCourseStage(id) {
-if (id === (data.courseProgress || 0) + 1) {
+if (id === (Number(data.courseProgress) || 0) + 1) {
 data.courseProgress = id;
 localStorage.setItem('mhfzti_v4', JSON.stringify(data));
 renderCourses();
-showToast(getLang() === 'ar' ? 'أحسنت! تم فتح المرحلة التالية' : 'Great! Next stage unlocked');
+const isFinalStage = id === COURSES[getLang()].length;
+showToast(isFinalStage ? I18N[getLang()].course_quiz_title : (getLang() === 'ar' ? 'أحسنت! تم فتح المرحلة التالية' : 'Great! Next stage unlocked'));
 }
 }
 
