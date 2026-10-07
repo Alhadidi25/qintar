@@ -1396,85 +1396,25 @@ function renderBlog() {
   const lang = getLang();
   const el = document.getElementById('info-blog-body');
   if (!el) return;
-  if (lang === 'ar') {
-    el.innerHTML = `<h4>مدونة قِنطار</h4>
-<p>مجموعة مقالات تشرح كيف تدير فلوسك بذكاء، وكيف تستفيد من ميزات "قِنطار" لتنظيم ادخارك ومصاريفك اليومية.</p>
-
-<h4>1. كيف تحفظ فلوسك في قِنطار؟</h4>
-<p>"قِنطار" لا يصل إلى حسابك البنكي ولا ينفذ تحويلات. تسجّل الإيداعات والمصروفات يدوياً، ويحسب التطبيق رصيداً متوقعاً؛ وتُحفظ سجلاتك المالية محلياً ولا يرسلها منطق التطبيق إلى خوادم قِنطار. لكن الموقع يحمّل Google Analytics وAdSense، لذا راجع سياسة الخصوصية لمعرفة معالجة Google لبيانات الاستخدام والإعلانات.</p>
-<p>لأن البيانات محلية، ننصحك بشدة باستخدام ميزة "تصدير نسخة احتياطية" الموجودة في الإعدادات بشكل دوري (أسبوعياً مثلاً)، حتى لو غيّرت جهازك أو مسحت المتصفح لا تفقد سجلك المالي.</p>
-
-<h4>2. لماذا تتبع مصاريفك يغيّر وضعك المالي؟</h4>
-<p>أغلب الناس لا يعرفون فعلياً أين تذهب فلوسهم كل شهر، لأنهم لا يسجلون مصاريفهم الصغيرة المتكررة مثل القهوة والتوصيل والاشتراكات. عندما تبدأ بتسجيل كل مصروف — حتى لو بسيط — ستكتشف أنماط إنفاق لم تكن منتبه لها، وهذه أول خطوة عملية لأي تحسن مالي حقيقي.</p>
-<p>جرّب لمدة شهر كامل أن تسجل كل شيء في قسم "مصروف"، وفي نهاية الشهر افتح تبويب "التحليلات" وشاهد الدائرة التي توضح توزيع مصاريفك حسب التصنيف. غالباً ستتفاجأ بأكبر تصنيف يستهلك ميزانيتك.</p>
-
-<h4>3. قاعدة 50/30/20 لتوزيع الدخل</h4>
-<p>قاعدة 50/30/20 مثال إرشادي للميزانية: 50% للاحتياجات، و30% للرغبات، و20% للادخار وسداد الديون. ليست معياراً رسمياً ولا تناسب كل دخل أو تكلفة معيشة. يمكنك تحديد سقوف للفئات في قِنطار وتعديلها بما يلائم التزاماتك وميزانيتك.</p>
-<p>لا تشترط الدقة المطلقة من اليوم الأول. ابدأ بنسب تقريبية وعدّلها بعد شهر أو شهرين حسب واقع إنفاقك. الهدف هو الوعي والتحكم، لا الكمال.</p>
-
-<h4>4. الكاش باك... كيف تستفيد منه صح؟</h4>
-<p>كثير من البطاقات ومحافظ الدفع الإلكتروني تقدم كاش باك عند الشراء. ميزة "الكاش باك" في قِنطار تتيح لك تسجيل النسبة التي رجعت لك مع كل مصروف، فترى بوضوح كم وفّرت فعلياً من هذه المزايا على المدى الطويل بدل أن تضيع وسط التفاصيل.</p>
-<p>القاعدة الذهبية: لا تشتري شيئاً فقط من أجل الحصول على كاش باك — الكاش باك مكسب إضافي على شراء كنت تحتاجه أصلاً، وليس سبباً للشراء.</p>
-
-<h4>5. الفرق بين الادخار والاستثمار</h4>
-<p>الادخار قد يناسب الأهداف القريبة التي تتطلب سهولة الوصول؛ أما الاستثمار فيتضمن تقلباً واحتمال خسارة. يستخدم بعض الناس احتياطياً لعدة أشهر من الضروريات (غالباً 3–6) كنقطة بداية، لا كقاعدة ثابتة. قِنطار أداة تتبع ولا يقدم استشارة استثمارية.</p>
-
-<h4>6. خمس عادات بسيطة توفر لك فلوس شهرياً</h4>
-<ul>
-<li>سجّل كل مصروف أولاً بأول بدل أن تؤجله — كلما قرب التسجيل من لحظة الصرف كان أدق.</li>
-<li>حدد سقفاً شهرياً لأكثر تصنيف تصرف فيه (غالباً المطاعم أو التسوق) وتابعه أسبوعياً.</li>
-<li>يمكنك تخصيص نسبة من كل إيداع تسجله لهدف داخل قِنطار؛ هذا تحديث لسجل التطبيق وليس تحويلاً بنكياً.</li>
-<li>راجع تبويب "التحليلات" في نهاية كل شهر وقارنه بالشهر الذي قبله.</li>
-<li>سجّل الفواتير كقيود متكررة في التطبيق؛ لا تنفذ هذه القيود مدفوعات بنكية فعلية.</li>
-</ul>
-
-<h4>7. كيف تبني هدف ادخار واقعي؟</h4>
-<p>قسّم المبلغ المستهدف على عدد الأشهر، ثم قيّم ما إذا كان القسط الشهري ملائماً لميزانيتك. فمثلاً 6000 على 12 شهراً تعني 500 شهرياً قبل مراعاة الظروف الأخرى. يمكنك تحديد نسبة تخصيص داخل التطبيق من كل إيداع تسجله ومتابعة التقدم؛ لا ينفذ قِنطار تحويلاً بنكياً.</p>
-
-<h4>8. كيف تتجنب الإفراط في الإنفاق؟</h4>
-<p>استخدم قاعدة الـ 24 ساعة: قبل أي شراء غير ضروري، انتظر يوماً كاملاً ثم قرر. كثيراً ما يختفي الدافع الشرائي بعد ساعات قليلة. أيضاً افصل حساب المصاريف اليومية عن حساب الادخار حتى لا يغريك الرصيد العالي بالإنفاق الزائد.</p>
-
-<p style="margin-top:14px;color:var(--muted);font-size:0.72rem">هذه المقالات لأغراض تثقيفية عامة فقط وليست استشارة مالية متخصصة.</p>`;
-  } else {
-    el.innerHTML = `<h4>Qintar Blog</h4>
-<p>A collection of articles that explain how to manage your money smartly and how to use Qintar's features to organize your savings and daily expenses.</p>
-
-<h4>1. How do you keep your money in Qintar?</h4>
-<p>Qintar does not handle your real money and has no access to your bank account; it is only a tracking and organization tool. You manually log every deposit and expense. Qintar calculates an estimated balance from those entries and stores the financial records locally; the site also loads Google Analytics and AdSense as described in the Privacy Policy. Qintar does not access your bank account or move money.</p>
-<p>Because the data is local, we strongly recommend using the "Export Backup" feature in Settings regularly (for example weekly), so that even if you change devices or clear the browser you do not lose your financial record.</p>
-
-<h4>2. Why does tracking expenses change your financial situation?</h4>
-<p>Most people do not actually know where their money goes each month because they do not log small recurring expenses such as coffee, delivery and subscriptions. When you start logging every expense — even the small ones — you discover spending patterns you were not aware of. That is the first practical step toward any real financial improvement.</p>
-<p>Try for a full month to log everything in the Expense section. At the end of the month open the Analytics tab and look at the donut that shows your spending by category. You will often be surprised by the largest category consuming your budget.</p>
-
-<h4>3. The 50/30/20 rule for income allocation</h4>
-<p>The 50/30/20 rule is an illustrative budgeting guideline: 50% for needs, 30% for wants, and 20% for savings and debt repayment. It is not an official standard or suitable for every income or cost of living. You can set category caps in Qintar and adapt them to your obligations and budget.</p>
-<p>You do not need perfect accuracy from day one. Start with approximate ratios and adjust them after one or two months according to your real spending. The goal is awareness and control, not perfection.</p>
-
-<h4>4. Cashback... how to benefit from it correctly?</h4>
-<p>Many cards and e-wallets offer cashback on purchases. Qintar's cashback feature lets you record the percentage you received with every expense, so you clearly see how much you actually saved from these benefits over the long term instead of losing track of the details.</p>
-<p>Golden rule: never buy something only to get cashback — cashback is an extra gain on a purchase you already needed, not a reason to buy.</p>
-
-<h4>5. The difference between saving and investing</h4>
-<p>Saving may suit near-term needs where access and value stability matter; investing involves market risk and possible loss. Some people use several months of essential expenses (often 3–6) as an emergency-fund starting point, but circumstances vary. Qintar is designed to help you save and track near-term goals; it is not an investment tool and does not provide any financial advice.</p>
-
-<h4>6. Five simple habits that save you money every month</h4>
-<ul>
-<li>Log every expense as soon as it happens instead of postponing — the closer the log is to the moment of spending, the more accurate it is.</li>
-<li>Set a monthly ceiling for the category you spend most on (often restaurants or shopping) and check it weekly.</li>
-<li>Set a savings goal to allocate a percentage of each manually recorded deposit to that goal inside Qintar; this is tracking only and does not transfer money between bank accounts.</li>
-<li>Review the Analytics tab at the end of every month and compare it with the previous one.</li>
-<li>Record fixed bills (rent, subscriptions) as recurring entries in Qintar; these app records do not charge a bank account or initiate a payment.</li>
-</ul>
-
-<h4>7. How to build a realistic savings goal?</h4>
-<p>Instead of picking a random number, divide the target amount by the number of months you want to save over, and check whether the resulting monthly figure is realistic compared with your income. For example, if your goal is 6000 in one year, you need to save 500 per month. Register this goal in the Savings tab, set an in-app allocation percentage close to that monthly amount from each deposit you record, and track progress on the percentage bar; Qintar does not make bank transfers.</p>
-
-<h4>8. How to avoid overspending?</h4>
-<p>Use the 24-hour rule: before any non-essential purchase, wait a full day and then decide. The urge to buy often disappears after a few hours. Also keep your daily spending account separate from your savings account so a high balance does not tempt you into extra spending.</p>
-
-<p style="margin-top:14px;color:var(--muted);font-size:0.72rem">These articles are for general educational purposes only and are not specialized financial advice.</p>`;
-  }
+  const articles = [
+    ['article.html', 'دليلك الشامل لإدارة أموالك الشخصية وبناء عادة الادخار', 'A Complete Guide to Managing Personal Finances'],
+    ['expense-tracking.html', 'كيف تبدأ بتتبع مصاريفك: دليل المبتدئين', 'Expense Tracking: A Beginner’s Guide'],
+    ['budget-50-30-20.html', 'قاعدة 50/30/20 لتوزيع الراتب مع أمثلة عملية بالأرقام', 'The 50/30/20 Budget Rule'],
+    ['reduce-expenses.html', 'كيف تخفض مصاريفك الشهرية بدون حرمان: دليل عملي شامل', 'How to Reduce Monthly Expenses'],
+    ['emergency-fund.html', 'كيف تبني صندوق طوارئ خطوة بخطوة', 'How to Build an Emergency Fund'],
+    ['big-goal-planning.html', 'كيف تخطط مالياً لهدف كبير: الزواج أو شراء منزل', 'Planning for a Major Financial Goal'],
+    ['retirement-planning.html', 'كيف تخطط للتقاعد ولو كان دخلك محدود', 'Retirement Planning on a Limited Income'],
+    ['travel-budget.html', 'كيف تخطط لميزانية سفر دون ديون: دليل عملي', 'Planning a Travel Budget Without Debt'],
+    ['credit-cards-smart.html', 'بطاقات الائتمان: كيف تستخدمها بذكاء دون ديون', 'How to Use Credit Cards Wisely'],
+    ['debt-payoff-plan.html', 'كيف تتخلص من ديونك المتعددة: خطة عملية خطوة بخطوة', 'A Step-by-Step Plan to Pay Off Multiple Debts'],
+    ['personal-loans-guide.html', 'دليل التمويل الشخصي في السعودية: كيف تقارن العروض وتراجع قدرتك على السداد', 'Personal Financing in Saudi Arabia'],
+    ['investing-basics.html', 'الاستثمار للمبتدئين: من أين تبدأ؟', 'Investing for Beginners'],
+    ['salary-negotiation.html', 'كيف تفاوض على راتبك وتزيد دخلك: دليل عملي خطوة بخطوة', 'How to Negotiate Your Salary'],
+    ['variable-income.html', 'كيف تدير أموالك إذا كان دخلك متغيراً (عمل حر أو عمولات)', 'Managing Money with Variable Income'],
+    ['family-budget.html', 'كيف تدير ميزانية الأسرة بشكل عادل', 'How to Manage a Fair Family Budget'],
+    ['young-money-mistakes.html', 'أخطاء مالية يقع فيها معظم الشباب وكيف تتجنبها', 'Common Money Mistakes Young Adults Can Avoid']
+  ];
+  el.innerHTML = `<h4>${lang === 'ar' ? 'مدونة قِنطار' : 'Qintar Blog'}</h4><ul>${articles.map(([page, arTitle, enTitle]) => `<li><a href="/${page}">${lang === 'ar' ? arTitle : enTitle}</a></li>`).join('')}</ul>`;
 }
 
 function renderPrivacy() {
