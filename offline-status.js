@@ -11,51 +11,52 @@
     }
   }
 
-  function getNotice() {
-    let notice = document.getElementById('qintar-connection-notice');
-    if (notice) return notice;
-    notice = document.createElement('div');
-    notice.id = 'qintar-connection-notice';
-    notice.setAttribute('role', 'status');
-    notice.setAttribute('aria-live', 'polite');
-    notice.style.cssText = 'position:fixed;z-index:2147483000;top:12px;left:50%;transform:translateX(-50%);width:min(calc(100% - 24px),520px);padding:11px 15px;border:1px solid #e8650a;border-radius:12px;background:#1a1a1a;color:#f0f0f0;box-shadow:0 6px 24px #0009;text-align:center;pointer-events:none;font:700 14px/1.6 Tahoma,Arial,sans-serif;';
-    document.body.appendChild(notice);
-    return notice;
-  }
+  function showToast(message, duration) {
+    if (typeof window.showToast === 'function') {
+      window.showToast(message);
+      return;
+    }
 
-  function showNotice(message, timeout) {
-    const notice = getNotice();
-    notice.textContent = message;
-    notice.hidden = false;
-    clearTimeout(notice._hideTimer);
-    if (timeout) notice._hideTimer = setTimeout(() => { notice.hidden = true; }, timeout);
+    let toast = document.getElementById('qintar-offline-toast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'qintar-offline-toast';
+      toast.setAttribute('role', 'status');
+      toast.setAttribute('aria-live', 'polite');
+      toast.style.cssText = 'position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(100px);max-width:calc(100vw - 32px);padding:12px 24px;border:1px solid #e8650a;border-radius:30px;background:#1a1a1a;color:#fff;font:700 14px/1.5 Tahoma,Arial,sans-serif;text-align:center;box-shadow:0 8px 32px #0009;z-index:2147483000;opacity:0;transition:transform .3s cubic-bezier(.34,1.56,.64,1),opacity .2s;pointer-events:none;';
+      document.body.appendChild(toast);
+    }
+    clearTimeout(toast._hideTimer);
+    toast.textContent = message;
+    toast.style.transform = 'translateX(-50%) translateY(0)';
+    toast.style.opacity = '1';
+    toast._hideTimer = setTimeout(function () {
+      toast.style.transform = 'translateX(-50%) translateY(100px)';
+      toast.style.opacity = '0';
+    }, duration || 2800);
   }
 
   function showConnectionNotice(isOnline) {
     const en = isEnglish();
-    showNotice(isOnline
+    showToast(isOnline
       ? (en ? 'Internet connection restored.' : 'عاد اتصال الإنترنت.')
-      : (en
-        ? 'You are offline. Saved pages and your on-device data remain available; live rates and external services may not work.'
-        : 'أنت غير متصل. الصفحات المحفوظة وبياناتك على الجهاز تبقى متاحة؛ قد تتعطل الأسعار المباشرة والخدمات الخارجية.'),
-      isOnline ? 5000 : 0);
+      : (en ? 'You’re offline.' : 'أنت غير متصل بالإنترنت.'), isOnline ? 4500 : 3500);
   }
 
-  window.addEventListener('offline', () => showConnectionNotice(false));
-  window.addEventListener('online', () => showConnectionNotice(true));
-  if (!navigator.onLine) showConnectionNotice(false);
+  window.addEventListener('offline', function () { showConnectionNotice(false); });
+  window.addEventListener('online', function () { showConnectionNotice(true); });
 
   if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
     window.addEventListener('load', function () {
-      navigator.serviceWorker.register('/sw.js', { scope: '/' }).then(async () => {
+      navigator.serviceWorker.register('/sw.js', { scope: '/' }).then(async function () {
         await navigator.serviceWorker.ready;
         if (!navigator.onLine) return;
         try {
-          if (sessionStorage.getItem('qintar_offline_ready_v1') !== '1') {
-            showNotice(isEnglish()
-              ? 'Offline support is ready: saved Qintar pages can now open without internet.'
-              : 'أصبح قِنطار جاهزًا دون اتصال؛ يمكنك فتح الصفحات المحفوظة عند انقطاع الإنترنت.', 7000);
-            sessionStorage.setItem('qintar_offline_ready_v1', '1');
+          if (sessionStorage.getItem('qintar_offline_ready_toast_v2') !== '1') {
+            showToast(isEnglish()
+              ? 'Qintar is ready offline.'
+              : 'قِنطار جاهز للعمل دون إنترنت.');
+            sessionStorage.setItem('qintar_offline_ready_toast_v2', '1');
           }
         } catch (_) {
           // Storage can be unavailable in restricted browser modes; core app behavior is unchanged.
