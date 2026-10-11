@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0e0e0e">
+<title>أنت غير متصل | قِنطار</title>
+<style>
+*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:20px;background:#0e0e0e;color:#f0f0f0;font-family:Tahoma,Arial,sans-serif;line-height:1.9}.card{width:min(100%,520px);padding:28px 22px;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:18px;text-align:center;box-shadow:0 10px 32px #0008}.logo{font-size:1.4rem;font-weight:900;color:#fff;text-decoration:none}.logo span{color:#e8650a}h1{font-size:1.35rem;margin:24px 0 8px}p{color:#bbb;margin:0 0 20px}.actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}a.button,button{display:inline-block;padding:10px 16px;border-radius:10px;border:1px solid #383838;background:#222;color:#f0f0f0;font:inherit;font-weight:700;text-decoration:none;cursor:pointer}a.primary{background:#e8650a;border-color:#e8650a;color:#fff}.note{margin-top:18px;font-size:.82rem;color:#888}
+</style>
+</head>
+<body>
+<main class="card">
+<a class="logo" href="/">قِن<span>طار</span></a>
+<section id="offlineAr" lang="ar" dir="rtl">
+<h1>أنت غير متصل بالإنترنت</h1>
+<p>تعذر فتح هذه الصفحة الآن. يمكنك الرجوع إلى الرئيسية أو فتح إحدى الصفحات التي خزّنها جهازك، ثم إعادة المحاولة عند عودة الاتصال.</p>
+<div class="actions"><a class="button primary" href="/">العودة إلى قِنطار</a><button type="button" onclick="location.reload()">إعادة المحاولة</button></div>
+<p class="note">قد لا تعمل الأسعار المباشرة أو الإعلانات أو الخدمات الخارجية أثناء انقطاع الإنترنت.</p>
+</section>
+<section id="offlineEn" lang="en" dir="ltr" hidden>
+<h1>You’re offline</h1>
+<p>This page can’t be reached right now. Return to the homepage or open a page saved on this device, then try again when your connection is restored.</p>
+<div class="actions"><a class="button primary" href="/">Return to Qintar</a><button type="button" onclick="location.reload()">Try again</button></div>
+<p class="note">Live exchange rates, ads, and other external services may be unavailable while offline.</p>
+</section>
+<script>if(navigator.language&&navigator.language.toLowerCase().startsWith('en')){document.documentElement.lang='en';document.documentElement.dir='ltr';document.getElementById('offlineAr').hidden=true;document.getElementById('offlineEn').hidden=false;document.title='You’re offline | Qintar';}</script>
+</main>
+</body>
+</html>
