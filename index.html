@@ -2293,6 +2293,7 @@ applyLang();
 </footer>
 <script>
 function openInstallInstructions() {
+  openInfoMenu();
   const ua = navigator.userAgent || '';
   const isIOS = /iPhone|iPad|iPod/i.test(ua) || (/Macintosh/i.test(ua) && navigator.maxTouchPoints > 1);
   const isAndroid = /Android/i.test(ua);
@@ -2306,7 +2307,7 @@ function openInstallInstructions() {
   document.getElementById('infoMenuView').style.display = 'none';
   document.querySelectorAll('.info-section').forEach(s => s.classList.remove('active'));
   document.getElementById('info-install').classList.add('active');
-  document.getElementById('infoTitle').textContent = 'طريقة تثبيت الموقع على الشاشة الرئيسية';
+  document.getElementById('infoTitle').textContent = getLang() === 'ar' ? 'طريقة تثبيت الموقع على الشاشة الرئيسية' : 'Add Qintar to your home screen';
   document.getElementById('installGuideBody').innerHTML = content;
 }
 </script>
