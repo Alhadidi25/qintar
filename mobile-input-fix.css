@@ -1,0 +1,6 @@
+/* Keep form controls at iOS Safari's 16px auto-zoom threshold on narrow screens. User pinch zoom remains available. */
+@media screen and (max-width: 767px) {
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+}

@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>الحاسبة العلمية | قِنطار</title>
+  <meta name="description" content="حاسبة علمية مجانية من قِنطار: العمليات الحسابية والأقواس والنسب والجذور والأسس والدوال المثلثية واللوغاريتمية، مع الاختيار بين الدرجات والراديان.">
+  <link rel="canonical" href="https://qintar.sbs/calculator.html">
+  <meta name="theme-color" content="#0e0e0e">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="48x48" href="/icon-48.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/icon-180.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{color-scheme:dark;--bg:#0e0e0e;--card:#1a1a1a;--card2:#222;--border:#2a2a2a;--orange:#e8650a;--orange2:#ff7a1f;--text:#f0f0f0;--muted:#999;--red:#e74c3c}
+    *{box-sizing:border-box}body{margin:0;min-height:100vh;background:var(--bg);color:var(--text);font-family:'Tajawal',Arial,sans-serif;padding:18px 14px 40px}
+    .page{max-width:620px;margin:0 auto}.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 auto 18px}.brand{font-size:1.2rem;font-weight:900;color:#fff;text-decoration:none}.brand span{color:var(--orange)}.top-actions{display:flex;gap:8px;align-items:center}.top-actions a,.lang-btn{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:8px 13px;border:1px solid var(--border);border-radius:10px;background:var(--card);color:var(--text);font:700 .9rem 'Tajawal',sans-serif;text-decoration:none;cursor:pointer}
+    h1{font-size:1.45rem;line-height:1.5;margin:16px 0 5px}.intro{color:var(--muted);line-height:1.8;margin:0 0 16px;font-size:.98rem}
+    .calculator{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:16px;box-shadow:0 10px 28px rgba(0,0,0,.28)}
+    .display{background:#111;border:1px solid var(--border);border-radius:13px;padding:12px 14px;margin-bottom:12px;min-height:100px;display:flex;flex-direction:column;justify-content:center;gap:7px;overflow:hidden}
+    #expression{width:100%;border:0;background:transparent;color:var(--muted);font:500 1rem 'Tajawal',sans-serif;text-align:left;direction:ltr;outline:none}
+    #result{min-height:38px;font-size:1.8rem;font-weight:800;direction:ltr;text-align:left;overflow-wrap:anywhere;color:#fff}
+    .toolbar{display:flex;gap:8px;margin-bottom:10px}.toolbar button{flex:1;min-height:42px;border:1px solid var(--border);border-radius:10px;background:var(--card2);color:var(--text);font:700 .95rem 'Tajawal',sans-serif;cursor:pointer}.toolbar button.active{border-color:var(--orange);color:var(--orange)}
+    .keypad{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}.key{min-height:53px;border:1px solid var(--border);border-radius:11px;background:var(--card2);color:var(--text);font:700 1.08rem 'Tajawal',sans-serif;cursor:pointer;touch-action:manipulation}.key:hover,.key:focus-visible{border-color:var(--orange);outline:none}.key.fn{color:#ff9a52;font-size:.96rem}.key.op{background:#302116;color:#ff9a52}.key.clear{color:#ff766b}.key.equals{background:var(--orange);border-color:var(--orange);color:white;font-size:1.25rem}.key.wide{grid-column:span 2}
+    .error{color:#ff8278;font-size:.9rem;min-height:24px;margin-top:8px}.guide{margin-top:18px;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px;line-height:1.9}.guide h2{font-size:1.12rem;margin:0 0 7px}.guide p{margin:7px 0;color:#ddd}.guide ul{padding-right:22px;margin:8px 0;color:#ddd}.guide .note{color:var(--muted);font-size:.88rem}.footer{margin:18px 0;text-align:center;color:var(--muted);font-size:.85rem}.footer a{color:var(--orange);text-decoration:none}
+    @media(max-width:420px){body{padding:12px 10px 32px}.calculator{padding:12px}.keypad{gap:6px}.key{min-height:48px;font-size:1rem}.key.fn{font-size:.86rem}.top-actions a{padding:7px 9px;font-size:.82rem}h1{font-size:1.3rem}}
+  </style>
+<link rel="stylesheet" href="/mobile-input-fix.css">
+<script src="/offline-status.js" defer></script>
+</head>
+<body>
+  <main class="page">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="قِنطار">قِن<span>طار</span></a>
+      <nav class="top-actions" aria-label="التنقل">
+        <a href="/currency-converter.html" data-ar="محول العملات" data-en="Currency converter">محول العملات</a>
+        <button class="lang-btn" type="button" id="langBtn" aria-label="تغيير اللغة">EN</button>
+      </nav>
+    </header>
+    <h1 id="pageTitle">الحاسبة العلمية</h1>
+    <p class="intro" id="pageIntro">آلة حاسبة تعمل مباشرة في متصفحك، للعمليات اليومية وبعض الدوال العلمية. لا ترسل الأداة ما تكتبه إلى أي خادم.</p>
+    <section class="calculator" aria-label="الحاسبة العلمية">
+      <div class="display" aria-live="polite">
+        <input id="expression" type="text" readonly aria-label="العملية الحسابية" value="">
+        <div id="result">0</div>
+      </div>
+      <div class="toolbar">
+        <button id="angleBtn" type="button" class="active">درجات (DEG)</button>
+        <button id="ansBtn" type="button" data-ar="الإجابة السابقة" data-en="Previous answer">الإجابة السابقة</button>
+      </div>
+      <div class="keypad" id="keypad">
+        <button class="key fn" data-value="sin(" data-ar="جا" data-en="sin" aria-label="sin">جا</button>
+        <button class="key fn" data-value="cos(" data-ar="جتا" data-en="cos" aria-label="cos">جتا</button>
+        <button class="key fn" data-value="tan(" data-ar="ظا" data-en="tan" aria-label="tan">ظا</button>
+        <button class="key fn" data-value="sqrt(" data-ar="√" data-en="√">√</button>
+        <button class="key clear" data-action="clear" data-ar="مسح" data-en="AC">مسح</button>
+        <button class="key fn" data-value="log(" data-ar="log" data-en="log">log</button>
+        <button class="key fn" data-value="ln(" data-ar="ln" data-en="ln">ln</button>
+        <button class="key fn" data-value="abs(" data-ar="|x|" data-en="|x|">|x|</button>
+        <button class="key fn" data-value="(" aria-label="فتح قوس">(</button>
+        <button class="key fn" data-value=")" aria-label="إغلاق قوس">)</button>
+        <button class="key" data-value="7">7</button><button class="key" data-value="8">8</button><button class="key" data-value="9">9</button>
+        <button class="key op" data-value="÷">÷</button><button class="key op" data-value="^">xʸ</button>
+        <button class="key" data-value="4">4</button><button class="key" data-value="5">5</button><button class="key" data-value="6">6</button>
+        <button class="key op" data-value="×">×</button><button class="key op" data-value="%">%</button>
+        <button class="key" data-value="1">1</button><button class="key" data-value="2">2</button><button class="key" data-value="3">3</button>
+        <button class="key op" data-value="−">−</button><button class="key op" data-action="backspace" aria-label="حذف آخر رمز">⌫</button>
+        <button class="key fn" data-value="π">π</button><button class="key" data-value="0">0</button><button class="key" data-value=".">.</button>
+        <button class="key op" data-value="+">+</button><button class="key equals" data-action="equals" aria-label="احسب">=</button>
+      </div>
+      <div id="error" class="error" role="status" aria-live="polite"></div>
+    </section>
+    <section class="guide">
+      <h2 id="guideTitle">طريقة الاستخدام والعمليات المتاحة</h2>
+      <p id="guideText">استخدم الأزرار أو لوحة المفاتيح لإدخال تعبير، ثم اضغط علامة المساواة. تدعم الحاسبة الجمع والطرح والضرب والقسمة والأقواس والأسس والنسب المئوية، إضافة إلى الجذر التربيعي والقيمة المطلقة والدوال sin وcos وtan وlog وln والثابت π.</p>
+      <ul id="guideList">
+        <li>مثال: (12 + 8) × 3 يحسب مجموع الرقمين ثم يضرب الناتج في 3.</li>
+        <li>مثال: √(81) يعطي 9، و 2^5 يعطي 32.</li>
+        <li>يمكن التبديل بين الدرجات والراديان للدوال المثلثية.</li>
+      </ul>
+      <p class="note" id="guideNote">النتائج لأغراض الحساب العام والتعليم، وليست نصيحة مالية أو ضريبية. تأكد من النتيجة قبل الاعتماد عليها في قرار مهم.</p>
+    </section>
+    <footer class="footer"><a href="/">العودة إلى قِنطار</a> · <a href="/privacy.html">الخصوصية</a></footer>
+  </main>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const expression = $('expression');
+  const result = $('result');
+  const error = $('error');
+  let lastAnswer = 0;
+  let angleMode = 'DEG';
+  let lang = 'ar';
+  const copy = {
+    ar:{title:'الحاسبة العلمية',intro:'آلة حاسبة تعمل مباشرة في متصفحك، للعمليات اليومية وبعض الدوال العلمية. لا ترسل الأداة ما تكتبه إلى أي خادم.',deg:'درجات (DEG)',rad:'راديان (RAD)',ans:'الإجابة السابقة',guideTitle:'طريقة الاستخدام والعمليات المتاحة',guideText:'استخدم الأزرار أو لوحة المفاتيح لإدخال تعبير، ثم اضغط علامة المساواة. تدعم الحاسبة الجمع والطرح والضرب والقسمة والأقواس والأسس والنسب المئوية، إضافة إلى الجذر التربيعي والقيمة المطلقة والدوال sin وcos وtan وlog وln والثابت π.',list:['مثال: (12 + 8) × 3 يحسب مجموع الرقمين ثم يضرب الناتج في 3.','مثال: √(81) يعطي 9، و 2^5 يعطي 32.','يمكن التبديل بين الدرجات والراديان للدوال المثلثية.'],note:'النتائج لأغراض الحساب العام والتعليم، وليست نصيحة مالية أو ضريبية. تأكد من النتيجة قبل الاعتماد عليها في قرار مهم.',back:'العودة إلى قِنطار',privacy:'الخصوصية',clear:'مسح',invalid:'تحقق من التعبير الحسابي.',divzero:'لا يمكن القسمة على صفر.',domain:'القيمة خارج نطاق الدالة.'},
+    en:{title:'Scientific calculator',intro:'A calculator for everyday arithmetic and common scientific functions. It works in your browser and does not send your entries to a server.',deg:'Degrees (DEG)',rad:'Radians (RAD)',ans:'Previous answer',guideTitle:'How to use it',guideText:'Enter an expression with the buttons or keyboard, then press equals. The calculator supports addition, subtraction, multiplication, division, parentheses, powers, percentages, square roots, absolute values, sin, cos, tan, log, ln, and π.',list:['Example: (12 + 8) × 3 adds the numbers, then multiplies by 3.','Example: √(81) gives 9, and 2^5 gives 32.','Switch between degrees and radians for trigonometric functions.'],note:'Results are for general calculation and education, not financial or tax advice. Verify results before relying on them for important decisions.',back:'Back to Qintar',privacy:'Privacy',clear:'AC',invalid:'Check the expression.',divzero:'Division by zero is not allowed.',domain:'Value is outside the function domain.'}
+  };
+  function updateLang(){
+    const t=copy[lang]; document.documentElement.lang=lang;
+    $('langBtn').textContent=lang==='ar'?'EN':'ع'; $('langBtn').setAttribute('aria-label',lang==='ar'?'Change language':'تغيير اللغة');
+    $('pageTitle').textContent=t.title; $('pageIntro').textContent=t.intro; $('angleBtn').textContent=angleMode==='DEG'?t.deg:t.rad; $('ansBtn').textContent=t.ans;
+    $('guideTitle').textContent=t.guideTitle; $('guideText').textContent=t.guideText; $('guideNote').textContent=t.note;
+    $('guideList').innerHTML=t.list.map(x=>`<li>${x}</li>`).join('');
+    document.querySelectorAll('[data-ar][data-en]').forEach(el=>{el.textContent=el.getAttribute('data-'+lang)});
+    document.querySelectorAll('[data-value="sin("]').forEach(el=>el.setAttribute('aria-label','sin'));
+  }
+  $('langBtn').addEventListener('click',()=>{lang=lang==='ar'?'en':'ar';updateLang()});
+  $('angleBtn').addEventListener('click',()=>{angleMode=angleMode==='DEG'?'RAD':'DEG';$('angleBtn').textContent=angleMode==='DEG'?copy[lang].deg:copy[lang].rad;$('angleBtn').classList.toggle('active',angleMode==='DEG')});
+  function insert(value){expression.value+=value;error.textContent='';}
+  document.querySelectorAll('.key[data-value]').forEach(btn=>btn.addEventListener('click',()=>insert(btn.dataset.value)));
+  document.querySelector('[data-action="clear"]').addEventListener('click',()=>{expression.value='';result.textContent='0';error.textContent=''});
+  document.querySelector('[data-action="backspace"]').addEventListener('click',()=>{expression.value=expression.value.slice(0,-1);error.textContent=''});
+  $('ansBtn').addEventListener('click',()=>insert('ans'));
+  function tokenize(source){
+    const normalized=source.replace(/[٠-٩]/g,d=>String('٠١٢٣٤٥٦٧٨٩'.indexOf(d))).replace(/[۰-۹]/g,d=>String('۰۱۲۳۴۵۶۷۸۹'.indexOf(d))).replace(/٫|،/g,'.').replace(/×/g,'*').replace(/÷/g,'/').replace(/[−–]/g,'-').replace(/π/g,'pi').replace(/\s+/g,'').toLowerCase();
+    const regex=/\d+(?:\.\d*)?|\.\d+|sin|cos|tan|sqrt|abs|log|ln|ans|pi|e|[()+\-*/^%]/gy;
+    const tokens=[]; let pos=0;
+    while(pos<normalized.length){regex.lastIndex=pos;const m=regex.exec(normalized);if(!m)throw new Error('invalid');tokens.push(m[0]);pos=regex.lastIndex;}
+    if(!tokens.length)throw new Error('invalid'); return tokens;
+  }
+  function evaluate(source){
+    const tokens=tokenize(source);let i=0;
+    const peek=()=>tokens[i]; const take=()=>tokens[i++];
+    function expression(){let v=term();while(peek()==='+'||peek()==='-'){const op=take();const r=term();v=op==='+'?v+r:v-r;}return v;}
+    function term(){let v=unary();while(peek()==='*'||peek()==='/'){const op=take();const r=unary();if(op==='/'&&r===0)throw new Error('divzero');v=op==='*'?v*r:v/r;}return v;}
+    function unary(){if(peek()==='+'){take();return unary()}if(peek()==='-'){take();return -unary()}return power();}
+    function power(){let v=postfix();if(peek()==='^'){take();v=Math.pow(v,unary());}return v;}
+    function postfix(){let v=primary();while(peek()==='%'){take();v/=100;}return v;}
+    function primary(){
+      const t=take(); if(t===undefined)throw new Error('invalid');
+      if(t==='('){const v=expression();if(take()!==')')throw new Error('invalid');return v;}
+      if(['sin','cos','tan','sqrt','abs','log','ln'].includes(t)){
+        if(take()!=='(')throw new Error('invalid');const x=expression();if(take()!==')')throw new Error('invalid');
+        const a=angleMode==='DEG'?x*Math.PI/180:x;
+        if(t==='sqrt'){if(x<0)throw new Error('domain');return Math.sqrt(x)}
+        if(t==='abs')return Math.abs(x);
+        if(t==='log'){if(x<=0)throw new Error('domain');return Math.log10(x)}
+        if(t==='ln'){if(x<=0)throw new Error('domain');return Math.log(x)}
+        if(t==='sin')return Math.sin(a); if(t==='cos')return Math.cos(a); return Math.tan(a);
+      }
+      if(t==='pi')return Math.PI;if(t==='e')return Math.E;if(t==='ans')return lastAnswer;
+      if(/^\d|^\./.test(t))return Number(t);
+      throw new Error('invalid');
+    }
+    const value=expression();if(i!==tokens.length||!Number.isFinite(value))throw new Error('domain');return value;
+  }
+  function format(value){if(Object.is(value,-0))value=0;return value.toLocaleString(lang==='ar'?'ar-SA':'en-US',{maximumFractionDigits:10,maximumSignificantDigits:12});}
+  function calculate(){try{const value=evaluate(expression.value);lastAnswer=value;result.textContent=format(value);error.textContent=''}catch(e){error.textContent=copy[lang][e.message]||copy[lang].invalid;}}
+  document.querySelector('[data-action="equals"]').addEventListener('click',calculate);
+  document.addEventListener('keydown',e=>{
+    if(/^[0-9.]$/.test(e.key))insert(e.key);else if(['+','-','*','/','(',')','^','%'].includes(e.key))insert(e.key);else if(e.key==='Enter'||e.key==='='){e.preventDefault();calculate()}else if(e.key==='Backspace')expression.value=expression.value.slice(0,-1);else if(e.key==='Escape'){expression.value='';result.textContent='0';error.textContent=''}
+  });
+  updateLang();
+})();
+</script>
+</body>
+</html>
