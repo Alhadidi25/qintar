@@ -159,6 +159,28 @@
     document.querySelectorAll('.science-key[data-ar][data-en]').forEach(el=>{el.textContent=el.getAttribute('data-'+lang)});
     renderWallet(); renderHistory();
   }
+  let calculatorTouchStart=null,lastHandledTouch=null;
+  document.addEventListener('touchstart',event=>{
+    if(event.touches.length!==1){calculatorTouchStart=null;return;}
+    const touch=event.touches[0];
+    calculatorTouchStart={x:touch.clientX,y:touch.clientY,button:event.target.closest('button')};
+  },{passive:true});
+  document.addEventListener('touchend',event=>{
+    const start=calculatorTouchStart;calculatorTouchStart=null;
+    if(!start||!start.button||!start.button.isConnected||!event.changedTouches.length)return;
+    const touch=event.changedTouches[0],released=document.elementFromPoint(touch.clientX,touch.clientY);
+    if(Math.hypot(touch.clientX-start.x,touch.clientY-start.y)>14||!released||released.closest('button')!==start.button)return;
+    if(event.cancelable)event.preventDefault();
+    lastHandledTouch={button:start.button,at:Date.now()};
+    const handledTouch=lastHandledTouch;
+    start.button.click();
+    setTimeout(()=>{if(lastHandledTouch===handledTouch)lastHandledTouch=null;},900);
+  },{passive:false});
+  document.addEventListener('touchcancel',()=>{calculatorTouchStart=null;},{passive:true});
+  document.addEventListener('click',event=>{
+    if(event.detail===0||!lastHandledTouch||Date.now()-lastHandledTouch.at>900)return;
+    if(event.target.closest('button')===lastHandledTouch.button){event.preventDefault();event.stopImmediatePropagation();lastHandledTouch=null;}
+  },true);
   function insert(value){expression.value+=value;error.textContent='';}
   $('langBtn').addEventListener('click',()=>{lang=lang==='ar'?'en':'ar';updateLang()});
   document.querySelectorAll('[data-value]').forEach(btn=>btn.addEventListener('click',()=>insert(btn.dataset.value)));
