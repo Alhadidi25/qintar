@@ -254,7 +254,7 @@ footer{margin-top:38px;padding:18px 0;border-top:1px solid #2a2a2a;text-align:ce
     if(!$('calcResults').hidden)$('nisabStatus').textContent=Number($('zakatAmount').value)>=Number($('zakatNisab').value)?strings[lang].met:strings[lang].below;
   }
   function parseField(id){const el=$(id);if(el.value.trim()==='')return null;const n=Number(el.value);if(!Number.isFinite(n)||n<0||n>1e12)return null;return n;}
-  function formatSAR(value){return new Intl.NumberFormat(lang==='en'?'en-SA':'ar-SA',{style:'currency',currency:'SAR',maximumFractionDigits:2}).format(value);}
+  function formatSAR(value){return new Intl.NumberFormat(lang==='en'?'en-SA':'ar-SA-u-nu-latn',{style:'currency',currency:'SAR',maximumFractionDigits:2}).format(value);}
   function calculate(){
     const amount=parseField('zakatAmount'),nisab=parseField('zakatNisab');
     const error=$('calcError');error.classList.remove('show');$('calcResults').hidden=true;

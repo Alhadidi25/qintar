@@ -41,7 +41,7 @@
   }
 
   function format(value, language) {
-    const locale = language === 'en' ? 'en-US' : 'ar-SA';
+    const locale = language === 'en' ? 'en-US' : 'ar-SA-u-nu-latn';
     return new Intl.NumberFormat(locale, { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(value);
   }
 

@@ -203,7 +203,7 @@ cb += (t.cb || 0);
 return { bal, spent, cb, income };
 }
 function fmt(n) {
-return n.toLocaleString(getLang() === 'ar' ? 'ar-SA' : 'en-US', {
+return n.toLocaleString(getLang() === 'ar' ? 'ar-SA-u-nu-latn' : 'en-US', {
 minimumFractionDigits: 2,
 maximumFractionDigits: 2
 });
@@ -282,7 +282,7 @@ el.classList.remove('show');
 }
 }
 function nowDate() {
-return new Date().toLocaleDateString('ar-SA-u-ca-gregory', { day: '2-digit', month: '2-digit', year: 'numeric' });
+return new Date().toLocaleDateString('ar-SA-u-ca-gregory-nu-latn', { day: '2-digit', month: '2-digit', year: 'numeric' });
 }
 function addDeposit() {
 const a = parseFloat(document.getElementById('depAmt').value);
@@ -516,7 +516,7 @@ const now = new Date();
 const months = [];
 for (let i = 5; i >= 0; i--) {
 const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
-months.push({ y: d.getFullYear(), m: d.getMonth(), label: d.toLocaleDateString(getLang() === 'ar' ? 'ar-SA-u-ca-gregory' : 'en-US', {month:'short'}), income: 0, expense: 0 });
+months.push({ y: d.getFullYear(), m: d.getMonth(), label: d.toLocaleDateString(getLang() === 'ar' ? 'ar-SA-u-ca-gregory-nu-latn' : 'en-US', {month:'short'}), income: 0, expense: 0 });
 }
 for (const t of data.txs) {
 if (!t.iso) continue;
@@ -833,7 +833,7 @@ container.innerHTML = `
 <div style="width:780px; padding:34px; font-family:'Tajawal',sans-serif; direction:rtl; background:#ffffff; color:#151515;">
 <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:3px solid #e8650a; padding-bottom:16px; margin-bottom:22px;">
 <div style="font-size:24px; font-weight:900;">قِن<span style="color:#e8650a">طار</span></div>
-<div style="font-size:12px; color:#777;">كشف حساب — ${new Date().toLocaleDateString('ar-SA-u-ca-gregory', { year:'numeric', month:'long', day:'numeric' })}</div>
+<div style="font-size:12px; color:#777;">كشف حساب — ${new Date().toLocaleDateString('ar-SA-u-ca-gregory-nu-latn', { year:'numeric', month:'long', day:'numeric' })}</div>
 </div>
 <div style="display:flex; gap:14px; margin-bottom:24px;">
 <div style="flex:1; background:#f6f6f6; border-radius:10px; padding:16px;">
@@ -1032,7 +1032,7 @@ rightFade.classList.toggle('show', !atStart);
 leftFade.classList.toggle('show', !atEnd);
 }
 window.addEventListener('resize', () => requestAnimationFrame(updateTabsFade));
-document.getElementById('hDate').textContent = new Date().toLocaleDateString('ar-SA-u-ca-gregory', { weekday: 'short', day: 'numeric', month: 'long' });
+document.getElementById('hDate').textContent = new Date().toLocaleDateString('ar-SA-u-ca-gregory-nu-latn', { weekday: 'short', day: 'numeric', month: 'long' });
 checkRecurring();
 checkRecurringIncome();
 render();
@@ -1944,7 +1944,7 @@ if (btnAddRecInc) btnAddRecInc.textContent = tMsg('+ إضافة دخل متكر�
 
 
 // Date
-document.getElementById('hDate').textContent = new Date().toLocaleDateString(lang === 'ar' ? 'ar-SA-u-ca-gregory' : 'en-GB', { weekday: 'short', day: 'numeric', month: 'long' });
+document.getElementById('hDate').textContent = new Date().toLocaleDateString(lang === 'ar' ? 'ar-SA-u-ca-gregory-nu-latn' : 'en-GB', { weekday: 'short', day: 'numeric', month: 'long' });
 }
 
 function renderBooks() {
