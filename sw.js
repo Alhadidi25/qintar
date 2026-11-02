@@ -1,7 +1,7 @@
 /* Qintar offline support: public site shell only; no user transaction data is read or cached. */
 'use strict';
 
-const SHELL_CACHE = 'qintar-shell-v6';
+const SHELL_CACHE = 'qintar-shell-v7';
 const RATE_CACHE = 'qintar-rates-v1';
 const MAX_RATE_AGE_MS = 72 * 60 * 60 * 1000;
 
@@ -37,6 +37,7 @@ const PRECACHE_URLS = [
   '/young-money-mistakes.html',
   '/offline.html',
   '/offline-status.js',
+  '/qintar-wallet.js',
   '/mobile-input-fix.css',
   '/sw.js',
   '/site.webmanifest',
