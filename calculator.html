@@ -181,16 +181,18 @@
     if(event.detail===0||!lastHandledTouch||Date.now()-lastHandledTouch.at>900)return;
     if(event.target.closest('button')===lastHandledTouch.button){event.preventDefault();event.stopImmediatePropagation();lastHandledTouch=null;}
   },true);
-  function insert(value){expression.value+=value;error.textContent='';}
+  function renderInput(){result.textContent=expression.value||'0';}
+  function insert(value){expression.value+=value;renderInput();error.textContent='';}
   $('langBtn').addEventListener('click',()=>{lang=lang==='ar'?'en':'ar';updateLang()});
   document.querySelectorAll('[data-value]').forEach(btn=>btn.addEventListener('click',()=>insert(btn.dataset.value)));
-  document.querySelector('[data-action="clear"]').addEventListener('click',()=>{expression.value='';result.textContent='0';error.textContent=''});
-  document.querySelector('[data-action="backspace"]').addEventListener('click',()=>{expression.value=expression.value.slice(0,-1);error.textContent=''});
+  document.querySelector('[data-action="clear"]').addEventListener('click',()=>{expression.value='';renderInput();error.textContent=''});
+  document.querySelector('[data-action="backspace"]').addEventListener('click',()=>{expression.value=expression.value.slice(0,-1);renderInput();error.textContent=''});
   document.querySelector('[data-action="sign"]').addEventListener('click',()=>{
     const value=expression.value.trim();
-    if(!value){expression.value='-';return;}
+    if(!value){expression.value='-';renderInput();return;}
     if(value.startsWith('-(')&&value.endsWith(')')) expression.value=value.slice(2,-1);
     else expression.value='-('+value+')';
+    renderInput();
     error.textContent='';
   });
   $('ansBtn').addEventListener('click',()=>insert('ans'));
@@ -229,7 +231,7 @@
   function renderWallet(){if(!window.QintarWallet)return;const wallet=window.QintarWallet.read();$('walletAmount').textContent=window.QintarWallet.format(wallet.balance,lang)+' '+wallet.currency;}
   $('useWalletButton').addEventListener('click',()=>{const wallet=window.QintarWallet?window.QintarWallet.read():{balance:0};expression.value=String(wallet.balance);lastAnswer=wallet.balance;result.textContent=format(wallet.balance);error.textContent='';});
   window.addEventListener('storage',event=>{if(event.key==='mhfzti_v4')renderWallet();if(event.key===HISTORY_KEY)renderHistory();});
-  document.addEventListener('keydown',e=>{if(/^[0-9.]$/.test(e.key))insert(e.key);else if(['+','-','*','/','(',')','^','%'].includes(e.key))insert(e.key);else if(e.key==='Enter'||e.key==='='){e.preventDefault();calculate();}else if(e.key==='Backspace')expression.value=expression.value.slice(0,-1);else if(e.key==='Escape'){expression.value='';result.textContent='0';error.textContent='';$('historyModal').hidden=true;}});
+  document.addEventListener('keydown',e=>{if(/^[0-9.]$/.test(e.key))insert(e.key);else if(['+','-','*','/','(',')','^','%'].includes(e.key))insert(e.key);else if(e.key==='Enter'||e.key==='='){e.preventDefault();calculate();}else if(e.key==='Backspace'){expression.value=expression.value.slice(0,-1);renderInput();}else if(e.key==='Escape'){expression.value='';renderInput();error.textContent='';$('historyModal').hidden=true;}});
   updateLang();
 })();
 </script>
