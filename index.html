@@ -61,8 +61,8 @@ gtag('config', 'G-VJGN3NQ8WZ');</script>
 المقال <span class="arrow">›</span></button><button class="info-menu-item" onclick="showInfoSection('blog')" data-i18n="menu_blog">
 المدونة <span class="arrow">›</span></button><button class="info-menu-item" onclick="showInfoSection('books')" data-i18n="menu_books">
 الكتب <span class="arrow">›</span></button><button class="info-menu-item" onclick="showInfoSection('tips')" data-i18n="menu_tips">
-نصائح مالية <span class="arrow">›</span></button><button class="info-menu-item" onclick="showInfoSection('courses')" data-i18n="menu_courses">
-دورات <span class="arrow">›</span></button><button class="info-menu-item" onclick="showInfoSection('features')" data-i18n="menu_features">
+نصائح مالية <span class="arrow">›</span></button><a class="info-menu-item" href="/courses.html" style="text-decoration:none" data-i18n="menu_courses">
+دورات <span class="arrow">›</span></a><button class="info-menu-item" onclick="showInfoSection('features')" data-i18n="menu_features">
 شرح المميزات <span class="arrow">›</span></button><button class="info-menu-item" onclick="showInfoSection('privacy')" data-i18n="menu_privacy">
 سياسة الخصوصية <span class="arrow">›</span></button><button class="info-menu-item" onclick="showInfoSection('terms')" data-i18n="menu_terms">
 شروط الاستخدام <span class="arrow">›</span></button><button class="info-menu-item" onclick="showInfoSection('contact')" data-i18n="menu_contact">
@@ -95,12 +95,6 @@ gtag('config', 'G-VJGN3NQ8WZ');</script>
 <div class="tip-item">استخدم قاعدة الـ 24 ساعة قبل أي شراء غير ضروري — انتظر يوماً كاملاً ثم قرر.</div>
 <div class="tip-item">تابع صافي ثروتك (الأصول ناقص الخصوم) مرة كل شهر بدل التركيز على الرصيد البنكي فقط.</div>
 <div class="tip-item">علّم أطفالك أساسيات المال مبكراً — العادات المالية تُبنى في الصغر.</div>
-</div></div>
-
-<div class="info-section" id="info-courses"><button class="info-back-btn" onclick="backToInfoMenu()" data-i18n="back_menu">‹ رجوع للقائمة</button><div class="info-body" id="coursesBody">
-<h4 data-i18n="courses_title">دورات إدارة المال</h4>
-<p style="font-size:0.75rem;color:var(--muted);margin-bottom:14px" data-i18n="courses_intro">أكمل كل مرحلة بالترتيب لفتح المرحلة التالية. التقدم يُحفظ تلقائياً على جهازك.</p>
-<div id="coursesList"></div>
 </div></div>
 
 <div class="info-section" id="info-features"><button class="info-back-btn" onclick="backToInfoMenu()" data-i18n="back_menu">‹ رجوع للقائمة</button><div class="info-body" id="featuresBody">
@@ -2143,6 +2137,7 @@ infoTitles.article = 'المقال';
 
 const originalShowInfoSection = showInfoSection;
 showInfoSection = function(key) {
+if (key === 'courses') { window.location.href = '/courses.html'; return; }
 originalShowInfoSection(key);
 const lang = getLang();
 const titles = {

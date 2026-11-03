@@ -1,7 +1,7 @@
 /* Qintar offline support: public site shell only; no user transaction data is read or cached. */
 'use strict';
 
-const SHELL_CACHE = 'qintar-shell-v12';
+const SHELL_CACHE = 'qintar-shell-v13';
 const RATE_CACHE = 'qintar-rates-v1';
 const MAX_RATE_AGE_MS = 72 * 60 * 60 * 1000;
 
@@ -14,6 +14,7 @@ const PRECACHE_URLS = [
   '/blog.html',
   '/budget-50-30-20.html',
   '/contact.html',
+  '/courses.html',
   '/credit-cards-smart.html',
   '/currency-converter.html',
   '/calculator.html',
