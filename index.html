@@ -59,8 +59,8 @@ gtag('config', 'G-VJGN3NQ8WZ');</script>
 </p><button class="btn-outline" onclick="exportBackup()" style="margin-bottom:8px">⬇ تصدير نسخة احتياطية (JSON)</button><label class="btn-outline file-label" for="importFile">⬆ استيراد نسخة احتياطية</label><input type="file" id="importFile" accept=".json" style="display:none" onchange="importBackup(event)"></div></div></div><div class="toast" id="toast" role="status" aria-live="polite"></div><div id="pdfRenderArea" style="position:fixed; top:-10000px; left:-10000px; z-index:-1;"></div><div class="info-overlay" id="infoOverlay" onclick="if(event.target===this)closeInfoOverlay()"><div class="info-sheet"><div class="info-sheet-header"><div class="info-sheet-title" id="infoTitle">القائمة</div><button class="info-close-btn" onclick="closeInfoOverlay()">✕</button></div><div id="infoMenuView"><div class="info-menu-list"><button class="info-menu-item" onclick="openInstallInstructions()"> طريقة تثبيت الموقع على الشاشة الرئيسية <span class="arrow">›</span></button><a class="info-menu-item" href="/currency-converter.html" style="text-decoration:none" data-i18n="menu_currency">محول العملات <span class="arrow">›</span></a><a class="info-menu-item" href="/calculator.html" style="text-decoration:none" data-i18n="menu_calculator">حاسبة <span class="arrow">›</span></a><button class="info-menu-item" onclick="showInfoSection('about')" data-i18n="menu_about">
 من نحن <span class="arrow">›</span></button><button class="info-menu-item" onclick="showInfoSection('article')" data-i18n="menu_article">
 المقال <span class="arrow">›</span></button><button class="info-menu-item" onclick="showInfoSection('blog')" data-i18n="menu_blog">
-المدونة <span class="arrow">›</span></button><button class="info-menu-item" onclick="showInfoSection('books')" data-i18n="menu_books">
-الكتب <span class="arrow">›</span></button><button class="info-menu-item" onclick="showInfoSection('tips')" data-i18n="menu_tips">
+المدونة <span class="arrow">›</span></button><a class="info-menu-item" href="/books.html" style="text-decoration:none" data-i18n="menu_books">
+الكتب <span class="arrow">›</span></a><button class="info-menu-item" onclick="showInfoSection('tips')" data-i18n="menu_tips">
 نصائح مالية <span class="arrow">›</span></button><a class="info-menu-item" href="/courses.html" style="text-decoration:none" data-i18n="menu_courses">
 دورات <span class="arrow">›</span></a><button class="info-menu-item" onclick="showInfoSection('features')" data-i18n="menu_features">
 شرح المميزات <span class="arrow">›</span></button><button class="info-menu-item" onclick="showInfoSection('privacy')" data-i18n="menu_privacy">
@@ -2138,6 +2138,7 @@ infoTitles.article = 'المقال';
 const originalShowInfoSection = showInfoSection;
 showInfoSection = function(key) {
 if (key === 'courses') { window.location.href = '/courses.html'; return; }
+if (key === 'books') { window.location.href = '/books.html'; return; }
 originalShowInfoSection(key);
 const lang = getLang();
 const titles = {
