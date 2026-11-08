@@ -18,7 +18,10 @@
     html,body{margin:0;min-height:100%;background:var(--bg);color:var(--white);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Arial,sans-serif}
     body{min-height:100svh;padding:8px 16px 30px;overflow-x:hidden}
     .app{width:min(100%,520px);min-height:calc(100svh - 38px);margin:0 auto;display:flex;flex-direction:column}
-    .topbar{height:64px;flex:none;display:grid;grid-template-columns:54px 1fr 54px;align-items:center;gap:12px;direction:ltr}
+    .topbar{height:64px;flex:none;display:grid;grid-template-columns:max-content 1fr 54px;align-items:center;gap:10px;direction:ltr}
+    .topbar-left-actions{display:flex;align-items:center;gap:8px;direction:ltr}
+    .home-link{height:50px;display:inline-flex;align-items:center;justify-content:center;padding:0 12px;border:1px solid #383838;border-radius:12px;background:#171717;color:#f1f1f1;text-decoration:none;font-family:inherit;font-size:13px;font-weight:700;white-space:nowrap;touch-action:manipulation}
+    .home-link:focus-visible{outline:2px solid #e8650a;outline-offset:3px}
     .round-icon{width:50px;height:50px;border:1px solid #383838;border-radius:50%;background:#171717;color:#fff;display:grid;place-items:center;cursor:pointer;box-shadow:0 1px 5px #ffffff12;touch-action:manipulation}
     .round-icon svg{width:27px;height:27px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
     .top-center{display:flex;align-items:center;justify-content:center;gap:10px;min-width:0}
@@ -73,9 +76,12 @@
 <body>
   <main class="app">
     <header class="topbar">
+      <div class="topbar-left-actions">
+      <a class="home-link" href="/" aria-label="العودة إلى الصفحة الرئيسية">الرئيسية</a>
       <button class="round-icon" id="scienceToggle" type="button" aria-label="إظهار الأدوات العلمية" aria-expanded="false" title="الأدوات العلمية">
         <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="2.5" width="14" height="19" rx="2.5"></rect><path d="M8 6h8M8 10h2m4 0h2m-8 3h2m4 0h2m-8 3h2m4 0h2m-8 3h2m4 0h2"></path></svg>
       </button>
+      </div>
       <div class="top-center" aria-hidden="true"></div>
       <button class="round-icon" id="historyToggle" type="button" aria-label="السجل" title="السجل">
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2M4.4 7.5 2.8 6M3 10H1"></path></svg>
