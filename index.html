@@ -2466,6 +2466,7 @@ function openInstallInstructions() {
   <section class="tx-edit-dialog" role="dialog" aria-modal="true" aria-labelledby="txEditTitle">
     <div class="tx-edit-header"><strong id="txEditTitle"></strong><button type="button" class="tx-edit-close" aria-label="Close" onclick="closeTxEdit()">×</button></div>
     <div class="tx-edit-field"><label id="txEditDescLabel" for="txEditDesc"></label><input id="txEditDesc" type="text" maxlength="120"></div>
+    <div class="tx-edit-field"><label id="txEditAmountLabel" for="txEditAmount"></label><input id="txEditAmount" type="number" min="0.01" step="any" inputmode="decimal" required></div>
     <div class="tx-edit-field" id="txEditCategoryField"><label id="txEditCategoryLabel" for="txEditCategory"></label><select id="txEditCategory"></select></div>
     <div class="tx-edit-actions"><button type="button" class="btn btn-orange" id="txEditSave" onclick="saveEditedTx()"></button><button type="button" class="btn btn-sm" id="txEditCancel" onclick="closeTxEdit()"></button></div>
   </section>
@@ -2478,10 +2479,12 @@ function openEditTx(index) {
   editingTxIndex = index;
   document.getElementById('txEditTitle').textContent = tMsg('تعديل المعاملة','Edit transaction');
   document.getElementById('txEditDescLabel').textContent = tMsg('اسم العملية أو الشيء المشتَرى','Transaction or item name');
+  document.getElementById('txEditAmountLabel').textContent = `${tMsg('المبلغ','Amount')} (${curr()})`;
   document.getElementById('txEditCategoryLabel').textContent = tMsg('التصنيف','Category');
   document.getElementById('txEditSave').textContent = tMsg('حفظ التعديل','Save changes');
   document.getElementById('txEditCancel').textContent = tMsg('إلغاء','Cancel');
   document.getElementById('txEditDesc').value = tx.desc || '';
+  document.getElementById('txEditAmount').value = Number(tx.amount || 0).toString();
   const categoryField = document.getElementById('txEditCategoryField');
   const select = document.getElementById('txEditCategory');
   categoryField.style.display = tx.type === 'withdraw' ? 'block' : 'none';
@@ -2506,7 +2509,15 @@ function closeTxEdit() {
 function saveEditedTx() {
   if (editingTxIndex === null || !data.txs[editingTxIndex]) return closeTxEdit();
   const tx = data.txs[editingTxIndex];
+  const amountInput = document.getElementById('txEditAmount');
+  const amount = amountInput.valueAsNumber;
+  if (!Number.isFinite(amount) || amount <= 0) {
+    showToast(tMsg('أدخل مبلغاً أكبر من صفر','Enter an amount greater than zero'));
+    amountInput.focus();
+    return;
+  }
   tx.desc = document.getElementById('txEditDesc').value.trim();
+  tx.amount = amount;
   if (tx.type === 'withdraw') tx.cat = document.getElementById('txEditCategory').value;
   closeTxEdit();
   save();
