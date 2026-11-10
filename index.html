@@ -2518,7 +2518,12 @@ function saveEditedTx() {
   }
   tx.desc = document.getElementById('txEditDesc').value.trim();
   tx.amount = amount;
-  if (tx.type === 'withdraw') tx.cat = document.getElementById('txEditCategory').value;
+  if (tx.type === 'withdraw') {
+    if (tx.cbPct !== undefined && tx.cbPct !== null && tx.cbPct !== '' && Number.isFinite(Number(tx.cbPct))) {
+      tx.cb = Number((amount * Number(tx.cbPct) / 100).toFixed(2));
+    }
+    tx.cat = document.getElementById('txEditCategory').value;
+  }
   closeTxEdit();
   save();
   showToast(tMsg('تم تعديل المعاملة','Transaction updated'));
